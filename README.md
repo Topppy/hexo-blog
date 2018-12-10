@@ -1,7 +1,8 @@
 # hexo-blog
 update my blog by hexo
 
-使用hexo 迭代我的旧blog
+使用hexo 迭代我的旧blog.
+hexo源码在hexo-src 分支，hexo deploy生成文件在master 和gh-pages分支。
 
 ## TODO list
 
