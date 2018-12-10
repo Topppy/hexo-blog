@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="canvas,chart,pie,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Topppy's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="在Canvas上将数据画成饼图将这个功能封装成为一个pie对象，只需要将参数对象传递给pie.init(config)函数，就能初始化canvas，然后调用pie.render()函数，饼图就画好啦。">
+<meta name="keywords" content="canvas,chart,pie">
+<meta property="og:type" content="article">
+<meta property="og:title" content="canvas-pie">
+<meta property="og:url" content="http://yoursite.com/2018/12/10/canvas-pie/index.html">
+<meta property="og:site_name" content="Topppy&#39;s Blog">
+<meta property="og:description" content="在Canvas上将数据画成饼图将这个功能封装成为一个pie对象，只需要将参数对象传递给pie.init(config)函数，就能初始化canvas，然后调用pie.render()函数，饼图就画好啦。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-12-10T09:36:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="canvas-pie">
+<meta name="twitter:description" content="在Canvas上将数据画成饼图将这个功能封装成为一个pie对象，只需要将参数对象传递给pie.init(config)函数，就能初始化canvas，然后调用pie.render()函数，饼图就画好啦。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/10/canvas-pie/">
+
+
+
+
+
+  <title>canvas-pie | Topppy's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-130700504-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Topppy's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">FE developer</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/10/canvas-pie/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Topppy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Topppy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">canvas-pie</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-10T15:29:48+08:00">
+                2018-12-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/10/canvas-pie/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/12/10/canvas-pie/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="在Canvas上将数据画成饼图"><a href="#在Canvas上将数据画成饼图" class="headerlink" title="在Canvas上将数据画成饼图"></a>在Canvas上将数据画成饼图</h1><p>将这个功能封装成为一个pie对象，只需要将参数对象传递给pie.init(config)函数，就能初始化canvas，然后调用pie.render()函数，饼图就画好啦。</p>
+<a id="more"></a>
+<canvas id="cas" height="600" width="600"></canvas>
+
+<h2 id="使用方法："><a href="#使用方法：" class="headerlink" title="使用方法："></a>使用方法：</h2><ul>
+<li>引入pie.js文件<br>最开始需要在你的代码前面引入pie.js文件，你可以放在head标签里面，也可以放在body底部其他script标签的前面。</li>
+<li>获取canvas元素</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">"cas"</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>设置参数<br>准备好数据、图例和颜色（内置了9个颜色，数据数量小于9的话，不传颜色参数也可以啦~）</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = [<span class="number">10</span>,<span class="number">20</span>,<span class="number">50</span>,<span class="number">100</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">70</span>,<span class="number">22</span>];</span><br><span class="line"><span class="keyword">var</span> legend=[<span class="string">"C++"</span>,<span class="string">"Ruby"</span>,<span class="string">"Java"</span>,<span class="string">"JS"</span>,<span class="string">"Python"</span>,<span class="string">"R"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>];</span><br><span class="line"><span class="keyword">var</span> colors=[<span class="string">"#CCFFFF"</span>,<span class="string">'#99CC66'</span>,<span class="string">'#CCCCFF'</span>,<span class="string">'#0099CC'</span>,<span class="string">"#FF6600"</span>,<span class="string">'#996699'</span>,<span class="string">'#FFFF00'</span>,<span class="string">"#FF6666"</span>]</span><br><span class="line"><span class="keyword">var</span> config=&#123;</span><br><span class="line">    canvas:canvas,</span><br><span class="line">    series:data,</span><br><span class="line">    title:<span class="string">"Coding language"</span>,</span><br><span class="line">    legend:legend,</span><br><span class="line">    tip:&#123;<span class="attr">enable</span>:<span class="literal">true</span>&#125;,</span><br><span class="line">    colors:colors</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用pie的初始化函数载入数据, 使用pie.render()画图</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//调用pie的初始化函数</span></span><br><span class="line">pie.init(config);</span><br><span class="line"><span class="comment">//绘制饼图</span></span><br><span class="line">pie.render();</span><br></pre></td></tr></table></figure>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>pie.js源码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 绘制饼图的对象</span></span><br><span class="line"><span class="keyword">var</span> pie=&#123;</span><br><span class="line">  canvas:<span class="literal">null</span>,</span><br><span class="line">  series:[],</span><br><span class="line">  legend:[],</span><br><span class="line">  title:<span class="string">"Pie"</span>,</span><br><span class="line">  width:<span class="number">0</span>,</span><br><span class="line">  height:<span class="number">0</span>,</span><br><span class="line">  tip:&#123;</span><br><span class="line">      enable:<span class="literal">false</span>,</span><br><span class="line">      canvas : <span class="literal">null</span>,</span><br><span class="line">      ctx: <span class="literal">null</span>,</span><br><span class="line">      index: <span class="number">-1</span></span><br><span class="line">  &#125;,</span><br><span class="line">  radius:<span class="number">0</span>,</span><br><span class="line">  center:&#123;&#125;,</span><br><span class="line">  colors:[<span class="string">"#FF6666"</span>,<span class="string">"#CCFFFF"</span>,<span class="string">'#99CC66'</span>,<span class="string">'#CCCCFF'</span>,<span class="string">'#0099CC'</span>,<span class="string">"#FF6600"</span>,<span class="string">'#996699'</span>,<span class="string">'#FFFF00'</span>,<span class="string">'#FFFF00'</span>],</span><br><span class="line">  <span class="comment">//初始化参数的函数</span></span><br><span class="line">  init:<span class="function"><span class="keyword">function</span>(<span class="params">config</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.canvas=config.canvas;</span><br><span class="line">      <span class="keyword">this</span>.series=config.series;</span><br><span class="line">      <span class="keyword">this</span>.legend=config.legend;</span><br><span class="line">      <span class="keyword">this</span>.title=config.title;</span><br><span class="line">      <span class="keyword">this</span>.width=<span class="keyword">this</span>.canvas.width;</span><br><span class="line">      <span class="keyword">this</span>.height=<span class="keyword">this</span>.canvas.height;</span><br><span class="line">      <span class="keyword">if</span>(config.tip)&#123;</span><br><span class="line">          <span class="keyword">this</span>.tip.enable=config.tip.enable;</span><br><span class="line">      &#125;;</span><br><span class="line">      <span class="keyword">this</span>.colors=config.colors||<span class="keyword">this</span>.colors;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//获取 鼠标的绝对坐标(即使有滚动的情况下)</span></span><br><span class="line">  getMousePos:<span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> e = event || <span class="built_in">window</span>.event;</span><br><span class="line">      <span class="keyword">var</span> scrollX = <span class="built_in">document</span>.documentElement.scrollLeft || <span class="built_in">document</span>.body.scrollLeft;</span><br><span class="line">      <span class="keyword">var</span> scrollY = <span class="built_in">document</span>.documentElement.scrollTop || <span class="built_in">document</span>.body.scrollTop;</span><br><span class="line">      <span class="keyword">var</span> x = e.pageX || e.clientX + scrollX;</span><br><span class="line">      <span class="keyword">var</span> y = e.pageY || e.clientY + scrollY;</span><br><span class="line">      <span class="keyword">return</span> &#123; <span class="string">'x'</span>: x, <span class="string">'y'</span>: y &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//函数去抖 即使在指定间隔内调用多次但是只执行一次</span></span><br><span class="line">  debounce:<span class="function"><span class="keyword">function</span> (<span class="params">fn, threshhold, scope</span>) </span>&#123;</span><br><span class="line">    threshhold || (threshhold = <span class="number">32</span>);<span class="comment">//250ms是指定执行间隔</span></span><br><span class="line">    <span class="keyword">var</span> last,</span><br><span class="line">        deferTimer;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> context = scope || <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">var</span> now = +<span class="keyword">new</span> <span class="built_in">Date</span>,</span><br><span class="line">          args = <span class="built_in">arguments</span>;</span><br><span class="line">      <span class="keyword">if</span> (last &amp;&amp; now &lt; last + threshhold) &#123;</span><br><span class="line">        <span class="comment">// hold on to it</span></span><br><span class="line">        clearTimeout(deferTimer);</span><br><span class="line">        deferTimer = setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">          last = now;<span class="comment">//过了threshhold才会将该函数插入js进程队列，至少此后才会执行这一句</span></span><br><span class="line">          fn.apply(context, args);</span><br><span class="line">        &#125;, threshhold);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        last = now;</span><br><span class="line">        fn.apply(context, args);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//显示 tooltip的函数</span></span><br><span class="line">  tipshow:<span class="function"><span class="keyword">function</span>(<span class="params">position,ctx</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">var</span> canPos=<span class="keyword">this</span>.getCanActPos(<span class="keyword">this</span>.canvas);</span><br><span class="line">      <span class="keyword">var</span> rPos=&#123;&#125;;</span><br><span class="line">      rPos.x=position.x-canPos.x-<span class="keyword">this</span>.center.x;</span><br><span class="line">      rPos.y=position.y-canPos.y-<span class="keyword">this</span>.center.y;</span><br><span class="line">      rPos.dis=<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.sqrt(rPos.x*rPos.x+rPos.y*rPos.y));</span><br><span class="line">      <span class="keyword">if</span>(rPos.dis&lt;<span class="keyword">this</span>.radius)&#123;</span><br><span class="line">          rPos.arc= <span class="built_in">Math</span>.atan2(rPos.y,rPos.x);</span><br><span class="line">          <span class="keyword">if</span>(rPos.arc&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">              rPos.arc+=<span class="built_in">Math</span>.PI*<span class="number">2</span>;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">var</span> sum=<span class="keyword">this</span>.series.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">pre,cur</span>)</span>&#123;</span><br><span class="line">              <span class="keyword">return</span> pre+cur;</span><br><span class="line">          &#125;);</span><br><span class="line">          <span class="keyword">var</span> percent=<span class="keyword">this</span>.series.map(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">              <span class="keyword">return</span> item/sum;</span><br><span class="line">          &#125;);</span><br><span class="line">          <span class="keyword">var</span> perArc=percent.map(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">              <span class="keyword">return</span> item*<span class="built_in">Math</span>.PI*<span class="number">2</span>;</span><br><span class="line">          &#125;);</span><br><span class="line">          <span class="keyword">var</span> curArc=<span class="number">0</span>;<span class="keyword">var</span> curIndex=<span class="number">0</span>;</span><br><span class="line">          <span class="keyword">var</span> len=<span class="keyword">this</span>.series.length;</span><br><span class="line">          <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">              curArc+=perArc[i];</span><br><span class="line">              <span class="keyword">if</span>(rPos.arc&lt;curArc)&#123;</span><br><span class="line">                  curIndex=i;</span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line">              &#125;</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">if</span>(<span class="keyword">this</span>.tip.canvas===<span class="literal">null</span>)&#123;</span><br><span class="line">              <span class="keyword">this</span>.tip.canvas=<span class="built_in">document</span>.createElement(<span class="string">'canvas'</span>);</span><br><span class="line">              <span class="keyword">this</span>.tip.canvas.id=<span class="string">"tip"</span>;</span><br><span class="line">              <span class="built_in">document</span>.body.appendChild(<span class="keyword">this</span>.tip.canvas);</span><br><span class="line"></span><br><span class="line">              <span class="keyword">this</span>.tip.canvas.style.position=<span class="string">"absolute"</span>;</span><br><span class="line">              <span class="keyword">this</span>.tip.canvas.style.left=position.x+<span class="number">20</span>+<span class="string">"px"</span>;</span><br><span class="line">              <span class="keyword">this</span>.tip.canvas.style.top=position.y+<span class="number">20</span>+<span class="string">"px"</span>;</span><br><span class="line">              <span class="keyword">this</span>.tip.canvas.style.zIndex=<span class="number">2</span>;</span><br><span class="line">              <span class="keyword">this</span>.tip.canvas.height=<span class="number">50</span>;</span><br><span class="line">              <span class="keyword">this</span>.tip.canvas.width=<span class="number">100</span>;</span><br><span class="line">              <span class="keyword">this</span>.tip.ctx=<span class="keyword">this</span>.tip.canvas.getContext(<span class="string">"2d"</span>);</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">this</span>.tip.canvas.style.display=<span class="string">"block"</span>;</span><br><span class="line">          <span class="keyword">var</span> tctx=<span class="keyword">this</span>.tip.ctx;</span><br><span class="line">          tctx.clearRect(<span class="number">0</span>,<span class="number">0</span>,<span class="keyword">this</span>.tip.canvas.width,<span class="keyword">this</span>.tip.canvas.height);</span><br><span class="line">          <span class="keyword">this</span>.tip.canvas.style.left=position.x+<span class="number">20</span>+<span class="string">"px"</span>;</span><br><span class="line">          <span class="keyword">this</span>.tip.canvas.style.top=position.y+<span class="number">20</span>+<span class="string">"px"</span>;</span><br><span class="line">          tctx.fillStyle=<span class="string">"rgba(200,200,200,0.6)"</span>;</span><br><span class="line">          tctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="keyword">this</span>.tip.canvas.width,<span class="keyword">this</span>.tip.canvas.height);</span><br><span class="line">          tctx.fillStyle=<span class="string">"#000"</span>;</span><br><span class="line">          tctx.font=<span class="string">"15px bold Arail"</span>;</span><br><span class="line">          <span class="comment">// tctx.textBaseLine="top";</span></span><br><span class="line">          tctx.fillText((percent[curIndex]*<span class="number">100</span>).toFixed(<span class="number">2</span>)+<span class="string">"%"</span>, <span class="number">20</span>, <span class="number">40</span>);</span><br><span class="line">          tctx.fillText(<span class="keyword">this</span>.legend[curIndex], <span class="number">20</span>, <span class="number">20</span>);</span><br><span class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">this</span>.tip.canvas!=<span class="literal">null</span>)&#123;</span><br><span class="line">          <span class="keyword">this</span>.tip.canvas.style.display=<span class="string">"none"</span>;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//饼图的绘制函数</span></span><br><span class="line">  render:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">var</span> center=&#123;</span><br><span class="line">          x:<span class="built_in">Math</span>.floor(<span class="keyword">this</span>.width/<span class="number">2</span>),</span><br><span class="line">          y:<span class="built_in">Math</span>.floor(<span class="keyword">this</span>.height/<span class="number">2</span>)</span><br><span class="line">      &#125;;</span><br><span class="line">      <span class="keyword">this</span>.center=center;</span><br><span class="line">      <span class="keyword">var</span> edge=<span class="number">50</span>;</span><br><span class="line">      <span class="keyword">var</span> ctx=<span class="keyword">this</span>.canvas.getContext(<span class="string">"2d"</span>);</span><br><span class="line">      <span class="keyword">var</span> radius=<span class="built_in">Math</span>.min(center.x,center.y)-edge*<span class="number">2</span>;</span><br><span class="line">      <span class="keyword">this</span>.radius=radius;</span><br><span class="line">      <span class="keyword">var</span> sum=<span class="keyword">this</span>.series.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">pre,cur</span>)</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> pre+cur;</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">var</span> percent=<span class="keyword">this</span>.series.map(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> item/sum;</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">var</span> perArc=percent.map(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> item*<span class="built_in">Math</span>.PI*<span class="number">2</span>;</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">var</span> curArc=<span class="number">0</span>;</span><br><span class="line">      <span class="keyword">var</span> len=<span class="keyword">this</span>.series.length;</span><br><span class="line">      ctx.save();</span><br><span class="line">      ctx.strokeStyle=<span class="string">"#000"</span>;</span><br><span class="line">      <span class="comment">//drawpie</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">          ctx.beginPath();</span><br><span class="line">          ctx.arc(center.x,center.y,radius,curArc,curArc+perArc[i]);</span><br><span class="line">          ctx.lineTo(center.x,center.y);</span><br><span class="line">          ctx.closePath();</span><br><span class="line">          ctx.fillStyle=<span class="keyword">this</span>.colors[i];</span><br><span class="line">          ctx.fill();</span><br><span class="line">          curArc=curArc+perArc[i];</span><br><span class="line">      &#125;;</span><br><span class="line">      <span class="comment">//legend</span></span><br><span class="line">      ctx.font=<span class="string">"15px bold Arail"</span>;</span><br><span class="line">      <span class="comment">// ctx.textBaseLine="bottom";</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">          ctx.fillStyle=<span class="keyword">this</span>.colors[i];</span><br><span class="line">          ctx.fillRect(<span class="keyword">this</span>.width<span class="number">-2</span>*edge+<span class="number">5</span>, <span class="number">20</span>*i, <span class="number">15</span>, <span class="number">15</span>);</span><br><span class="line">          ctx.fillStyle=<span class="string">"#000"</span>;</span><br><span class="line">          ctx.fillText(<span class="keyword">this</span>.legend[i], <span class="keyword">this</span>.width<span class="number">-2</span>*edge+<span class="number">25</span>, <span class="number">20</span>*i+<span class="number">15</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//title</span></span><br><span class="line">      ctx.textAlign=<span class="string">"center"</span>;</span><br><span class="line">      ctx.fillText(<span class="keyword">this</span>.title,center.x,edge<span class="number">-20</span>);</span><br><span class="line">      <span class="comment">//tooltip</span></span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.tip.enable)&#123;</span><br><span class="line">          <span class="keyword">var</span> mousePos=&#123;<span class="attr">x</span>:<span class="number">0</span>,<span class="attr">y</span>:<span class="number">0</span>&#125;;</span><br><span class="line">          <span class="keyword">this</span>.canvas.addEventListener(<span class="string">"mousemove"</span>, pie.debounce(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">              <span class="comment">// e = e || window.event;</span></span><br><span class="line">              <span class="comment">// mousePos.x = e.clientX;</span></span><br><span class="line">              <span class="comment">// mousePos.y = e.clientY;</span></span><br><span class="line">              mousePos=pie.getMousePos(e);</span><br><span class="line">              pie.tipshow.apply(pie,[mousePos,ctx]);</span><br><span class="line">          &#125;, <span class="literal">false</span>));</span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//获取canvas的绝对坐标</span></span><br><span class="line">  getCanActPos:<span class="function"><span class="keyword">function</span>(<span class="params">element</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">var</span> actualLeft = element.offsetLeft;</span><br><span class="line">      <span class="keyword">var</span> actualTop = element.offsetTop;</span><br><span class="line">　　　　<span class="keyword">var</span> current = element.offsetParent;</span><br><span class="line">　　　　<span class="keyword">while</span> (current !== <span class="literal">null</span>)&#123;</span><br><span class="line">　　　　　　actualLeft += current.offsetLeft;</span><br><span class="line">          actualTop += current.offsetTop;</span><br><span class="line">　　　　　　current = current.offsetParent;</span><br><span class="line">　　　　&#125;</span><br><span class="line">　　　　<span class="keyword">return</span> &#123;<span class="attr">x</span>:actualLeft,<span class="attr">y</span>:actualTop&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<script src="/scripts/pie.js" type="text/javascript"></script>
+<script>
+    var canvas = document.getElementById("cas");
+    // var ctx = canvas.getContext("2d");
+    var data = [10,20,50,100,30,40,70,22];
+    var legend=["C++","Ruby","Java","JS","Python","R","C","D"];
+    var colors=["#CCFFFF",'#99CC66','#CCCCFF','#0099CC',"#FF6600",'#996699','#FFFF00',"#FF6666"]
+    var config={
+        canvas:canvas,
+        series:data,
+        title:"Coding language",
+        legend:legend,
+        tip:{enable:true},
+        colors:colors
+    }
+    //调用pie的初始化函数
+    pie.init(config);
+    //绘制饼图
+    pie.render();
+</script>
+
+
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/canvas/" rel="tag"># canvas</a>
+          
+            <a href="/tags/chart/" rel="tag"># chart</a>
+          
+            <a href="/tags/pie/" rel="tag"># pie</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/05/hexo-blog/" rel="next" title="hexo-blog">
+                <i class="fa fa-chevron-left"></i> hexo-blog
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/11/word-press-quick-start/" rel="prev" title="word-press-quick-start">
+                word-press-quick-start <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Topppy">
+            
+              <p class="site-author-name" itemprop="name">Topppy</p>
+              <p class="site-description motion-element" itemprop="description">Can you hear me?</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#在Canvas上将数据画成饼图"><span class="nav-number">1.</span> <span class="nav-text">在Canvas上将数据画成饼图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法："><span class="nav-number">1.1.</span> <span class="nav-text">使用方法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附录"><span class="nav-number">1.2.</span> <span class="nav-text">附录</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Topppy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://visitor.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/12/10/canvas-pie/';
+          this.page.identifier = '2018/12/10/canvas-pie/';
+          this.page.title = 'canvas-pie';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://visitor.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

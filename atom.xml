@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Topppy&#39;s Blog</title>
+  
+  <subtitle>FE developer</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2018-12-10T16:35:34.000Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Topppy</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>word-press-quick-start</title>
+    <link href="http://yoursite.com/2018/12/11/word-press-quick-start/"/>
+    <id>http://yoursite.com/2018/12/11/word-press-quick-start/</id>
+    <published>2018-12-10T16:20:53.000Z</published>
+    <updated>2018-12-10T16:35:34.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Wordpress-安装和使用&quot;&gt;&lt;a href=&quot;#Wordpress-安装和使用&quot; class=&quot;headerlink&quot; title=&quot;Wordpress 安装和使用&quot;&gt;&lt;/a&gt;Wordpress 安装和使用&lt;/h1&gt;&lt;p&gt;我们可以在本机安装 wordpress，从而能在本地建站，折腾并调试。本文将详细介绍如何在Mac下安装wordpress。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="wordpress" scheme="http://yoursite.com/tags/wordpress/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>canvas-pie</title>
+    <link href="http://yoursite.com/2018/12/10/canvas-pie/"/>
+    <id>http://yoursite.com/2018/12/10/canvas-pie/</id>
+    <published>2018-12-10T07:29:48.000Z</published>
+    <updated>2018-12-10T09:36:11.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;在Canvas上将数据画成饼图&quot;&gt;&lt;a href=&quot;#在Canvas上将数据画成饼图&quot; class=&quot;headerlink&quot; title=&quot;在Canvas上将数据画成饼图&quot;&gt;&lt;/a&gt;在Canvas上将数据画成饼图&lt;/h1&gt;&lt;p&gt;将这个功能封装成为一个pie对象，只需要将参数对象传递给pie.init(config)函数，就能初始化canvas，然后调用pie.render()函数，饼图就画好啦。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="canvas" scheme="http://yoursite.com/tags/canvas/"/>
+    
+      <category term="chart" scheme="http://yoursite.com/tags/chart/"/>
+    
+      <category term="pie" scheme="http://yoursite.com/tags/pie/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo-blog</title>
+    <link href="http://yoursite.com/2018/11/05/hexo-blog/"/>
+    <id>http://yoursite.com/2018/11/05/hexo-blog/</id>
+    <published>2018-11-05T12:20:50.000Z</published>
+    <updated>2018-12-10T07:47:27.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h4&gt;&lt;p&gt;原本旧的blog是16年开始学习前端的时候搭建的，纯html，css，js写的静态页面，当时这样选择是想多给自己一些手写基础代码的机会来逐渐熟悉前端基础。时过进迁，目前写blog的需求已经回归到写作本身了，这样旧的blog页带来的写作成本，导致我经常性在印象笔记、有道云笔记甚至本地markdown编辑器来码字，并且积攒在本地，难以及时更新到git。综上所述，旧的blog不再适合当前的场景，因此决定迁移为hexo方式。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+    
+      <category term="blog" scheme="http://yoursite.com/tags/blog/"/>
+    
+  </entry>
+  
+</feed>
