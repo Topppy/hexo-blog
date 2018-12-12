@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Topppy&#39;s Blog</title>
+  
+  <subtitle>FE developer</subtitle>
+  <link href="/hexo-blog/atom.xml" rel="self"/>
+  
+  <link href="https://topppy.github.io/"/>
+  <updated>2018-12-12T16:05:30.535Z</updated>
+  <id>https://topppy.github.io/</id>
+  
+  <author>
+    <name>Topppy</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>git-status-introduction</title>
+    <link href="https://topppy.github.io/2018/12/12/git-status-introduction/"/>
+    <id>https://topppy.github.io/2018/12/12/git-status-introduction/</id>
+    <published>2018-12-11T16:39:05.000Z</published>
+    <updated>2018-12-12T16:05:30.535Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;GIT状态图&quot;&gt;&lt;a href=&quot;#GIT状态图&quot; class=&quot;headerlink&quot; title=&quot;GIT状态图&quot;&gt;&lt;/a&gt;GIT状态图&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;使用git，也有一段时间了，但是对git集中状态没有比较清晰的一个认识，尤其是涉及到代码回滚，直到最近阅读了git的官方文档（文档是个好东西，你值得拥有），画了一张图来帮助自己理顺git的套路。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="git" scheme="https://topppy.github.io/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>word-press-quick-start</title>
+    <link href="https://topppy.github.io/2018/12/11/word-press-quick-start/"/>
+    <id>https://topppy.github.io/2018/12/11/word-press-quick-start/</id>
+    <published>2018-12-10T16:20:53.000Z</published>
+    <updated>2018-12-12T15:37:58.589Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Wordpress-安装和使用&quot;&gt;&lt;a href=&quot;#Wordpress-安装和使用&quot; class=&quot;headerlink&quot; title=&quot;Wordpress 安装和使用&quot;&gt;&lt;/a&gt;Wordpress 安装和使用&lt;/h1&gt;&lt;p&gt;我们可以在本机安装 wordpress，从而能在本地建站，折腾并调试。本文将详细介绍如何在 Mac 下安装 wordpress。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="wordpress" scheme="https://topppy.github.io/tags/wordpress/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>canvas-pie</title>
+    <link href="https://topppy.github.io/2018/12/10/canvas-pie/"/>
+    <id>https://topppy.github.io/2018/12/10/canvas-pie/</id>
+    <published>2018-12-10T07:29:48.000Z</published>
+    <updated>2018-12-12T15:43:34.267Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;在-Canvas-上将数据画成饼图&quot;&gt;&lt;a href=&quot;#在-Canvas-上将数据画成饼图&quot; class=&quot;headerlink&quot; title=&quot;在 Canvas 上将数据画成饼图&quot;&gt;&lt;/a&gt;在 Canvas 上将数据画成饼图&lt;/h1&gt;&lt;p&gt;将这个功能封装成为一个 pie 对象，只需要将参数对象传递给 pie.init(config)函数，就能初始化 canvas，然后调用 pie.render()函数，饼图就画好啦。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="canvas" scheme="https://topppy.github.io/tags/canvas/"/>
+    
+      <category term="chart" scheme="https://topppy.github.io/tags/chart/"/>
+    
+      <category term="pie" scheme="https://topppy.github.io/tags/pie/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo-blog</title>
+    <link href="https://topppy.github.io/2018/11/05/hexo-blog/"/>
+    <id>https://topppy.github.io/2018/11/05/hexo-blog/</id>
+    <published>2018-11-05T12:20:50.000Z</published>
+    <updated>2018-12-12T16:05:07.127Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;hexo-blog-日志&quot;&gt;&lt;a href=&quot;#hexo-blog-日志&quot; class=&quot;headerlink&quot; title=&quot;hexo-blog 日志&quot;&gt;&lt;/a&gt;hexo-blog 日志&lt;/h1&gt;&lt;h4 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h4&gt;&lt;p&gt;原本旧的 blog 是 16 年开始学习前端的时候搭建的，纯 html，css，js 写的静态页面，当时这样选择是想多给自己一些手写基础代码的机会来逐渐熟悉前端基础。时过进迁，目前写 blog 的需求已经回归到写作本身了，这样旧的 blog 页带来的写作成本，导致我经常性在印象笔记、有道云笔记甚至本地 markdown 编辑器来码字，并且积攒在本地，难以及时更新到 git。综上所述，旧的 blog 不再适合当前的场景，因此决定迁移为 hexo 方式。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="hexo" scheme="https://topppy.github.io/tags/hexo/"/>
+    
+      <category term="blog" scheme="https://topppy.github.io/tags/blog/"/>
+    
+  </entry>
+  
+</feed>
