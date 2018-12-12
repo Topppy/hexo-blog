@@ -14,8 +14,8 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
-root: /
+url: https://topppy.github.io/
+root: /hexo-blog
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
@@ -85,7 +85,7 @@ theme: next
 deploy:
   type: git
   repo: git@github.com:Topppy/hexo-blog.git
-  branch: master
+  branch: gh-pages
   # message: [message]
 
 # rss feed
@@ -100,8 +100,13 @@ feed:
   order_by: -date
 
 # serach
-# search:
-#   path: search.xml
-#   field: post
-#   format: html
-#   limit: 10000
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+
+include:
+  - .nojekyll
+
+_internal: lib

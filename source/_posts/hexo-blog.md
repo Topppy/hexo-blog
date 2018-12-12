@@ -41,6 +41,11 @@ hexo new page "tags
 <!-- more -->
 ```
 
+#### css js 404
+
+[issue](https://github.com/iissnan/hexo-theme-next/issues/1214)
+
+
 #### 旧的已有blog页面迁移
 
 ##### canvas pie
