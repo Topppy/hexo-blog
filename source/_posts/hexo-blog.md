@@ -45,6 +45,14 @@ hexo new page "tags
 
 [issue](https://github.com/iissnan/hexo-theme-next/issues/1214)
 
+#### 添加themes到git保存
+
+- 删除 `themes/next/.git`
+- `git rm  --cached ./themes/next`
+- `git add .`
+- 提交到git
+
+如果你需要[undo git rm](https://stackoverflow.com/questions/13698978/git-undoing-git-rm/13699072)
 
 #### 旧的已有blog页面迁移
 
