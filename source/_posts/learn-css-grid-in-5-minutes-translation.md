@@ -1,6 +1,6 @@
 ---
 title: learn-css-grid-in-5-minutes-translation
-date: 2018-12-31 22:57:31
+date: 2017-11-30 22:57:31
 tags:
   - css
   - grid
