@@ -1,6 +1,6 @@
 ---
 title: word-press-quick-start
-date: 2018-12-11 00:20:53
+date: 2016-07-30 00:20:53
 tags:
   - wordpress
 ---
