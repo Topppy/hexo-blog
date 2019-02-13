@@ -63,3 +63,17 @@ quicklink();
 ......
 
 更多使用例子见[官方git](https://github.com/GoogleChromeLabs/quicklink#recipes)
+
+#### polyfill
+
+这是一个实验性的库，并不是主流浏览器都支持的，它本身包含了一个小的requestIdleCallback的兼容，但是Intersection Observer API,就需要额外的手动添加polyfill
+
+```bash
+yarn install intersection-observer
+```
+
+```js
+import 'intersection-observer';
+import quicklink from 'quicklink/dist/quicklink.mjs';
+
+```
