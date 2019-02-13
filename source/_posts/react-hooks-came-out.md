@@ -17,6 +17,8 @@ Hooks的功能就是复用逻辑，甚至复用包括state的逻辑。
 
 有了hooks，你不在需要这样做了，你可以直接在fuction组件里复用写好的跟state相关的逻辑，代码量大大减少。每一次这个组件function被执行的时候，hooks都会被执行，这大概是它最像“钩子”的点吧。
 
+<!-- more -->
+
 ### 你需要立刻学会并使用hooks吗？
 
 不需要。class组件不会被废弃，这个新特性对你的已有的业务代码毫无影响。也不需要使用hooks来重写你的旧代码。
@@ -68,7 +70,7 @@ eslintrc配置需要增加如下：
 
 更多hooks的说明和使用可以看一下这个简单的DEMO，包括基础的hooks和hooks的规则，以及一个todo的例子。
 
-[DEMO](https://topppy.github.io/react-hook-tutorial/)
+[DEMO](https://github.com/Topppy/react-hook-tutorial)
 
 
 
