@@ -6,7 +6,7 @@
   <link href="/hexo-blog/atom.xml" rel="self"/>
   
   <link href="https://topppy.github.io/"/>
-  <updated>2019-01-05T11:23:34.148Z</updated>
+  <updated>2019-05-06T07:10:12.460Z</updated>
   <id>https://topppy.github.io/</id>
   
   <author>
@@ -15,6 +15,76 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>learn-typescript-1</title>
+    <link href="https://topppy.github.io/2019/04/30/learn-typescript-1/"/>
+    <id>https://topppy.github.io/2019/04/30/learn-typescript-1/</id>
+    <published>2019-04-30T09:18:04.000Z</published>
+    <updated>2019-05-06T07:10:12.460Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;typescript-学习笔记一：-类型&quot;&gt;&lt;a href=&quot;#typescript-学习笔记一：-类型&quot; class=&quot;headerlink&quot; title=&quot;typescript 学习笔记一： 类型&quot;&gt;&lt;/a&gt;typescript 学习笔记一： 类型&lt;/h1&gt;&lt;p&gt;最近我新开了一个electron项目，考虑到可能会持续迭代，以及客户端线上bugfix是没有前端页面方便的，因此需要这个项目尽可能的是一个稳定可靠的项目，最终我决定采用typescript来约束开发者，短期会增加一些学习成本，长期来看维护成本是有所减少的。那么就从头学习一下typescript吧。&lt;/p&gt;
+&lt;p&gt;学习资源：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://ts.xcatliu.com/introduction/what-is-typescript.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;typescript 入门教程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://zhongsp.gitbooks.io/typescript-handbook/content/doc/handbook/tsconfig.json.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;typescript handbook（config部分）&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="typescript" scheme="https://topppy.github.io/tags/typescript/"/>
+    
+      <category term="类型注解" scheme="https://topppy.github.io/tags/%E7%B1%BB%E5%9E%8B%E6%B3%A8%E8%A7%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>react-hooks-came-out</title>
+    <link href="https://topppy.github.io/2019/02/13/react-hooks-came-out/"/>
+    <id>https://topppy.github.io/2019/02/13/react-hooks-came-out/</id>
+    <published>2019-02-13T06:04:56.000Z</published>
+    <updated>2019-04-30T09:17:09.523Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;React-Hooks-终于进稳定版本了！&quot;&gt;&lt;a href=&quot;#React-Hooks-终于进稳定版本了！&quot; class=&quot;headerlink&quot; title=&quot;React Hooks 终于进稳定版本了！&quot;&gt;&lt;/a&gt;React Hooks 终于进稳定版本了！&lt;/h1&gt;&lt;p&gt;React 终于在16.8版本加入了期待已久的hooks特性。&lt;/p&gt;
+&lt;h2 id=&quot;什么是Hooks？&quot;&gt;&lt;a href=&quot;#什么是Hooks？&quot; class=&quot;headerlink&quot; title=&quot;什么是Hooks？&quot;&gt;&lt;/a&gt;什么是Hooks？&lt;/h2&gt;&lt;p&gt;Hooks的功能就是复用逻辑，甚至复用包括state的逻辑。&lt;/p&gt;
+&lt;p&gt;以往我们如果有跟state有关的逻辑，只能写在class组件中，纠缠在各个生命周期里，并且无法复用，样版代码很多。&lt;/p&gt;
+&lt;p&gt;有了hooks，你不在需要这样做了，你可以直接在fuction组件里复用写好的跟state相关的逻辑，代码量大大减少。每一次这个组件function被执行的时候，hooks都会被执行，这大概是它最像“钩子”的点吧。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="react" scheme="https://topppy.github.io/tags/react/"/>
+    
+      <category term="hooks" scheme="https://topppy.github.io/tags/hooks/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>use-quicklink</title>
+    <link href="https://topppy.github.io/2019/02/12/use-quicklink/"/>
+    <id>https://topppy.github.io/2019/02/12/use-quicklink/</id>
+    <published>2019-02-12T12:11:18.000Z</published>
+    <updated>2019-02-13T06:58:41.220Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;使用quickLink来提升用户体验&quot;&gt;&lt;a href=&quot;#使用quickLink来提升用户体验&quot; class=&quot;headerlink&quot; title=&quot;使用quickLink来提升用户体验&quot;&gt;&lt;/a&gt;使用quickLink来提升用户体验&lt;/h1&gt;&lt;h2 id=&quot;quickLink是什么&quot;&gt;&lt;a href=&quot;#quickLink是什么&quot; class=&quot;headerlink&quot; title=&quot;quickLink是什么&quot;&gt;&lt;/a&gt;quickLink是什么&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/GoogleChromeLabs/quicklink&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;quickLink&lt;/a&gt;是谷歌实验室推出的一个库，这个库实现了在浏览器的空闲时间预先拉取页面内的链接，加速后序页面的加载速度的功能。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="prefetch" scheme="https://topppy.github.io/tags/prefetch/"/>
+    
+      <category term="quicklink" scheme="https://topppy.github.io/tags/quicklink/"/>
+    
+      <category term="用户体验" scheme="https://topppy.github.io/tags/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C/"/>
+    
+  </entry>
   
   <entry>
     <title>wx-mini-program-share</title>

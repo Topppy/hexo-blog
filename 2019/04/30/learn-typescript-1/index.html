@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/hexo-blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/hexo-blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/hexo-blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/hexo-blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="typescript,类型注解,">
+
+
+
+
+
+  <link rel="alternate" href="/hexo-blog/atom.xml" title="Topppy's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="typescript 学习笔记一： 类型最近我新开了一个electron项目，考虑到可能会持续迭代，以及客户端线上bugfix是没有前端页面方便的，因此需要这个项目尽可能的是一个稳定可靠的项目，最终我决定采用typescript来约束开发者，短期会增加一些学习成本，长期来看维护成本是有所减少的。那么就从头学习一下typescript吧。 学习资源：  typescript 入门教程 typescr">
+<meta name="keywords" content="typescript,类型注解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="learn-typescript-1">
+<meta property="og:url" content="https://topppy.github.io/2019/04/30/learn-typescript-1/index.html">
+<meta property="og:site_name" content="Topppy&#39;s Blog">
+<meta property="og:description" content="typescript 学习笔记一： 类型最近我新开了一个electron项目，考虑到可能会持续迭代，以及客户端线上bugfix是没有前端页面方便的，因此需要这个项目尽可能的是一个稳定可靠的项目，最终我决定采用typescript来约束开发者，短期会增加一些学习成本，长期来看维护成本是有所减少的。那么就从头学习一下typescript吧。 学习资源：  typescript 入门教程 typescr">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-05-06T07:10:12.460Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="learn-typescript-1">
+<meta name="twitter:description" content="typescript 学习笔记一： 类型最近我新开了一个electron项目，考虑到可能会持续迭代，以及客户端线上bugfix是没有前端页面方便的，因此需要这个项目尽可能的是一个稳定可靠的项目，最终我决定采用typescript来约束开发者，短期会增加一些学习成本，长期来看维护成本是有所减少的。那么就从头学习一下typescript吧。 学习资源：  typescript 入门教程 typescr">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/hexo-blog/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://topppy.github.io/2019/04/30/learn-typescript-1/">
+
+
+
+
+
+  <title>learn-typescript-1 | Topppy's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-130700504-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/hexo-blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Topppy's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">FE developer</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/hexo-blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/hexo-blog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/hexo-blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/hexo-blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://topppy.github.io/hexo-blog/2019/04/30/learn-typescript-1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Topppy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/hexo-blog/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Topppy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">learn-typescript-1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-30T17:18:04+08:00">
+                2019-04-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/hexo-blog/2019/04/30/learn-typescript-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/30/learn-typescript-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="typescript-学习笔记一：-类型"><a href="#typescript-学习笔记一：-类型" class="headerlink" title="typescript 学习笔记一： 类型"></a>typescript 学习笔记一： 类型</h1><p>最近我新开了一个electron项目，考虑到可能会持续迭代，以及客户端线上bugfix是没有前端页面方便的，因此需要这个项目尽可能的是一个稳定可靠的项目，最终我决定采用typescript来约束开发者，短期会增加一些学习成本，长期来看维护成本是有所减少的。那么就从头学习一下typescript吧。</p>
+<p>学习资源：</p>
+<ul>
+<li><a href="https://ts.xcatliu.com/introduction/what-is-typescript.html" target="_blank" rel="noopener">typescript 入门教程</a></li>
+<li><a href="https://zhongsp.gitbooks.io/typescript-handbook/content/doc/handbook/tsconfig.json.html" target="_blank" rel="noopener">typescript handbook（config部分）</a></li>
+</ul>
+<a id="more"></a>
+<h2 id="简单开始"><a href="#简单开始" class="headerlink" title="简单开始"></a>简单开始</h2><p>全局安装ts，这个部分可以参考官方文档，typescript的文件后缀是 .ts, 相应的react的jsx文件的扩展名为 .tsx。 ts文件是需要编译成js 文件才能执行的，编译指令就是 tsc ，这个命令在你全局安装typescript的时候就安装好了。</p>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc hello.ts</span><br></pre></td></tr></table></figure>
+<p>会生成js文件，ts在编译的时候就会进行检查，如果有错误，是不会编译成功的。</p>
+<p>默认如果编译报错，仍旧会生成js文件，想要终止js生成，可以在<code>tsconfig.json</code>中配置 <code>noEmitOnError</code>。<code>tsconfig.json</code>就是ts的配置文件。</p>
+<h2 id="类型注解"><a href="#类型注解" class="headerlink" title="类型注解"></a>类型注解</h2><h3 id="原始数据类型"><a href="#原始数据类型" class="headerlink" title="原始数据类型"></a>原始数据类型</h3><p>可以使用这些类型来定义变量的类型，这就是类型注解，表明的意义是，这个变量我期望是一个什么类型的，ts你帮我检查。</p>
+<ul>
+<li>boolean</li>
+<li>number</li>
+<li>string</li>
+<li>undefined</li>
+<li>void</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> name: string = <span class="string">'Tom'</span>;</span><br><span class="line"><span class="keyword">const</span> age: number = <span class="number">11</span>;</span><br><span class="line"><span class="keyword">const</span> isMan: boolean = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">const</span> money: <span class="literal">undefined</span> = <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">const</span> girlfriend: <span class="literal">null</span> = <span class="literal">null</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ouputName</span>(<span class="params"></span>): <span class="title">void</span> </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'name:'</span>, name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以获取到的信息是：Tom是一个11岁的男生，没有钱也没有女朋友，执行outputName函数的时候没有返回。</p>
+<p>需要特别注意的是 undefined 和 null 类型是说有类型的子类型，也就是说</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> u: <span class="literal">undefined</span> = <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">const</span> n: <span class="literal">null</span> = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> name: string = <span class="literal">undefined</span>;</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="keyword">let</span> name: string = <span class="literal">null</span>;</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="keyword">let</span> name: string = u;</span><br><span class="line"><span class="keyword">let</span> name: string = n;</span><br></pre></td></tr></table></figure>
+<p>这样写是不会出问题的，但是如果把 void类型的变量赋值给name就会出问题。</p>
+<h3 id="任意类型-Any"><a href="#任意类型-Any" class="headerlink" title="任意类型 Any"></a>任意类型 Any</h3><p>Any类型允许通过赋值改变类型，它既可以注解 <strong>属性</strong> 也可以注解 <strong>方法</strong>。<strong>声明一个变量为任意值之后，对它的任何操作，返回的内容的类型都是任意值。</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> anything:any = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">anything = <span class="string">'Name'</span>;</span><br><span class="line">anything.setName(<span class="string">'Bob'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>两种方式定义。</p>
+<ul>
+<li><code>let list: number[] = [1,2,4]</code></li>
+<li>第二种方式是使用数组泛型 Array&lt;元素类型&gt;， <code>let list:Array&lt;number&gt; = [1,2,4]</code></li>
+</ul>
+<h3 id="类型推论"><a href="#类型推论" class="headerlink" title="类型推论"></a>类型推论</h3><p>如果没有明确的指定类型，那么 TypeScript 会依照类型推论（Type Inference）的规则推断出一个类型。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// num 被推断为number</span></span><br><span class="line">num = <span class="string">'str'</span></span><br><span class="line"><span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+<p>如果定义的时候没有赋值，不管之后有没有赋值，都会被推断成 any 类型而完全不被类型检查。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> anything;</span><br><span class="line"><span class="comment">// 被推断为any 类型</span></span><br><span class="line">anything = <span class="string">'name'</span>;</span><br><span class="line">anything = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// 没有问题</span></span><br></pre></td></tr></table></figure>
+<h3 id="多个类型怎么办？联合类型"><a href="#多个类型怎么办？联合类型" class="headerlink" title="多个类型怎么办？联合类型"></a>多个类型怎么办？联合类型</h3><p>如果我有一个值 他就是可能又多种类型的值，那么我可以采用 <strong>联合类型</strong> ,就是同时注解多个类型，使用 <code>|</code> 分隔。<br>需注意的一点：当 TypeScript 不确定一个联合类型的变量到底是哪个类型的时候， <strong>只能访问此联合类型的所有类型里共有的属性或方法</strong>。 如果TS腿断出来了类型，那么就不会编译报错。</p>
+<h3 id="元组Tuple"><a href="#元组Tuple" class="headerlink" title="元组Tuple"></a>元组Tuple</h3><p>如果数据的元素的类型不同，并已知元素数量，可以使用元组定义。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> tmp: [string, number] = [<span class="string">'name'</span>, <span class="number">12</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果访问越界元素，也就是没有定义类型的元素，那么按照联合类型推断</span></span><br><span class="line">tmp[<span class="number">2</span>] = <span class="string">'Jack'</span></span><br><span class="line"><span class="comment">// ok 联合类型(string|number)</span></span><br><span class="line">tmp[<span class="number">3</span>] = <span class="literal">true</span></span><br><span class="line"><span class="comment">// wrong, boolean 不是联合类型(string|number)之一。</span></span><br></pre></td></tr></table></figure>
+<h3 id="object"><a href="#object" class="headerlink" title="object"></a>object</h3><p>除number string boolean sumblo null undefined 之外的非原始类型。</p>
+<h3 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h3><p>类似类型转换，但是不进行检查。语法两种：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> some: <span class="built_in">any</span> = <span class="string">'str'</span></span><br><span class="line"><span class="comment">// 1 &lt;&gt;</span></span><br><span class="line"><span class="keyword">let</span> len: <span class="built_in">number</span> = (&lt;<span class="built_in">string</span>&gt;some).length</span><br><span class="line"><span class="comment">// 2 as</span></span><br><span class="line"><span class="keyword">let</span> len2: <span class="built_in">number</span>= (some <span class="keyword">as</span> <span class="built_in">string</span>).length</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/hexo-blog/tags/typescript/" rel="tag"># typescript</a>
+          
+            <a href="/hexo-blog/tags/类型注解/" rel="tag"># 类型注解</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hexo-blog/2019/02/13/react-hooks-came-out/" rel="next" title="react-hooks-came-out">
+                <i class="fa fa-chevron-left"></i> react-hooks-came-out
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/hexo-blog/images/avatar.png" alt="Topppy">
+            
+              <p class="site-author-name" itemprop="name">Topppy</p>
+              <p class="site-description motion-element" itemprop="description">Can you hear me?</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/hexo-blog/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/hexo-blog/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/hexo-blog/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#typescript-学习笔记一：-类型"><span class="nav-number">1.</span> <span class="nav-text">typescript 学习笔记一： 类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单开始"><span class="nav-number">1.1.</span> <span class="nav-text">简单开始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编译"><span class="nav-number">1.1.1.</span> <span class="nav-text">编译</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型注解"><span class="nav-number">1.2.</span> <span class="nav-text">类型注解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原始数据类型"><span class="nav-number">1.2.1.</span> <span class="nav-text">原始数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任意类型-Any"><span class="nav-number">1.2.2.</span> <span class="nav-text">任意类型 Any</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-number">1.2.3.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型推论"><span class="nav-number">1.2.4.</span> <span class="nav-text">类型推论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多个类型怎么办？联合类型"><span class="nav-number">1.2.5.</span> <span class="nav-text">多个类型怎么办？联合类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元组Tuple"><span class="nav-number">1.2.6.</span> <span class="nav-text">元组Tuple</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#object"><span class="nav-number">1.2.7.</span> <span class="nav-text">object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型断言"><span class="nav-number">1.2.8.</span> <span class="nav-text">类型断言</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Topppy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/hexo-blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/hexo-blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/hexo-blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://visitor.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://topppy.github.io/2019/04/30/learn-typescript-1/';
+          this.page.identifier = '2019/04/30/learn-typescript-1/';
+          this.page.title = 'learn-typescript-1';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://visitor.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

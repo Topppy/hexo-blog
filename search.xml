@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[learn-typescript-1]]></title>
+    <url>%2Fhexo-blog%2F2019%2F04%2F30%2Flearn-typescript-1%2F</url>
+    <content type="text"><![CDATA[typescript 学习笔记一： 类型最近我新开了一个electron项目，考虑到可能会持续迭代，以及客户端线上bugfix是没有前端页面方便的，因此需要这个项目尽可能的是一个稳定可靠的项目，最终我决定采用typescript来约束开发者，短期会增加一些学习成本，长期来看维护成本是有所减少的。那么就从头学习一下typescript吧。 学习资源： typescript 入门教程 typescript handbook（config部分） 简单开始全局安装ts，这个部分可以参考官方文档，typescript的文件后缀是 .ts, 相应的react的jsx文件的扩展名为 .tsx。 ts文件是需要编译成js 文件才能执行的，编译指令就是 tsc ，这个命令在你全局安装typescript的时候就安装好了。 编译执行命令 1tsc hello.ts 会生成js文件，ts在编译的时候就会进行检查，如果有错误，是不会编译成功的。 默认如果编译报错，仍旧会生成js文件，想要终止js生成，可以在tsconfig.json中配置 noEmitOnError。tsconfig.json就是ts的配置文件。 类型注解原始数据类型可以使用这些类型来定义变量的类型，这就是类型注解，表明的意义是，这个变量我期望是一个什么类型的，ts你帮我检查。 boolean number string undefined void 例如： 12345678const name: string = 'Tom';const age: number = 11;const isMan: boolean = false;const money: undefined = undefined;const girlfriend: null = null;function ouputName(): void &#123; console.log('name:', name)&#125; 我们可以获取到的信息是：Tom是一个11岁的男生，没有钱也没有女朋友，执行outputName函数的时候没有返回。 需要特别注意的是 undefined 和 null 类型是说有类型的子类型，也就是说 123456789const u: undefined = undefined;const n: null = null;let name: string = undefined;// orlet name: string = null;// orlet name: string = u;let name: string = n; 这样写是不会出问题的，但是如果把 void类型的变量赋值给name就会出问题。 任意类型 AnyAny类型允许通过赋值改变类型，它既可以注解 属性 也可以注解 方法。声明一个变量为任意值之后，对它的任何操作，返回的内容的类型都是任意值。 1234let anything:any = 1;anything = 'Name';anything.setName('Bob'); 数组两种方式定义。 let list: number[] = [1,2,4] 第二种方式是使用数组泛型 Array&lt;元素类型&gt;， let list:Array&lt;number&gt; = [1,2,4] 类型推论如果没有明确的指定类型，那么 TypeScript 会依照类型推论（Type Inference）的规则推断出一个类型。 1234let num = 1;// num 被推断为numbernum = 'str'// 报错 如果定义的时候没有赋值，不管之后有没有赋值，都会被推断成 any 类型而完全不被类型检查。 12345let anything;// 被推断为any 类型anything = 'name';anything = 1;// 没有问题 多个类型怎么办？联合类型如果我有一个值 他就是可能又多种类型的值，那么我可以采用 联合类型 ,就是同时注解多个类型，使用 | 分隔。需注意的一点：当 TypeScript 不确定一个联合类型的变量到底是哪个类型的时候， 只能访问此联合类型的所有类型里共有的属性或方法。 如果TS腿断出来了类型，那么就不会编译报错。 元组Tuple如果数据的元素的类型不同，并已知元素数量，可以使用元组定义。 1234567let tmp: [string, number] = ['name', 12]// 如果访问越界元素，也就是没有定义类型的元素，那么按照联合类型推断tmp[2] = 'Jack'// ok 联合类型(string|number)tmp[3] = true// wrong, boolean 不是联合类型(string|number)之一。 object除number string boolean sumblo null undefined 之外的非原始类型。 类型断言类似类型转换，但是不进行检查。语法两种： 12345let some: any = 'str'// 1 &lt;&gt;let len: number = (&lt;string&gt;some).length// 2 aslet len2: number= (some as string).length]]></content>
+      <tags>
+        <tag>typescript</tag>
+        <tag>类型注解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[react-hooks-came-out]]></title>
+    <url>%2Fhexo-blog%2F2019%2F02%2F13%2Freact-hooks-came-out%2F</url>
+    <content type="text"><![CDATA[React Hooks 终于进稳定版本了！React 终于在16.8版本加入了期待已久的hooks特性。 什么是Hooks？Hooks的功能就是复用逻辑，甚至复用包括state的逻辑。 以往我们如果有跟state有关的逻辑，只能写在class组件中，纠缠在各个生命周期里，并且无法复用，样版代码很多。 有了hooks，你不在需要这样做了，你可以直接在fuction组件里复用写好的跟state相关的逻辑，代码量大大减少。每一次这个组件function被执行的时候，hooks都会被执行，这大概是它最像“钩子”的点吧。 你需要立刻学会并使用hooks吗？不需要。class组件不会被废弃，这个新特性对你的已有的业务代码毫无影响。也不需要使用hooks来重写你的旧代码。 使用hooks需要什么条件？react和react-dom 的版本要在16.8.0以上。 如何规范hooks代码？eslint插件：eslint-plugin-react-hooks hooks可以完全替换class吗？如果涉及到 getSnapshotBeforeUpdate()和componentDidCatch()的话，那么不可以。也就是说其他的情况完全可以替换掉。 使用Hooks安装1yarn add react@^16.8.0 react-dom@^16.8.0 eslint 插件 1yarn add eslint-plugin-react-hooks@next --dev eslintrc配置需要增加如下： 12345678910&#123; "plugins": [ // ... "react-hooks" ], "rules": &#123; // ... "react-hooks/rules-of-hooks": "error" &#125;&#125; get start更多hooks的说明和使用可以看一下这个简单的DEMO，包括基础的hooks和hooks的规则，以及一个todo的例子。 DEMO]]></content>
+      <tags>
+        <tag>react</tag>
+        <tag>hooks</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[use-quicklink]]></title>
+    <url>%2Fhexo-blog%2F2019%2F02%2F12%2Fuse-quicklink%2F</url>
+    <content type="text"><![CDATA[使用quickLink来提升用户体验quickLink是什么quickLink是谷歌实验室推出的一个库，这个库实现了在浏览器的空闲时间预先拉取页面内的链接，加速后序页面的加载速度的功能。 就是说，用了他们这个东西，可以提前拉取当前页面的链接，这些链接都是用户可能点击访问的，这样用户真正点击的时候，浏览器已经预先拉取了这个地址，速度就要比普通的加载要快。 什么时候让浏览器去拉取页面内的链接呢？预先拉取链接能提升加载速度确实很好，但是这个行为也是需要耗费浏览器资源的，这里，有一个问题，什么时候去拉取。 首先可以肯定的是，不能耽误当前页面的渲染和加载。至少也要在我当前页完全渲染展示给用户，并且可以响应用户交互之后，再去干这些“锦上添花”的预拉取操作。聪明的你一定想到，在onload之后再去预拉取链接。如果链接很多，而此时，用户有了交互，当前页面内有动画等也要优先去响应，这时候怎么办？这就要注意下上文提到的关键点“在浏览器的空闲时间内” 在浏览器空闲时间内预拉取我如何知道浏览器什么时候处理完了交互动画等重要的事儿，空闲下来了呢？这就要提到一个浏览器的API，requestIdleCallback，这个API实现的就是在浏览器空闲的时候，可以执行一些回调。 另一个问题，如果页面内的链接非常多，我都要一次性拉取么？页面底部的链接，用户可能根本不会去访问。这种情况可以参考我们经常使用的一种优化，滚动懒加载。也就是说，只有可能要用到的时候，才去预取链接。 检测视窗內的链接quicklink使用Intersection Observer API来实现这个功能. 这个API可以做什么呢？”如果两个元素发生的交集部分在N%左右，我需要做处理一些事情(执行回调)”，它接收一个回调函数，这个回调函数，会在满足条件的时候被执行，而条件就是目标元素（target）和设备视窗／其他指定的元素（root）的发生交集时。 quickLink怎么用安装1yarn add quicklink 用法12import quicklink from "quicklink/dist/quicklink.mjs";quicklink(); 这是最简单的用法，当然quick也接收一些参数 API主要的有这几个： el： 监测该元素进入视窗触发prefetch urls： 需要预取URL数组 timeout：requestIdleCallback的回调有效期限 priority： 预取请求的优先级，fetch() 或者…… 更多使用例子见官方git polyfill这是一个实验性的库，并不是主流浏览器都支持的，它本身包含了一个小的requestIdleCallback的兼容，但是Intersection Observer API,就需要额外的手动添加polyfill 1yarn install intersection-observer 12import 'intersection-observer';import quicklink from 'quicklink/dist/quicklink.mjs';]]></content>
+      <tags>
+        <tag>prefetch</tag>
+        <tag>quicklink</tag>
+        <tag>用户体验</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[wx-mini-program-share]]></title>
     <url>%2Fhexo-blog%2F2018%2F12%2F19%2Fwx-mini-program-share%2F</url>
     <content type="text"><![CDATA[微信小程序右上角···转发官方文档 这个转发功能是页面独立的，什么意思，就是微信小程序每一个页面的右上角的转发功能都是需要你配置才会出现。如果你有3个页，每个页都需要转发功能，那么你每个页面都需要配置下。 配置转发功能很简单，只需要在Page中增加事件处理函数onShareAppMessage, 只有定义了此事件处理函数，右上角菜单才会显示“转发”按钮. onShareAppMessage需要 return 一个 Object，用于自定义转发内容，包括标题，页面路径，转发图片。 123456789101112131415161718Page(&#123; // ... onShareAppMessage() &#123; return &#123; title: '转发标题', // default: 当前小程序名称 path: '转发路径，必须是以 / 开头的完整路径', // default: 当前页面 path ， imageUrl: '自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径。支持PNG及JPG。显示图片长宽比是 5:4。' // default: 使用默认截图, 这个截图实测在部分手机上会出现黑色背景 &#125; &#125; // ...&#125;)]]></content>
