@@ -4,6 +4,7 @@ date: 2019-04-30 17:18:04
 tags:
   - typescript
   - 类型注解
+  - type
 ---
 
 # typescript 学习笔记一： 类型
@@ -95,7 +96,6 @@ anything.setName('Bob');
 - `let list: number[] = [1,2,4]`
 - 第二种方式是使用数组泛型 Array<元素类型>， `let list:Array<number> = [1,2,4]`
 
-
 ### 类型推论
 
 如果没有明确的指定类型，那么 TypeScript 会依照类型推论（Type Inference）的规则推断出一个类型。
@@ -142,7 +142,7 @@ tmp[3] = true
 
 ### 类型断言
 
-类似类型转换，但是不进行检查。语法两种：
+类似强制类型转换，但是不进行检查。语法两种：
 
 ```ts
 let some: any = 'str'
@@ -151,3 +151,29 @@ let len: number = (<string>some).length
 // 2 as
 let len2: number= (some as string).length
 ```
+
+这个特性适合的一个场景就是，在ts中，如果给window设置一个全局变量
+
+```js
+window.a = 'a' // ts报错：Window 类型上不存在a属性
+```
+
+那么如何绕过这个呢，就可以使用类型断言，把window的类型强制转换为 any
+
+```js
+(<any>window).a = 'a'
+// or
+(window as any).a = 'a'
+```
+
+或者通过any类型绕过
+
+```js
+const winAny:any = window
+winAny.a = 'a'
+```
+
+## 参考
+
+> http://www.ayqy.net/blog/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B_typescript%E7%AC%94%E8%AE%B02/
+> https://www.tslang.cn/docs/handbook/basic-types.html
