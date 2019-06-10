@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="typescript,类型注解,">
+  <meta name="keywords" content="typescript,类型注解,type,">
 
 
 
@@ -82,14 +82,14 @@
 
 
 <meta name="description" content="typescript 学习笔记一： 类型最近我新开了一个electron项目，考虑到可能会持续迭代，以及客户端线上bugfix是没有前端页面方便的，因此需要这个项目尽可能的是一个稳定可靠的项目，最终我决定采用typescript来约束开发者，短期会增加一些学习成本，长期来看维护成本是有所减少的。那么就从头学习一下typescript吧。 学习资源：  typescript 入门教程 typescr">
-<meta name="keywords" content="typescript,类型注解">
+<meta name="keywords" content="typescript,类型注解,type">
 <meta property="og:type" content="article">
 <meta property="og:title" content="learn-typescript-1">
 <meta property="og:url" content="https://topppy.github.io/2019/04/30/learn-typescript-1/index.html">
 <meta property="og:site_name" content="Topppy&#39;s Blog">
 <meta property="og:description" content="typescript 学习笔记一： 类型最近我新开了一个electron项目，考虑到可能会持续迭代，以及客户端线上bugfix是没有前端页面方便的，因此需要这个项目尽可能的是一个稳定可靠的项目，最终我决定采用typescript来约束开发者，短期会增加一些学习成本，长期来看维护成本是有所减少的。那么就从头学习一下typescript吧。 学习资源：  typescript 入门教程 typescr">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-05-06T07:10:12.460Z">
+<meta property="og:updated_time" content="2019-05-24T10:04:20.220Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="learn-typescript-1">
 <meta name="twitter:description" content="typescript 学习笔记一： 类型最近我新开了一个electron项目，考虑到可能会持续迭代，以及客户端线上bugfix是没有前端页面方便的，因此需要这个项目尽可能的是一个稳定可靠的项目，最终我决定采用typescript来约束开发者，短期会增加一些学习成本，长期来看维护成本是有所减少的。那么就从头学习一下typescript吧。 学习资源：  typescript 入门教程 typescr">
@@ -382,8 +382,18 @@
 <h3 id="元组Tuple"><a href="#元组Tuple" class="headerlink" title="元组Tuple"></a>元组Tuple</h3><p>如果数据的元素的类型不同，并已知元素数量，可以使用元组定义。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> tmp: [string, number] = [<span class="string">'name'</span>, <span class="number">12</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果访问越界元素，也就是没有定义类型的元素，那么按照联合类型推断</span></span><br><span class="line">tmp[<span class="number">2</span>] = <span class="string">'Jack'</span></span><br><span class="line"><span class="comment">// ok 联合类型(string|number)</span></span><br><span class="line">tmp[<span class="number">3</span>] = <span class="literal">true</span></span><br><span class="line"><span class="comment">// wrong, boolean 不是联合类型(string|number)之一。</span></span><br></pre></td></tr></table></figure>
 <h3 id="object"><a href="#object" class="headerlink" title="object"></a>object</h3><p>除number string boolean sumblo null undefined 之外的非原始类型。</p>
-<h3 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h3><p>类似类型转换，但是不进行检查。语法两种：</p>
+<h3 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h3><p>类似强制类型转换，但是不进行检查。语法两种：</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> some: <span class="built_in">any</span> = <span class="string">'str'</span></span><br><span class="line"><span class="comment">// 1 &lt;&gt;</span></span><br><span class="line"><span class="keyword">let</span> len: <span class="built_in">number</span> = (&lt;<span class="built_in">string</span>&gt;some).length</span><br><span class="line"><span class="comment">// 2 as</span></span><br><span class="line"><span class="keyword">let</span> len2: <span class="built_in">number</span>= (some <span class="keyword">as</span> <span class="built_in">string</span>).length</span><br></pre></td></tr></table></figure>
+<p>这个特性适合的一个场景就是，在ts中，如果给window设置一个全局变量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.a = <span class="string">'a'</span> <span class="comment">// ts报错：Window 类型上不存在a属性</span></span><br></pre></td></tr></table></figure>
+<p>那么如何绕过这个呢，就可以使用类型断言，把window的类型强制转换为 any</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="xml"><span class="tag">&lt;<span class="name">any</span>&gt;</span>window).a = 'a'</span></span><br><span class="line"><span class="xml">// or</span></span><br><span class="line"><span class="xml">(window as any).a = 'a'</span></span><br></pre></td></tr></table></figure>
+<p>或者通过any类型绕过</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> winAny:any = <span class="built_in">window</span></span><br><span class="line">winAny.a = <span class="string">'a'</span></span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
+<p><a href="http://www.ayqy.net/blog/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B_typescript%E7%AC%94%E8%AE%B02/" target="_blank" rel="noopener">http://www.ayqy.net/blog/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B_typescript%E7%AC%94%E8%AE%B02/</a><br><a href="https://www.tslang.cn/docs/handbook/basic-types.html" target="_blank" rel="noopener">https://www.tslang.cn/docs/handbook/basic-types.html</a></p>
+</blockquote>
+
       
     </div>
     
@@ -403,6 +413,8 @@
             <a href="/hexo-blog/tags/typescript/" rel="tag"># typescript</a>
           
             <a href="/hexo-blog/tags/类型注解/" rel="tag"># 类型注解</a>
+          
+            <a href="/hexo-blog/tags/type/" rel="tag"># type</a>
           
         </div>
       
@@ -424,6 +436,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/hexo-blog/2019/05/06/learn-typescript-2/" rel="prev" title="learn-typescript-2">
+                learn-typescript-2 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -512,7 +528,7 @@
               
                 <a href="/hexo-blog/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -525,7 +541,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/hexo-blog/tags/index.html">
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -565,7 +581,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#typescript-学习笔记一：-类型"><span class="nav-number">1.</span> <span class="nav-text">typescript 学习笔记一： 类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单开始"><span class="nav-number">1.1.</span> <span class="nav-text">简单开始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编译"><span class="nav-number">1.1.1.</span> <span class="nav-text">编译</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型注解"><span class="nav-number">1.2.</span> <span class="nav-text">类型注解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原始数据类型"><span class="nav-number">1.2.1.</span> <span class="nav-text">原始数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任意类型-Any"><span class="nav-number">1.2.2.</span> <span class="nav-text">任意类型 Any</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-number">1.2.3.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型推论"><span class="nav-number">1.2.4.</span> <span class="nav-text">类型推论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多个类型怎么办？联合类型"><span class="nav-number">1.2.5.</span> <span class="nav-text">多个类型怎么办？联合类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元组Tuple"><span class="nav-number">1.2.6.</span> <span class="nav-text">元组Tuple</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#object"><span class="nav-number">1.2.7.</span> <span class="nav-text">object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型断言"><span class="nav-number">1.2.8.</span> <span class="nav-text">类型断言</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#typescript-学习笔记一：-类型"><span class="nav-number">1.</span> <span class="nav-text">typescript 学习笔记一： 类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单开始"><span class="nav-number">1.1.</span> <span class="nav-text">简单开始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编译"><span class="nav-number">1.1.1.</span> <span class="nav-text">编译</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型注解"><span class="nav-number">1.2.</span> <span class="nav-text">类型注解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原始数据类型"><span class="nav-number">1.2.1.</span> <span class="nav-text">原始数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任意类型-Any"><span class="nav-number">1.2.2.</span> <span class="nav-text">任意类型 Any</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-number">1.2.3.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型推论"><span class="nav-number">1.2.4.</span> <span class="nav-text">类型推论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多个类型怎么办？联合类型"><span class="nav-number">1.2.5.</span> <span class="nav-text">多个类型怎么办？联合类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元组Tuple"><span class="nav-number">1.2.6.</span> <span class="nav-text">元组Tuple</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#object"><span class="nav-number">1.2.7.</span> <span class="nav-text">object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型断言"><span class="nav-number">1.2.8.</span> <span class="nav-text">类型断言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.3.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
             
 
           </div>

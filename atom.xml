@@ -6,7 +6,7 @@
   <link href="/hexo-blog/atom.xml" rel="self"/>
   
   <link href="https://topppy.github.io/"/>
-  <updated>2019-05-06T07:10:12.460Z</updated>
+  <updated>2019-06-10T08:40:52.426Z</updated>
   <id>https://topppy.github.io/</id>
   
   <author>
@@ -17,11 +17,63 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>electron-starter-guide</title>
+    <link href="https://topppy.github.io/2019/06/06/electron-starter-guide/"/>
+    <id>https://topppy.github.io/2019/06/06/electron-starter-guide/</id>
+    <published>2019-06-06T08:54:50.000Z</published>
+    <updated>2019-06-10T08:40:52.426Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Electron-入门笔记&quot;&gt;&lt;a href=&quot;#Electron-入门笔记&quot; class=&quot;headerlink&quot; title=&quot;Electron 入门笔记&quot;&gt;&lt;/a&gt;Electron 入门笔记&lt;/h1&gt;&lt;h2 id=&quot;Electron简介&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="electron" scheme="https://topppy.github.io/tags/electron/"/>
+    
+      <category term="typescript" scheme="https://topppy.github.io/tags/typescript/"/>
+    
+      <category term="react" scheme="https://topppy.github.io/tags/react/"/>
+    
+      <category term="starter" scheme="https://topppy.github.io/tags/starter/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>learn-typescript-2</title>
+    <link href="https://topppy.github.io/2019/05/06/learn-typescript-2/"/>
+    <id>https://topppy.github.io/2019/05/06/learn-typescript-2/</id>
+    <published>2019-05-06T07:12:31.000Z</published>
+    <updated>2019-06-10T08:25:50.432Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;typescript-学习笔记二：-接口&quot;&gt;&lt;a href=&quot;#typescript-学习笔记二：-接口&quot; class=&quot;headerlink&quot; title=&quot;typescript 学习笔记二： 接口&quot;&gt;&lt;/a&gt;typescript 学习笔记二： 接口&lt;/h1&gt;&lt;p&gt;接口用来定义复杂的类型（比如对象，函数），描述复杂类型应该是一个什么样子的“鸭子”。可以简单理解为期望获得一个具有什么样类型的对象（当然不止对象类型）。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="typescript" scheme="https://topppy.github.io/tags/typescript/"/>
+    
+      <category term="接口" scheme="https://topppy.github.io/tags/%E6%8E%A5%E5%8F%A3/"/>
+    
+      <category term="interfaces" scheme="https://topppy.github.io/tags/interfaces/"/>
+    
+  </entry>
+  
+  <entry>
     <title>learn-typescript-1</title>
     <link href="https://topppy.github.io/2019/04/30/learn-typescript-1/"/>
     <id>https://topppy.github.io/2019/04/30/learn-typescript-1/</id>
     <published>2019-04-30T09:18:04.000Z</published>
-    <updated>2019-05-06T07:10:12.460Z</updated>
+    <updated>2019-05-24T10:04:20.220Z</updated>
     
     <summary type="html">
     
@@ -38,6 +90,8 @@
       <category term="typescript" scheme="https://topppy.github.io/tags/typescript/"/>
     
       <category term="类型注解" scheme="https://topppy.github.io/tags/%E7%B1%BB%E5%9E%8B%E6%B3%A8%E8%A7%A3/"/>
+    
+      <category term="type" scheme="https://topppy.github.io/tags/type/"/>
     
   </entry>
   
