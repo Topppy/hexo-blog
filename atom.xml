@@ -6,7 +6,7 @@
   <link href="/hexo-blog/atom.xml" rel="self"/>
   
   <link href="https://topppy.github.io/"/>
-  <updated>2019-06-10T08:40:52.426Z</updated>
+  <updated>2019-06-12T07:21:27.496Z</updated>
   <id>https://topppy.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>gitlab-runner-mac-win</title>
+    <link href="https://topppy.github.io/2019/06/12/gitlab-runner-mac-win/"/>
+    <id>https://topppy.github.io/2019/06/12/gitlab-runner-mac-win/</id>
+    <published>2019-06-12T07:18:13.000Z</published>
+    <updated>2019-06-12T07:21:27.496Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;gitlab配置mac-win系统runner，win有问题没解决&quot;&gt;&lt;a href=&quot;#gitlab配置mac-win系统runner，win有问题没解决&quot; class=&quot;headerlink&quot; title=&quot;gitlab配置mac/win系统runner，win有问题没解决&quot;&gt;&lt;/a&gt;gitlab配置mac/win系统runner，win有问题没解决&lt;/h1&gt;&lt;p&gt;gitlab的runner就是触发ci/cd之后，执行gitlab-ci.yml里的脚本的容器。一般呢，都是docker。我最近有个electron的项目，想做cicd的自动打包，需要mac和win环境，于是先把自己的电脑配置为runner跑一次。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="gitlab" scheme="https://topppy.github.io/tags/gitlab/"/>
+    
+      <category term="runner" scheme="https://topppy.github.io/tags/runner/"/>
+    
+      <category term="mac" scheme="https://topppy.github.io/tags/mac/"/>
+    
+      <category term="windows" scheme="https://topppy.github.io/tags/windows/"/>
+    
+      <category term="ci/cd" scheme="https://topppy.github.io/tags/ci-cd/"/>
+    
+  </entry>
   
   <entry>
     <title>electron-starter-guide</title>
