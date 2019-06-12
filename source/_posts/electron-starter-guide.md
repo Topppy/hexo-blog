@@ -17,6 +17,8 @@ tags:
 官方文档：https://electronjs.org/docs
 中文资料集合：https://github.com/amhoho/electron-cn-docs
 
+<!-- more -->
+
 ### demo
 
 - 快速开始demo：https://github.com/electron/electron-quick-start
