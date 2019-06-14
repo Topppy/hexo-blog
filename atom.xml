@@ -6,7 +6,7 @@
   <link href="/hexo-blog/atom.xml" rel="self"/>
   
   <link href="https://topppy.github.io/"/>
-  <updated>2019-06-12T07:21:27.496Z</updated>
+  <updated>2019-06-12T07:23:32.931Z</updated>
   <id>https://topppy.github.io/</id>
   
   <author>
@@ -15,6 +15,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>learn-typescript-3</title>
+    <link href="https://topppy.github.io/2019/06/12/learn-typescript-3/"/>
+    <id>https://topppy.github.io/2019/06/12/learn-typescript-3/</id>
+    <published>2019-06-12T07:23:32.000Z</published>
+    <updated>2019-06-12T07:23:32.931Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>gitlab-runner-mac-win</title>
@@ -47,24 +61,17 @@
     <link href="https://topppy.github.io/2019/06/06/electron-starter-guide/"/>
     <id>https://topppy.github.io/2019/06/06/electron-starter-guide/</id>
     <published>2019-06-06T08:54:50.000Z</published>
-    <updated>2019-06-10T08:40:52.426Z</updated>
+    <updated>2019-06-14T03:21:05.381Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h1 id=&quot;Electron-入门笔记&quot;&gt;&lt;a href=&quot;#Electron-入门笔记&quot; class=&quot;headerlink&quot; title=&quot;Electron 入门笔记&quot;&gt;&lt;/a&gt;Electron 入门笔记&lt;/h1&gt;&lt;h2 id=&quot;Electron简介&quot;&gt;&lt;a
-        
-      
+      &lt;h1 id=&quot;Electron-入门笔记&quot;&gt;&lt;a href=&quot;#Electron-入门笔记&quot; class=&quot;headerlink&quot; title=&quot;Electron 入门笔记&quot;&gt;&lt;/a&gt;Electron 入门笔记&lt;/h1&gt;&lt;h2 id=&quot;Electron简介&quot;&gt;&lt;a href=&quot;#Electron简介&quot; class=&quot;headerlink&quot; title=&quot;Electron简介&quot;&gt;&lt;/a&gt;Electron简介&lt;/h2&gt;&lt;p&gt;这个框架可以让你使用js开发Mac，Windows，Linux客户端。基本上可以理解为一个你自己的浏览器，访问本地的页面；而超出浏览器的部分是，你可以使用node拥有的能力。&lt;/p&gt;
+&lt;p&gt;官方文档：&lt;a href=&quot;https://electronjs.org/docs&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://electronjs.org/docs&lt;/a&gt;&lt;br&gt;中文资料集合：&lt;a href=&quot;https://github.com/amhoho/electron-cn-docs&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/amhoho/electron-cn-docs&lt;/a&gt;&lt;/p&gt;
     
     </summary>
     
     
       <category term="electron" scheme="https://topppy.github.io/tags/electron/"/>
-    
-      <category term="typescript" scheme="https://topppy.github.io/tags/typescript/"/>
     
       <category term="react" scheme="https://topppy.github.io/tags/react/"/>
     

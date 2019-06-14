@@ -264,6 +264,135 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://topppy.github.io/hexo-blog/2019/06/12/learn-typescript-3/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Topppy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/hexo-blog/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Topppy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/hexo-blog/2019/06/12/learn-typescript-3/" itemprop="url">learn-typescript-3</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-12T15:23:32+08:00">
+                2019-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/hexo-blog/2019/06/12/learn-typescript-3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/12/learn-typescript-3/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://topppy.github.io/hexo-blog/2019/06/12/gitlab-runner-mac-win/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -478,22 +607,15 @@
 
       
         
-          
-            <h1 id="Electron-入门笔记"><a href="#Electron-入门笔记" class="headerlink" title="Electron 入门笔记"></a>Electron 入门笔记</h1><h2 id="Electron简介"><a href="#Electron简介" class="headerlink" title="Electron简介"></a>Electron简介</h2><p>这个框架可以让你使用js开发Mac，Windows，Linux客户端。基本上可以理解为一个你自己的浏览器，访问本地的页面；而超出浏览器的部分是，你可以使用node拥有的能力。</p>
+          <h1 id="Electron-入门笔记"><a href="#Electron-入门笔记" class="headerlink" title="Electron 入门笔记"></a>Electron 入门笔记</h1><h2 id="Electron简介"><a href="#Electron简介" class="headerlink" title="Electron简介"></a>Electron简介</h2><p>这个框架可以让你使用js开发Mac，Windows，Linux客户端。基本上可以理解为一个你自己的浏览器，访问本地的页面；而超出浏览器的部分是，你可以使用node拥有的能力。</p>
 <p>官方文档：<a href="https://electronjs.org/docs" target="_blank" rel="noopener">https://electronjs.org/docs</a><br>中文资料集合：<a href="https://github.com/amhoho/electron-cn-docs" target="_blank" rel="noopener">https://github.com/amhoho/electron-cn-docs</a></p>
-<h3 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h3><ul>
-<li>快速开始demo：<a href="https://github.com/electron/electron-quick-start" target="_blank" rel="noopener">https://github.com/electron/electron-quick-start</a></li>
-<li>官方的APIdemo：<a href="https://github.com/electron/electron-api-demos" target="_blank" rel="noopener">https://github.com/electron/electron-api-demos</a></li>
-<li>官方typescript的demo： <a href="https://github.com/electron/electron-quick-start-typescript" target="_blank" rel="noopener">https://github.com/electron/electron-quick-start-typescript</a></li>
-</ul>
-<p>由于我最终选择的架构是ts+react，因此，可以参考这两个模板：</p>
-<ul>
-<li>electron的react模板： <a href="https://github.com/electron-react-boilerplate/electron-react-boilerplate" target="_blank" rel="noopener">https://github.com/electron-react-boilerplate/electron-react-boilerplate</a></li>
-<li>electron的react + ts样例：<a href="https://github.com/electron-react-boilerplate/examples/tree/master/examples/typescript" target="_blank" rel="noopener">https://github.com/electron-react-boilerplate/examples/tree/master/examples/typescript</a></li>
-</ul>
-<h2 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h2><h3 id="主进程和渲染进程"><a href="#主进程和渲染进程" class="headerlink" title="主进程和渲染进程"></a>主进程和渲染进程</h3><p>这是跟web开发最大的不同点，electron的入口文件的进程是主进程, 在主进程中，你可以像在node环境一样开发，操作本地文件，主进程可以创建渲染进程，渲染进程就是展示我们看到的UI页面的的，可以理解为我们浏览器页面，因此我们使用React写的组件啊实际上实在渲染进程中运行的。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/hexo-blog/2019/06/06/electron-starter-guide/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1478,140 +1600,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://topppy.github.io/hexo-blog/2017/06/20/charles-install-and-usage/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Topppy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/hexo-blog/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Topppy's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/hexo-blog/2017/06/20/charles-install-and-usage/" itemprop="url">charles-install-and-usage</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-20T20:10:49+08:00">
-                2017-06-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/hexo-blog/2017/06/20/charles-install-and-usage/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/06/20/charles-install-and-usage/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Charles安装破解使用教程"><a href="#Charles安装破解使用教程" class="headerlink" title="Charles安装破解使用教程"></a>Charles安装破解使用教程</h1><h4 id="Charles-是什么，能干啥"><a href="#Charles-是什么，能干啥" class="headerlink" title="Charles 是什么，能干啥"></a>Charles 是什么，能干啥</h4><p>Charles是一个对Mac系统非常友好的抓包工具（付费），使用场景包括线上/测试/本地/接口的代理，在APP里测试本地页面，手机同域host代理。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/hexo-blog/2017/06/20/charles-install-and-usage/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1664,7 +1652,7 @@
               
                 <a href="/hexo-blog/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
