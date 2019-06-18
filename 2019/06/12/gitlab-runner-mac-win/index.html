@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="gitlab,runner,mac,windows,ci/cd,">
+  <meta name="keywords" content="mac,windows,gitlab,runner,ci/cd,">
 
 
 
@@ -81,19 +81,20 @@
 
 
 
-<meta name="description" content="gitlab配置mac/win系统runner，win有问题没解决gitlab的runner就是触发ci/cd之后，执行gitlab-ci.yml里的脚本的容器。一般呢，都是docker。我最近有个electron的项目，想做cicd的自动打包，需要mac和win环境，于是先把自己的电脑配置为runner跑一次。">
-<meta name="keywords" content="gitlab,runner,mac,windows,ci&#x2F;cd">
+<meta name="description" content="gitlab 配置 mac/win 系统 runner，win 有问题【解决】gitlab 的 runner 就是触发 ci/cd 之后，执行 gitlab-ci.yml 里的脚本的容器。一般呢，都是 docker。我最近有个 electron 的项目，想做 cicd 的自动打包，需要 mac 和 win 环境，于是先把自己的电脑配置为 runner 跑一次。">
+<meta name="keywords" content="mac,windows,gitlab,runner,ci&#x2F;cd">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gitlab-runner-mac-win">
 <meta property="og:url" content="https://topppy.github.io/2019/06/12/gitlab-runner-mac-win/index.html">
 <meta property="og:site_name" content="Topppy&#39;s Blog">
-<meta property="og:description" content="gitlab配置mac/win系统runner，win有问题没解决gitlab的runner就是触发ci/cd之后，执行gitlab-ci.yml里的脚本的容器。一般呢，都是docker。我最近有个electron的项目，想做cicd的自动打包，需要mac和win环境，于是先把自己的电脑配置为runner跑一次。">
+<meta property="og:description" content="gitlab 配置 mac/win 系统 runner，win 有问题【解决】gitlab 的 runner 就是触发 ci/cd 之后，执行 gitlab-ci.yml 里的脚本的容器。一般呢，都是 docker。我最近有个 electron 的项目，想做 cicd 的自动打包，需要 mac 和 win 环境，于是先把自己的电脑配置为 runner 跑一次。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB8e12e879cab34af525fcf198740e0471?method=download&shareKey=f6e3fd5c4ec3aa196c28d2d0cb2caa0e">
-<meta property="og:updated_time" content="2019-06-12T07:21:27.496Z">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBd64bf2d2205c2cc6921f9146b86e3c1e?method=download&shareKey=3c5e8a856839fc8b03a359875be9bf67">
+<meta property="og:updated_time" content="2019-06-18T06:43:37.329Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gitlab-runner-mac-win">
-<meta name="twitter:description" content="gitlab配置mac/win系统runner，win有问题没解决gitlab的runner就是触发ci/cd之后，执行gitlab-ci.yml里的脚本的容器。一般呢，都是docker。我最近有个electron的项目，想做cicd的自动打包，需要mac和win环境，于是先把自己的电脑配置为runner跑一次。">
+<meta name="twitter:description" content="gitlab 配置 mac/win 系统 runner，win 有问题【解决】gitlab 的 runner 就是触发 ci/cd 之后，执行 gitlab-ci.yml 里的脚本的容器。一般呢，都是 docker。我最近有个 electron 的项目，想做 cicd 的自动打包，需要 mac 和 win 环境，于是先把自己的电脑配置为 runner 跑一次。">
 <meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/WEB8e12e879cab34af525fcf198740e0471?method=download&shareKey=f6e3fd5c4ec3aa196c28d2d0cb2caa0e">
 
 
@@ -343,72 +344,75 @@
       
 
       
-        <h1 id="gitlab配置mac-win系统runner，win有问题没解决"><a href="#gitlab配置mac-win系统runner，win有问题没解决" class="headerlink" title="gitlab配置mac/win系统runner，win有问题没解决"></a>gitlab配置mac/win系统runner，win有问题没解决</h1><p>gitlab的runner就是触发ci/cd之后，执行gitlab-ci.yml里的脚本的容器。一般呢，都是docker。我最近有个electron的项目，想做cicd的自动打包，需要mac和win环境，于是先把自己的电脑配置为runner跑一次。</p>
+        <h1 id="gitlab-配置-mac-win-系统-runner，win-有问题【解决】"><a href="#gitlab-配置-mac-win-系统-runner，win-有问题【解决】" class="headerlink" title="gitlab 配置 mac/win 系统 runner，win 有问题【解决】"></a>gitlab 配置 mac/win 系统 runner，win 有问题【解决】</h1><p>gitlab 的 runner 就是触发 ci/cd 之后，执行 gitlab-ci.yml 里的脚本的容器。一般呢，都是 docker。我最近有个 electron 的项目，想做 cicd 的自动打包，需要 mac 和 win 环境，于是先把自己的电脑配置为 runner 跑一次。</p>
 <a id="more"></a>
-<h1 id="mac"><a href="#mac" class="headerlink" title="mac"></a>mac</h1><h2 id="安装runner"><a href="#安装runner" class="headerlink" title="安装runner"></a>安装runner</h2><ul>
+<h2 id="mac"><a href="#mac" class="headerlink" title="mac"></a>mac</h2><h3 id="安装-runner"><a href="#安装-runner" class="headerlink" title="安装 runner"></a>安装 runner</h3><ul>
 <li><p>下载</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo curl --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-darwin-amd64</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo curl --output /usr/<span class="built_in">local</span>/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-darwin-amd64</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>给权限</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x /usr/local/bin/gitlab-runner</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x /usr/<span class="built_in">local</span>/bin/gitlab-runner</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>安装和启动runner服务</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">gitlab-runner install</span><br><span class="line">gitlab-runner start</span><br></pre></td></tr></table></figure>
+<li><p>安装和启动 runner 服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">gitlab-runner install</span><br><span class="line">gitlab-runner start</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>检验安装结果</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-runner -h</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-runner -h</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><ul>
-<li>获取tocken<ul>
-<li>在项目的Setting &gt; CI/CD 页<ul>
+<h3 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h3><ul>
+<li>获取 tocken<ul>
+<li>在项目的 Setting &gt; CI/CD 页<ul>
 <li>Runners settings &gt; Specific Runners</li>
-<li>获取URL和tocken<br><img src="https://note.youdao.com/yws/api/personal/file/WEB8e12e879cab34af525fcf198740e0471?method=download&amp;shareKey=f6e3fd5c4ec3aa196c28d2d0cb2caa0e" alt="image"></li>
+<li>获取 URL 和 tocken<br><img src="https://note.youdao.com/yws/api/personal/file/WEB8e12e879cab34af525fcf198740e0471?method=download&amp;shareKey=f6e3fd5c4ec3aa196c28d2d0cb2caa0e" alt="image"></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><p>执行注册命令</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-runner register</span><br></pre></td></tr></table></figure>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">➜  gitlab-runner register</span><br><span class="line">Runtime platform                                    arch=amd64 os=darwin pid=68127 revision=ac2a293c version=11.11.2</span><br><span class="line">WARNING: Running <span class="keyword">in</span> user-mode.</span><br><span class="line">WARNING: Use sudo <span class="keyword">for</span> system-mode:</span><br><span class="line">WARNING: $ sudo gitlab-runner...</span><br><span class="line"></span><br><span class="line">Please enter the gitlab-ci coordinator URL (e.g. https://gitlab.com/):</span><br><span class="line"><span class="comment"># 输入获取的URL</span></span><br><span class="line"></span><br><span class="line">Please enter the gitlab-ci token <span class="keyword">for</span> this runner:</span><br><span class="line"><span class="comment"># 输入tocken</span></span><br><span class="line"></span><br><span class="line">Please enter the gitlab-ci description <span class="keyword">for</span> this runner:</span><br><span class="line">[hostname]: my-runner</span><br><span class="line"></span><br><span class="line">Please enter the gitlab-ci tags <span class="keyword">for</span> this runner (comma separated):</span><br><span class="line">mac</span><br><span class="line"></span><br><span class="line">Registering runner... succeeded                     runner=6sbhZbPi</span><br><span class="line"></span><br><span class="line">Registering runner... succeeded                     runner=6sbhZbPi</span><br><span class="line"></span><br><span class="line">Please enter the executor: docker, parallels, shell, docker-ssh+machine, kubernetes, docker-ssh, ssh, virtualbox, docker+machine:</span><br><span class="line">shell</span><br><span class="line"></span><br><span class="line">Runner registered successfully. Feel free to start it, but <span class="keyword">if</span> it<span class="string">'s running already the config should be automatically reloaded!</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-runner register</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">➜  gitlab-runner register</span><br><span class="line">Runtime platform                                    arch=amd64 os=darwin pid=68127 revision=ac2a293c version=11.11.2</span><br><span class="line">WARNING: Running <span class="keyword">in</span> user-mode.</span><br><span class="line">WARNING: Use sudo <span class="keyword">for</span> system-mode:</span><br><span class="line">WARNING: $ sudo gitlab-runner...</span><br><span class="line"></span><br><span class="line">Please enter the gitlab-ci coordinator URL (e.g. https://gitlab.com/):</span><br><span class="line"><span class="comment"># 输入获取的URL</span></span><br><span class="line"></span><br><span class="line">Please enter the gitlab-ci token <span class="keyword">for</span> this runner:</span><br><span class="line"><span class="comment"># 输入tocken</span></span><br><span class="line"></span><br><span class="line">Please enter the gitlab-ci description <span class="keyword">for</span> this runner:</span><br><span class="line">[hostname]: my-runner</span><br><span class="line"></span><br><span class="line">Please enter the gitlab-ci tags <span class="keyword">for</span> this runner (comma separated):</span><br><span class="line">mac</span><br><span class="line"></span><br><span class="line">Registering runner... succeeded                     runner=6sbhZbPi</span><br><span class="line"></span><br><span class="line">Registering runner... succeeded                     runner=6sbhZbPi</span><br><span class="line"></span><br><span class="line">Please enter the executor: docker, parallels, shell, docker-ssh+machine, kubernetes, docker-ssh, ssh, virtualbox, docker+machine:</span><br><span class="line">shell</span><br><span class="line"></span><br><span class="line">Runner registered successfully. Feel free to start it, but <span class="keyword">if</span> it<span class="string">'s running already the config should be automatically reloaded!</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>进入项目的Setting &gt; CI/CD 页查看新注册的runner</p>
+<li><p>进入项目的 Setting &gt; CI/CD 页查看新注册的 runner</p>
 <ul>
 <li>Runners settings &gt; Specific Runners</li>
 </ul>
 </li>
 </ul>
-<h2 id="使用这个runner"><a href="#使用这个runner" class="headerlink" title="使用这个runner"></a>使用这个runner</h2><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<h3 id="使用这个-runner"><a href="#使用这个-runner" class="headerlink" title="使用这个 runner"></a>使用这个 runner</h3><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
 <li><a href="https://docs.gitlab.com/runner/install/osx.html" target="_blank" rel="noopener">https://docs.gitlab.com/runner/install/osx.html</a></li>
 <li><a href="https://docs.gitlab.com/runner/register/index.html" target="_blank" rel="noopener">https://docs.gitlab.com/runner/register/index.html</a></li>
 <li><a href="https://qii404.me/2018/06/21/gitlab-runner.html" target="_blank" rel="noopener">https://qii404.me/2018/06/21/gitlab-runner.html</a></li>
 </ul>
-<h1 id="win"><a href="#win" class="headerlink" title="win"></a>win</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<h2 id="win"><a href="#win" class="headerlink" title="win"></a>win</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
 <li>创建一个文件夹，eg: C:\GitLab-Runner</li>
-<li>下载二进制安装包（x86/amd64），（我用的x86）放到我们创建的文件夹里，重命名二进制包为 gitlab-runner.exe</li>
+<li>下载二进制安装包（x86/amd64），（我用的 x86）放到我们创建的文件夹里，重命名二进制包为 gitlab-runner.exe</li>
 </ul>
-<h2 id="注册runner"><a href="#注册runner" class="headerlink" title="注册runner"></a>注册runner</h2><ul>
-<li>开一个powershell右键以管理员运行</li>
+<h3 id="注册-runner"><a href="#注册-runner" class="headerlink" title="注册 runner"></a>注册 runner</h3><ul>
+<li>开一个 powershell 右键以管理员运行</li>
 <li>进入刚刚创建的文件夹路径</li>
 <li><p>执行注册命令,</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\gitlab-runner.exe register</span><br></pre></td></tr></table></figure>
-<p>  跟mac下的runner注册流程一致，输入gitlab项目里的网址URL和tocken，选择executor为shell，tag为windows</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\gitlab-runner.exe register</span><br></pre></td></tr></table></figure>
+<p>跟 mac 下的 runner 注册流程一致，输入 gitlab 项目里的网址 URL 和 tocken，选择 executor 为 shell，tag 为 windows</p>
 </li>
 </ul>
-<h2 id="安装runner服务并启动"><a href="#安装runner服务并启动" class="headerlink" title="安装runner服务并启动"></a>安装runner服务并启动</h2><ul>
-<li>执行  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.\gitlab-runner.exe install</span><br><span class="line">.\gitlab-runner.exe start</span><br></pre></td></tr></table></figure>
+<h3 id="安装-runner-服务并启动"><a href="#安装-runner-服务并启动" class="headerlink" title="安装 runner 服务并启动"></a>安装 runner 服务并启动</h3><ul>
+<li><p>执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.\gitlab-runner.exe install</span><br><span class="line">.\gitlab-runner.exe start</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="参考-1"><a href="#参考-1" class="headerlink" title="参考"></a>参考</h2><ul>
+<h3 id="参考-1"><a href="#参考-1" class="headerlink" title="参考"></a>参考</h3><ul>
 <li><a href="https://docs.gitlab.com/runner/install/windows.html" target="_blank" rel="noopener">https://docs.gitlab.com/runner/install/windows.html</a></li>
 <li><a href="https://my.oschina.net/u/3756690/blog/1839652" target="_blank" rel="noopener">https://my.oschina.net/u/3756690/blog/1839652</a></li>
 <li>中文乱码，<a href="https://scfido.github.io/2018/07/11/GitLab-CI%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.html" target="_blank" rel="noopener">https://scfido.github.io/2018/07/11/GitLab-CI%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.html</a></li>
 <li><a href="https://www.cnblogs.com/newP/p/5735366.html#_Toc458009356" target="_blank" rel="noopener">https://www.cnblogs.com/newP/p/5735366.html#_Toc458009356</a></li>
 </ul>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>win runner的job显示执行成功，但是实际上并没有打包成功，输出信息还是有乱码。未解决。</p>
-<p>查看问题job： <a href="https://gitlab.corp.youdao.com/icode/icodeDesktop/-/jobs/39083" target="_blank" rel="noopener">https://gitlab.corp.youdao.com/icode/icodeDesktop/-/jobs/39083</a></p>
-<h3 id="gitlab-报错乱码"><a href="#gitlab-报错乱码" class="headerlink" title="gitlab 报错乱码"></a>gitlab 报错乱码</h3><p>参考中文乱码的解决方案，无效，该系统语言为英文</p>
-<h3 id="gitlab-执行git报错乱码"><a href="#gitlab-执行git报错乱码" class="headerlink" title="gitlab 执行git报错乱码"></a>gitlab 执行git报错乱码</h3><p>执行shell为powershell</p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><h4 id="gitlab-报错乱码"><a href="#gitlab-报错乱码" class="headerlink" title="gitlab 报错乱码"></a>gitlab 报错乱码</h4><p>参考中文乱码的解决方案，无效；另一个方案为改系统语言为英文，重启依旧有乱码。</p>
+<h4 id="gitlab-执行-git-报错乱码"><a href="#gitlab-执行-git-报错乱码" class="headerlink" title="gitlab 执行 git 报错乱码"></a>gitlab 执行 git 报错乱码</h4><p>执行 shell 为 powershell，报错信息看起来 git’clone 没有成功；但是环境变量已经配置好了。重启电脑之后好了。</p>
+<h3 id="DEBUG-PROD-true-yarn-package-报错"><a href="#DEBUG-PROD-true-yarn-package-报错" class="headerlink" title="DEBUG_PROD=true yarn package 报错"></a>DEBUG_PROD=true yarn package 报错</h3><p><img src="https://note.youdao.com/yws/api/personal/file/WEBd64bf2d2205c2cc6921f9146b86e3c1e?method=download&amp;shareKey=3c5e8a856839fc8b03a359875be9bf67" alt="image"></p>
+<p>原因为，在 windows 中的执行环境为 powershell，设置 node 临时环境变量的语法跟 linux 系统不一样。</p>
+<p>改为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$env</span>:DEBUG_PROD=<span class="literal">true</span>; yarn package</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -426,13 +430,13 @@
       
         <div class="post-tags">
           
-            <a href="/hexo-blog/tags/gitlab/" rel="tag"># gitlab</a>
-          
-            <a href="/hexo-blog/tags/runner/" rel="tag"># runner</a>
-          
             <a href="/hexo-blog/tags/mac/" rel="tag"># mac</a>
           
             <a href="/hexo-blog/tags/windows/" rel="tag"># windows</a>
+          
+            <a href="/hexo-blog/tags/gitlab/" rel="tag"># gitlab</a>
+          
+            <a href="/hexo-blog/tags/runner/" rel="tag"># runner</a>
           
             <a href="/hexo-blog/tags/ci-cd/" rel="tag"># ci/cd</a>
           
@@ -548,7 +552,7 @@
               
                 <a href="/hexo-blog/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -561,7 +565,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/hexo-blog/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -601,7 +605,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gitlab配置mac-win系统runner，win有问题没解决"><span class="nav-number">1.</span> <span class="nav-text">gitlab配置mac/win系统runner，win有问题没解决</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mac"><span class="nav-number">2.</span> <span class="nav-text">mac</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装runner"><span class="nav-number">2.1.</span> <span class="nav-text">安装runner</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册"><span class="nav-number">2.2.</span> <span class="nav-text">注册</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用这个runner"><span class="nav-number">2.3.</span> <span class="nav-text">使用这个runner</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">2.4.</span> <span class="nav-text">参考</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#win"><span class="nav-number">3.</span> <span class="nav-text">win</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">3.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册runner"><span class="nav-number">3.2.</span> <span class="nav-text">注册runner</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装runner服务并启动"><span class="nav-number">3.3.</span> <span class="nav-text">安装runner服务并启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考-1"><span class="nav-number">3.4.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">3.5.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gitlab-报错乱码"><span class="nav-number">3.5.1.</span> <span class="nav-text">gitlab 报错乱码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gitlab-执行git报错乱码"><span class="nav-number">3.5.2.</span> <span class="nav-text">gitlab 执行git报错乱码</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gitlab-配置-mac-win-系统-runner，win-有问题【解决】"><span class="nav-number">1.</span> <span class="nav-text">gitlab 配置 mac/win 系统 runner，win 有问题【解决】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mac"><span class="nav-number">1.1.</span> <span class="nav-text">mac</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-runner"><span class="nav-number">1.1.1.</span> <span class="nav-text">安装 runner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册"><span class="nav-number">1.1.2.</span> <span class="nav-text">注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用这个-runner"><span class="nav-number">1.1.3.</span> <span class="nav-text">使用这个 runner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">1.1.4.</span> <span class="nav-text">参考</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#win"><span class="nav-number">1.2.</span> <span class="nav-text">win</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册-runner"><span class="nav-number">1.2.2.</span> <span class="nav-text">注册 runner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-runner-服务并启动"><span class="nav-number">1.2.3.</span> <span class="nav-text">安装 runner 服务并启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.2.5.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#gitlab-报错乱码"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">gitlab 报错乱码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gitlab-执行-git-报错乱码"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">gitlab 执行 git 报错乱码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DEBUG-PROD-true-yarn-package-报错"><span class="nav-number">1.2.6.</span> <span class="nav-text">DEBUG_PROD=true yarn package 报错</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

@@ -6,7 +6,7 @@
   <link href="/hexo-blog/atom.xml" rel="self"/>
   
   <link href="https://topppy.github.io/"/>
-  <updated>2019-06-12T07:23:32.931Z</updated>
+  <updated>2019-06-18T06:45:37.294Z</updated>
   <id>https://topppy.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>electron-app-icon-generate</title>
+    <link href="https://topppy.github.io/2019/06/18/electron-app-icon-generate/"/>
+    <id>https://topppy.github.io/2019/06/18/electron-app-icon-generate/</id>
+    <published>2019-06-18T06:38:46.000Z</published>
+    <updated>2019-06-18T06:45:37.294Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;electron客户端生成Mac和Win平台的App图标&quot;&gt;&lt;a href=&quot;#electron客户端生成Mac和Win平台的App图标&quot; class=&quot;headerlink&quot; title=&quot;electron客户端生成Mac和Win平台的App图标&quot;&gt;&lt;/a&gt;electron客户端生成Mac和Win平台的App图标&lt;/h1&gt;&lt;p&gt;mac的图标是需要.icns格式的，windows平台是.ico格式，这些格式，都可以通过命令行或者软件iConvert Icons生成。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="electron" scheme="https://topppy.github.io/tags/electron/"/>
+    
+      <category term="mac" scheme="https://topppy.github.io/tags/mac/"/>
+    
+      <category term="windows" scheme="https://topppy.github.io/tags/windows/"/>
+    
+      <category term="icon" scheme="https://topppy.github.io/tags/icon/"/>
+    
+  </entry>
   
   <entry>
     <title>learn-typescript-3</title>
@@ -35,22 +59,22 @@
     <link href="https://topppy.github.io/2019/06/12/gitlab-runner-mac-win/"/>
     <id>https://topppy.github.io/2019/06/12/gitlab-runner-mac-win/</id>
     <published>2019-06-12T07:18:13.000Z</published>
-    <updated>2019-06-12T07:21:27.496Z</updated>
+    <updated>2019-06-18T06:43:37.329Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;gitlab配置mac-win系统runner，win有问题没解决&quot;&gt;&lt;a href=&quot;#gitlab配置mac-win系统runner，win有问题没解决&quot; class=&quot;headerlink&quot; title=&quot;gitlab配置mac/win系统runner，win有问题没解决&quot;&gt;&lt;/a&gt;gitlab配置mac/win系统runner，win有问题没解决&lt;/h1&gt;&lt;p&gt;gitlab的runner就是触发ci/cd之后，执行gitlab-ci.yml里的脚本的容器。一般呢，都是docker。我最近有个electron的项目，想做cicd的自动打包，需要mac和win环境，于是先把自己的电脑配置为runner跑一次。&lt;/p&gt;
+      &lt;h1 id=&quot;gitlab-配置-mac-win-系统-runner，win-有问题【解决】&quot;&gt;&lt;a href=&quot;#gitlab-配置-mac-win-系统-runner，win-有问题【解决】&quot; class=&quot;headerlink&quot; title=&quot;gitlab 配置 mac/win 系统 runner，win 有问题【解决】&quot;&gt;&lt;/a&gt;gitlab 配置 mac/win 系统 runner，win 有问题【解决】&lt;/h1&gt;&lt;p&gt;gitlab 的 runner 就是触发 ci/cd 之后，执行 gitlab-ci.yml 里的脚本的容器。一般呢，都是 docker。我最近有个 electron 的项目，想做 cicd 的自动打包，需要 mac 和 win 环境，于是先把自己的电脑配置为 runner 跑一次。&lt;/p&gt;
     
     </summary>
     
     
-      <category term="gitlab" scheme="https://topppy.github.io/tags/gitlab/"/>
-    
-      <category term="runner" scheme="https://topppy.github.io/tags/runner/"/>
-    
       <category term="mac" scheme="https://topppy.github.io/tags/mac/"/>
     
       <category term="windows" scheme="https://topppy.github.io/tags/windows/"/>
+    
+      <category term="gitlab" scheme="https://topppy.github.io/tags/gitlab/"/>
+    
+      <category term="runner" scheme="https://topppy.github.io/tags/runner/"/>
     
       <category term="ci/cd" scheme="https://topppy.github.io/tags/ci-cd/"/>
     
