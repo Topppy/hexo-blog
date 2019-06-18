@@ -12,3 +12,7 @@ hexo源码在hexo-src 分支，hexo deploy生成文件在gh-pages分支。
 - 本地markdown迁移
 - 其他云存储的笔记迁移
 - blog地址迁移到github.io
+
+## 问题
+
+记得给github项目单独配置user和email（我全局是gitlab的），不然的话，无法识别提交的用户
