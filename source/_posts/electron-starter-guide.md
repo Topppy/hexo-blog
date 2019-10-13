@@ -11,10 +11,32 @@ tags:
 
 ## Electron简介
 
-这个框架可以让你使用js开发Mac，Windows，Linux客户端。基本上可以理解为一个你自己的浏览器，访问本地的页面；而超出浏览器的部分是，你可以使用node拥有的能力。
+这个框架可以让你使用javascript开发Mac，Windows，Linux客户端。基本上可以理解为一个你自己的浏览器，访问本地的页面；而超出浏览器的部分是，你可以使用node拥有的能力。
 
+### Runtime 运行时
+
+Electron凭什么可以让js拥有开发客户端的能力？这就要从js的运行时说起，什么是运行时呢？
+
+> Js runtime就是用来执行JavaScript代码用的，为其提供了一个运行时环境，提供解释/编译、自动内存管理（GC）、对象模型、核心库API等功能。
+
+我们熟悉的两个运行时分别是浏览器和Node
+
+#### 浏览器运行时
+
+![image](https://note.youdao.com/yws/api/personal/file/WEB60e1ec058d34cc2a9828a6846695eb63?method=download&shareKey=66db5604d56f2602a7a431b5ed92b9e3)
+
+前端开发最基本的就是运行在浏览器中的html、js，简单的提供可视化的UI和交互给用户，但是所有的一切，都是局限于浏览器内的，换句话说你最多只能做浏览器允许你做的事情，前端页面无法绕过浏览器直接在你的电脑里搞事情。而浏览器是一个沙盒环境。
+
+#### Node 运行时
+
+
+
+## 开始开发需要什么
+
+### 文档
 官方文档：https://electronjs.org/docs
 中文资料集合：https://github.com/amhoho/electron-cn-docs
+electron英文资料大集合： https://github.com/sindresorhus/awesome-electron
 
 <!-- more -->
 
@@ -29,11 +51,14 @@ tags:
 - electron的react模板： https://github.com/electron-react-boilerplate/electron-react-boilerplate
 - electron的react + ts样例：https://github.com/electron-react-boilerplate/examples/tree/master/examples/typescript
 
-## 知识点
 
 ### 主进程和渲染进程
 
 这是跟web开发最大的不同点，electron的入口文件的进程是主进程, 在主进程中，你可以像在node环境一样开发，操作本地文件，主进程可以创建渲染进程，渲染进程就是展示我们看到的UI页面的的，可以理解为我们浏览器页面，因此我们使用React写的组件啊实际上实在渲染进程中运行的。
+
+## 知识点
+
+
 
 ### 拦截electron渲染进程中网页的伪协议请求
 
@@ -233,4 +258,13 @@ mainWindow = new BrowserWindow({
   frame: false,
 })
 ```
+
+## 打包和发布
+
+对我们前端来说，开发其实是相对来说最容易的一步，因为基本上还是在写js/nodejs。electron开发，最终是要发布一个安装包给用户，因此关键并且陌生的部分是如何正确的构建和发布。
+
+对于构建，有三种方式可以选择
+- electron-force
+- electron-builder
+- electron-package
 
