@@ -81,18 +81,20 @@
 
 
 
-<meta name="description" content="Electron 入门笔记Electron简介这个框架可以让你使用js开发Mac，Windows，Linux客户端。基本上可以理解为一个你自己的浏览器，访问本地的页面；而超出浏览器的部分是，你可以使用node拥有的能力。 官方文档：https://electronjs.org/docs中文资料集合：https://github.com/amhoho/electron-cn-docs">
+<meta name="description" content="Electron 入门笔记Electron简介这个框架可以让你使用javascript开发Mac，Windows，Linux客户端。基本上可以理解为一个你自己的浏览器，访问本地的页面；而超出浏览器的部分是，你可以使用node拥有的能力。 Runtime 运行时Electron凭什么可以让js拥有开发客户端的能力？这就要从js的运行时说起，什么是运行时呢？  Js runtime就是用来执行Java">
 <meta name="keywords" content="electron,react,starter">
 <meta property="og:type" content="article">
 <meta property="og:title" content="electron-starter-guide">
 <meta property="og:url" content="https://topppy.github.io/2019/06/06/electron-starter-guide/index.html">
 <meta property="og:site_name" content="Topppy&#39;s Blog">
-<meta property="og:description" content="Electron 入门笔记Electron简介这个框架可以让你使用js开发Mac，Windows，Linux客户端。基本上可以理解为一个你自己的浏览器，访问本地的页面；而超出浏览器的部分是，你可以使用node拥有的能力。 官方文档：https://electronjs.org/docs中文资料集合：https://github.com/amhoho/electron-cn-docs">
+<meta property="og:description" content="Electron 入门笔记Electron简介这个框架可以让你使用javascript开发Mac，Windows，Linux客户端。基本上可以理解为一个你自己的浏览器，访问本地的页面；而超出浏览器的部分是，你可以使用node拥有的能力。 Runtime 运行时Electron凭什么可以让js拥有开发客户端的能力？这就要从js的运行时说起，什么是运行时呢？  Js runtime就是用来执行Java">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-06-14T03:21:05.381Z">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB60e1ec058d34cc2a9828a6846695eb63?method=download&shareKey=66db5604d56f2602a7a431b5ed92b9e3">
+<meta property="og:updated_time" content="2019-10-10T05:46:51.300Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="electron-starter-guide">
-<meta name="twitter:description" content="Electron 入门笔记Electron简介这个框架可以让你使用js开发Mac，Windows，Linux客户端。基本上可以理解为一个你自己的浏览器，访问本地的页面；而超出浏览器的部分是，你可以使用node拥有的能力。 官方文档：https://electronjs.org/docs中文资料集合：https://github.com/amhoho/electron-cn-docs">
+<meta name="twitter:description" content="Electron 入门笔记Electron简介这个框架可以让你使用javascript开发Mac，Windows，Linux客户端。基本上可以理解为一个你自己的浏览器，访问本地的页面；而超出浏览器的部分是，你可以使用node拥有的能力。 Runtime 运行时Electron凭什么可以让js拥有开发客户端的能力？这就要从js的运行时说起，什么是运行时呢？  Js runtime就是用来执行Java">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/WEB60e1ec058d34cc2a9828a6846695eb63?method=download&shareKey=66db5604d56f2602a7a431b5ed92b9e3">
 
 
 
@@ -341,8 +343,15 @@
       
 
       
-        <h1 id="Electron-入门笔记"><a href="#Electron-入门笔记" class="headerlink" title="Electron 入门笔记"></a>Electron 入门笔记</h1><h2 id="Electron简介"><a href="#Electron简介" class="headerlink" title="Electron简介"></a>Electron简介</h2><p>这个框架可以让你使用js开发Mac，Windows，Linux客户端。基本上可以理解为一个你自己的浏览器，访问本地的页面；而超出浏览器的部分是，你可以使用node拥有的能力。</p>
-<p>官方文档：<a href="https://electronjs.org/docs" target="_blank" rel="noopener">https://electronjs.org/docs</a><br>中文资料集合：<a href="https://github.com/amhoho/electron-cn-docs" target="_blank" rel="noopener">https://github.com/amhoho/electron-cn-docs</a></p>
+        <h1 id="Electron-入门笔记"><a href="#Electron-入门笔记" class="headerlink" title="Electron 入门笔记"></a>Electron 入门笔记</h1><h2 id="Electron简介"><a href="#Electron简介" class="headerlink" title="Electron简介"></a>Electron简介</h2><p>这个框架可以让你使用javascript开发Mac，Windows，Linux客户端。基本上可以理解为一个你自己的浏览器，访问本地的页面；而超出浏览器的部分是，你可以使用node拥有的能力。</p>
+<h3 id="Runtime-运行时"><a href="#Runtime-运行时" class="headerlink" title="Runtime 运行时"></a>Runtime 运行时</h3><p>Electron凭什么可以让js拥有开发客户端的能力？这就要从js的运行时说起，什么是运行时呢？</p>
+<blockquote>
+<p>Js runtime就是用来执行JavaScript代码用的，为其提供了一个运行时环境，提供解释/编译、自动内存管理（GC）、对象模型、核心库API等功能。</p>
+</blockquote>
+<p>我们熟悉的两个运行时分别是浏览器和Node</p>
+<h4 id="浏览器运行时"><a href="#浏览器运行时" class="headerlink" title="浏览器运行时"></a>浏览器运行时</h4><p><img src="https://note.youdao.com/yws/api/personal/file/WEB60e1ec058d34cc2a9828a6846695eb63?method=download&amp;shareKey=66db5604d56f2602a7a431b5ed92b9e3" alt="image"></p>
+<p>前端开发最基本的就是运行在浏览器中的html、js，简单的提供可视化的UI和交互给用户，但是所有的一切，都是局限于浏览器内的，换句话说你最多只能做浏览器允许你做的事情，前端页面无法绕过浏览器直接在你的电脑里搞事情。而浏览器是一个沙盒环境。</p>
+<h4 id="Node-运行时"><a href="#Node-运行时" class="headerlink" title="Node 运行时"></a>Node 运行时</h4><h2 id="开始开发需要什么"><a href="#开始开发需要什么" class="headerlink" title="开始开发需要什么"></a>开始开发需要什么</h2><h3 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h3><p>官方文档：<a href="https://electronjs.org/docs" target="_blank" rel="noopener">https://electronjs.org/docs</a><br>中文资料集合：<a href="https://github.com/amhoho/electron-cn-docs" target="_blank" rel="noopener">https://github.com/amhoho/electron-cn-docs</a><br>electron英文资料大集合： <a href="https://github.com/sindresorhus/awesome-electron" target="_blank" rel="noopener">https://github.com/sindresorhus/awesome-electron</a></p>
 <a id="more"></a>
 <h3 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h3><ul>
 <li>快速开始demo：<a href="https://github.com/electron/electron-quick-start" target="_blank" rel="noopener">https://github.com/electron/electron-quick-start</a></li>
@@ -354,8 +363,8 @@
 <li>electron的react模板： <a href="https://github.com/electron-react-boilerplate/electron-react-boilerplate" target="_blank" rel="noopener">https://github.com/electron-react-boilerplate/electron-react-boilerplate</a></li>
 <li>electron的react + ts样例：<a href="https://github.com/electron-react-boilerplate/examples/tree/master/examples/typescript" target="_blank" rel="noopener">https://github.com/electron-react-boilerplate/examples/tree/master/examples/typescript</a></li>
 </ul>
-<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="主进程和渲染进程"><a href="#主进程和渲染进程" class="headerlink" title="主进程和渲染进程"></a>主进程和渲染进程</h3><p>这是跟web开发最大的不同点，electron的入口文件的进程是主进程, 在主进程中，你可以像在node环境一样开发，操作本地文件，主进程可以创建渲染进程，渲染进程就是展示我们看到的UI页面的的，可以理解为我们浏览器页面，因此我们使用React写的组件啊实际上实在渲染进程中运行的。</p>
-<h3 id="拦截electron渲染进程中网页的伪协议请求"><a href="#拦截electron渲染进程中网页的伪协议请求" class="headerlink" title="拦截electron渲染进程中网页的伪协议请求"></a>拦截electron渲染进程中网页的伪协议请求</h3><p>我们知道在传统的ios和android的客户端hybrid开发中，是可以跟客户端约定伪协议进行单方向通信的。那么在electron中，如何做到这一点呢，可以让外部网页与electron主进程通信。那就要使用electron的protocol模块。在主进程中，注册协议</p>
+<h3 id="主进程和渲染进程"><a href="#主进程和渲染进程" class="headerlink" title="主进程和渲染进程"></a>主进程和渲染进程</h3><p>这是跟web开发最大的不同点，electron的入口文件的进程是主进程, 在主进程中，你可以像在node环境一样开发，操作本地文件，主进程可以创建渲染进程，渲染进程就是展示我们看到的UI页面的的，可以理解为我们浏览器页面，因此我们使用React写的组件啊实际上实在渲染进程中运行的。</p>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="拦截electron渲染进程中网页的伪协议请求"><a href="#拦截electron渲染进程中网页的伪协议请求" class="headerlink" title="拦截electron渲染进程中网页的伪协议请求"></a>拦截electron渲染进程中网页的伪协议请求</h3><p>我们知道在传统的ios和android的客户端hybrid开发中，是可以跟客户端约定伪协议进行单方向通信的。那么在electron中，如何做到这一点呢，可以让外部网页与electron主进程通信。那就要使用electron的protocol模块。在主进程中，注册协议</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 拦截协议</span></span><br><span class="line">protocol.registerHttpProtocol(<span class="string">'gayhub'</span>, (request, callback) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'protocol url:'</span>, url)</span><br><span class="line">  <span class="comment">// 打开electron的默认render之类的</span></span><br><span class="line">  mainWindow.loadURL(<span class="string">`file://<span class="subst">$&#123;__dirname&#125;</span>/app.html`</span>);</span><br><span class="line">&#125;, (error) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (error) <span class="built_in">console</span>.error(<span class="string">'Failed to register protocol'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>这样我们在render进程渲染的网页如果有一个a标签</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"gayhub://home"</span>&gt;</span>去往electron客户端的首页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -402,6 +411,13 @@
 </blockquote>
 <p>设置为false可以隐藏标题栏和窗口控制按钮。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mainWindow = <span class="keyword">new</span> BrowserWindow(&#123;</span><br><span class="line">  width: <span class="number">1024</span>,</span><br><span class="line">  height: <span class="number">728</span>,</span><br><span class="line">  resizable: <span class="literal">false</span>,</span><br><span class="line">  fullscreen: <span class="literal">true</span>,</span><br><span class="line">  frame: <span class="literal">false</span>,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="打包和发布"><a href="#打包和发布" class="headerlink" title="打包和发布"></a>打包和发布</h2><p>对我们前端来说，开发其实是相对来说最容易的一步，因为基本上还是在写js/nodejs。electron开发，最终是要发布一个安装包给用户，因此关键并且陌生的部分是如何正确的构建和发布。</p>
+<p>对于构建，有三种方式可以选择</p>
+<ul>
+<li>electron-force</li>
+<li>electron-builder</li>
+<li>electron-package</li>
+</ul>
 
       
     </div>
@@ -550,7 +566,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/hexo-blog/tags/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -590,7 +606,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Electron-入门笔记"><span class="nav-number">1.</span> <span class="nav-text">Electron 入门笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Electron简介"><span class="nav-number">1.1.</span> <span class="nav-text">Electron简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#demo"><span class="nav-number">1.1.1.</span> <span class="nav-text">demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#知识点"><span class="nav-number">1.2.</span> <span class="nav-text">知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主进程和渲染进程"><span class="nav-number">1.2.1.</span> <span class="nav-text">主进程和渲染进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拦截electron渲染进程中网页的伪协议请求"><span class="nav-number">1.2.2.</span> <span class="nav-text">拦截electron渲染进程中网页的伪协议请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在electron外的浏览器使用deeplink唤起electron客户端"><span class="nav-number">1.2.3.</span> <span class="nav-text">在electron外的浏览器使用deeplink唤起electron客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在electron中使用devTools"><span class="nav-number">1.2.4.</span> <span class="nav-text">在electron中使用devTools</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启webview的devTools"><span class="nav-number">1.2.5.</span> <span class="nav-text">开启webview的devTools</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webview如何安全执行nodeApi"><span class="nav-number">1.2.6.</span> <span class="nav-text">webview如何安全执行nodeApi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打开客户端默认全屏显示和控制"><span class="nav-number">1.2.7.</span> <span class="nav-text">打开客户端默认全屏显示和控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#全屏显示"><span class="nav-number">1.2.7.1.</span> <span class="nav-text">全屏显示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#禁止退出全屏"><span class="nav-number">1.2.7.2.</span> <span class="nav-text">禁止退出全屏</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#先全屏，再禁止最大化"><span class="nav-number">1.2.7.2.1.</span> <span class="nav-text">先全屏，再禁止最大化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#隐藏绿色按钮"><span class="nav-number">1.2.7.2.2.</span> <span class="nav-text">隐藏绿色按钮</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Electron-入门笔记"><span class="nav-number">1.</span> <span class="nav-text">Electron 入门笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Electron简介"><span class="nav-number">1.1.</span> <span class="nav-text">Electron简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Runtime-运行时"><span class="nav-number">1.1.1.</span> <span class="nav-text">Runtime 运行时</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器运行时"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">浏览器运行时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Node-运行时"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">Node 运行时</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始开发需要什么"><span class="nav-number">1.2.</span> <span class="nav-text">开始开发需要什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文档"><span class="nav-number">1.2.1.</span> <span class="nav-text">文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#demo"><span class="nav-number">1.2.2.</span> <span class="nav-text">demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主进程和渲染进程"><span class="nav-number">1.2.3.</span> <span class="nav-text">主进程和渲染进程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#知识点"><span class="nav-number">1.3.</span> <span class="nav-text">知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拦截electron渲染进程中网页的伪协议请求"><span class="nav-number">1.3.1.</span> <span class="nav-text">拦截electron渲染进程中网页的伪协议请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在electron外的浏览器使用deeplink唤起electron客户端"><span class="nav-number">1.3.2.</span> <span class="nav-text">在electron外的浏览器使用deeplink唤起electron客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在electron中使用devTools"><span class="nav-number">1.3.3.</span> <span class="nav-text">在electron中使用devTools</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启webview的devTools"><span class="nav-number">1.3.4.</span> <span class="nav-text">开启webview的devTools</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webview如何安全执行nodeApi"><span class="nav-number">1.3.5.</span> <span class="nav-text">webview如何安全执行nodeApi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打开客户端默认全屏显示和控制"><span class="nav-number">1.3.6.</span> <span class="nav-text">打开客户端默认全屏显示和控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#全屏显示"><span class="nav-number">1.3.6.1.</span> <span class="nav-text">全屏显示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#禁止退出全屏"><span class="nav-number">1.3.6.2.</span> <span class="nav-text">禁止退出全屏</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#先全屏，再禁止最大化"><span class="nav-number">1.3.6.2.1.</span> <span class="nav-text">先全屏，再禁止最大化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#隐藏绿色按钮"><span class="nav-number">1.3.6.2.2.</span> <span class="nav-text">隐藏绿色按钮</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打包和发布"><span class="nav-number">1.4.</span> <span class="nav-text">打包和发布</span></a></li></ol></li></ol></div>
             
 
           </div>

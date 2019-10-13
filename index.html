@@ -479,7 +479,16 @@
       
         
           
-            
+            <h2 id="泛型是什么"><a href="#泛型是什么" class="headerlink" title="泛型是什么"></a>泛型是什么</h2><h3 id="泛型解决什么问题"><a href="#泛型解决什么问题" class="headerlink" title="泛型解决什么问题"></a>泛型解决什么问题</h3><p>在ts中我们需要声明类型，之后在使用这个变量的时候要求一直是这个类型，如果我们不确定类型的时候，我们可以使用any，但是any并不能保证之后使用该变量的时候它依旧是同一个类型。这类适用于多种类型的声明的需求就是泛型要解决的。泛型使用一个变量来存储声明的类型，之后也都使用该变量指代的类型。</p>
+<h3 id="类型变量"><a href="#类型变量" class="headerlink" title="类型变量"></a>类型变量</h3><p>类型变量有点像正则的\1, 捕获变量，代表上一个捕获的结果。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">identity</span>&lt;<span class="title">T</span>&gt;(<span class="params">arg: T</span>): <span class="title">T</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>T就是一个类型变量，当我们给他一个具体的类型之后，T都代表该类型</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> output = identity&lt;string&gt;(<span class="string">"myString"</span>);  <span class="comment">// type of output will be 'string'</span></span><br></pre></td></tr></table></figure>
+<p>这里 T 为类型 string，或者利用<strong>类型推论</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> output = identity(<span class="string">"myString"</span>);  <span class="comment">// type of output will be 'string'</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用数组类型变量"><a href="#使用数组类型变量" class="headerlink" title="使用数组类型变量"></a>使用数组类型变量</h3><p>假设我们知道 参数的类型是数组，但是数组的元素是什么都可以。在不声明是数组的情况下，直接使用length属性是会报错的。<br>所以我们必须声明是数组，但是我们不知道元是什么，这里就可以用类型变量来代替。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function loggingIdentity&lt;T&gt;(arg: T[]): T[] &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(arg.length);  <span class="comment">// Array has a .length, so no more error</span></span><br><span class="line">    <span class="keyword">return</span> arg;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loggingIdentity</span>&lt;<span class="title">T</span>&gt;(<span class="params">arg: Array&lt;T&gt;</span>): <span class="title">Array</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(arg.length);  <span class="comment">// Array has a .length, so no more error</span></span><br><span class="line">    <span class="keyword">return</span> arg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="泛型函数-amp-泛型接口"><a href="#泛型函数-amp-泛型接口" class="headerlink" title="泛型函数 &amp; 泛型接口"></a>泛型函数 &amp; 泛型接口</h3>
           
         
       
@@ -741,8 +750,15 @@
 
       
         
-          <h1 id="Electron-入门笔记"><a href="#Electron-入门笔记" class="headerlink" title="Electron 入门笔记"></a>Electron 入门笔记</h1><h2 id="Electron简介"><a href="#Electron简介" class="headerlink" title="Electron简介"></a>Electron简介</h2><p>这个框架可以让你使用js开发Mac，Windows，Linux客户端。基本上可以理解为一个你自己的浏览器，访问本地的页面；而超出浏览器的部分是，你可以使用node拥有的能力。</p>
-<p>官方文档：<a href="https://electronjs.org/docs" target="_blank" rel="noopener">https://electronjs.org/docs</a><br>中文资料集合：<a href="https://github.com/amhoho/electron-cn-docs" target="_blank" rel="noopener">https://github.com/amhoho/electron-cn-docs</a></p>
+          <h1 id="Electron-入门笔记"><a href="#Electron-入门笔记" class="headerlink" title="Electron 入门笔记"></a>Electron 入门笔记</h1><h2 id="Electron简介"><a href="#Electron简介" class="headerlink" title="Electron简介"></a>Electron简介</h2><p>这个框架可以让你使用javascript开发Mac，Windows，Linux客户端。基本上可以理解为一个你自己的浏览器，访问本地的页面；而超出浏览器的部分是，你可以使用node拥有的能力。</p>
+<h3 id="Runtime-运行时"><a href="#Runtime-运行时" class="headerlink" title="Runtime 运行时"></a>Runtime 运行时</h3><p>Electron凭什么可以让js拥有开发客户端的能力？这就要从js的运行时说起，什么是运行时呢？</p>
+<blockquote>
+<p>Js runtime就是用来执行JavaScript代码用的，为其提供了一个运行时环境，提供解释/编译、自动内存管理（GC）、对象模型、核心库API等功能。</p>
+</blockquote>
+<p>我们熟悉的两个运行时分别是浏览器和Node</p>
+<h4 id="浏览器运行时"><a href="#浏览器运行时" class="headerlink" title="浏览器运行时"></a>浏览器运行时</h4><p><img src="https://note.youdao.com/yws/api/personal/file/WEB60e1ec058d34cc2a9828a6846695eb63?method=download&amp;shareKey=66db5604d56f2602a7a431b5ed92b9e3" alt="image"></p>
+<p>前端开发最基本的就是运行在浏览器中的html、js，简单的提供可视化的UI和交互给用户，但是所有的一切，都是局限于浏览器内的，换句话说你最多只能做浏览器允许你做的事情，前端页面无法绕过浏览器直接在你的电脑里搞事情。而浏览器是一个沙盒环境。</p>
+<h4 id="Node-运行时"><a href="#Node-运行时" class="headerlink" title="Node 运行时"></a>Node 运行时</h4><h2 id="开始开发需要什么"><a href="#开始开发需要什么" class="headerlink" title="开始开发需要什么"></a>开始开发需要什么</h2><h3 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h3><p>官方文档：<a href="https://electronjs.org/docs" target="_blank" rel="noopener">https://electronjs.org/docs</a><br>中文资料集合：<a href="https://github.com/amhoho/electron-cn-docs" target="_blank" rel="noopener">https://github.com/amhoho/electron-cn-docs</a><br>electron英文资料大集合： <a href="https://github.com/sindresorhus/awesome-electron" target="_blank" rel="noopener">https://github.com/sindresorhus/awesome-electron</a></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/hexo-blog/2019/06/06/electron-starter-guide/#more" rel="contents">
@@ -1661,7 +1677,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/hexo-blog/tags/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

@@ -45,12 +45,26 @@
     <link href="https://topppy.github.io/2019/06/12/learn-typescript-3/"/>
     <id>https://topppy.github.io/2019/06/12/learn-typescript-3/</id>
     <published>2019-06-12T07:23:32.000Z</published>
-    <updated>2019-06-12T07:23:32.931Z</updated>
+    <updated>2019-10-10T10:23:36.033Z</updated>
     
     <summary type="html">
     
+      
+      
+        
+        
+          &lt;h2 id=&quot;泛型是什么&quot;&gt;&lt;a href=&quot;#泛型是什么&quot; class=&quot;headerlink&quot; title=&quot;泛型是什么&quot;&gt;&lt;/a&gt;泛型是什么&lt;/h2&gt;&lt;h3 id=&quot;泛型解决什么问题&quot;&gt;&lt;a href=&quot;#泛型解决什么问题&quot; class=&quot;headerlink&quot;
+        
+      
+    
     </summary>
     
+    
+      <category term="typescript" scheme="https://topppy.github.io/tags/typescript/"/>
+    
+      <category term="泛型" scheme="https://topppy.github.io/tags/%E6%B3%9B%E5%9E%8B/"/>
+    
+      <category term="generics" scheme="https://topppy.github.io/tags/generics/"/>
     
   </entry>
   
@@ -85,12 +99,19 @@
     <link href="https://topppy.github.io/2019/06/06/electron-starter-guide/"/>
     <id>https://topppy.github.io/2019/06/06/electron-starter-guide/</id>
     <published>2019-06-06T08:54:50.000Z</published>
-    <updated>2019-06-14T03:21:05.381Z</updated>
+    <updated>2019-10-10T05:46:51.300Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Electron-入门笔记&quot;&gt;&lt;a href=&quot;#Electron-入门笔记&quot; class=&quot;headerlink&quot; title=&quot;Electron 入门笔记&quot;&gt;&lt;/a&gt;Electron 入门笔记&lt;/h1&gt;&lt;h2 id=&quot;Electron简介&quot;&gt;&lt;a href=&quot;#Electron简介&quot; class=&quot;headerlink&quot; title=&quot;Electron简介&quot;&gt;&lt;/a&gt;Electron简介&lt;/h2&gt;&lt;p&gt;这个框架可以让你使用js开发Mac，Windows，Linux客户端。基本上可以理解为一个你自己的浏览器，访问本地的页面；而超出浏览器的部分是，你可以使用node拥有的能力。&lt;/p&gt;
-&lt;p&gt;官方文档：&lt;a href=&quot;https://electronjs.org/docs&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://electronjs.org/docs&lt;/a&gt;&lt;br&gt;中文资料集合：&lt;a href=&quot;https://github.com/amhoho/electron-cn-docs&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/amhoho/electron-cn-docs&lt;/a&gt;&lt;/p&gt;
+      &lt;h1 id=&quot;Electron-入门笔记&quot;&gt;&lt;a href=&quot;#Electron-入门笔记&quot; class=&quot;headerlink&quot; title=&quot;Electron 入门笔记&quot;&gt;&lt;/a&gt;Electron 入门笔记&lt;/h1&gt;&lt;h2 id=&quot;Electron简介&quot;&gt;&lt;a href=&quot;#Electron简介&quot; class=&quot;headerlink&quot; title=&quot;Electron简介&quot;&gt;&lt;/a&gt;Electron简介&lt;/h2&gt;&lt;p&gt;这个框架可以让你使用javascript开发Mac，Windows，Linux客户端。基本上可以理解为一个你自己的浏览器，访问本地的页面；而超出浏览器的部分是，你可以使用node拥有的能力。&lt;/p&gt;
+&lt;h3 id=&quot;Runtime-运行时&quot;&gt;&lt;a href=&quot;#Runtime-运行时&quot; class=&quot;headerlink&quot; title=&quot;Runtime 运行时&quot;&gt;&lt;/a&gt;Runtime 运行时&lt;/h3&gt;&lt;p&gt;Electron凭什么可以让js拥有开发客户端的能力？这就要从js的运行时说起，什么是运行时呢？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Js runtime就是用来执行JavaScript代码用的，为其提供了一个运行时环境，提供解释/编译、自动内存管理（GC）、对象模型、核心库API等功能。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我们熟悉的两个运行时分别是浏览器和Node&lt;/p&gt;
+&lt;h4 id=&quot;浏览器运行时&quot;&gt;&lt;a href=&quot;#浏览器运行时&quot; class=&quot;headerlink&quot; title=&quot;浏览器运行时&quot;&gt;&lt;/a&gt;浏览器运行时&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;https://note.youdao.com/yws/api/personal/file/WEB60e1ec058d34cc2a9828a6846695eb63?method=download&amp;amp;shareKey=66db5604d56f2602a7a431b5ed92b9e3&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;p&gt;前端开发最基本的就是运行在浏览器中的html、js，简单的提供可视化的UI和交互给用户，但是所有的一切，都是局限于浏览器内的，换句话说你最多只能做浏览器允许你做的事情，前端页面无法绕过浏览器直接在你的电脑里搞事情。而浏览器是一个沙盒环境。&lt;/p&gt;
+&lt;h4 id=&quot;Node-运行时&quot;&gt;&lt;a href=&quot;#Node-运行时&quot; class=&quot;headerlink&quot; title=&quot;Node 运行时&quot;&gt;&lt;/a&gt;Node 运行时&lt;/h4&gt;&lt;h2 id=&quot;开始开发需要什么&quot;&gt;&lt;a href=&quot;#开始开发需要什么&quot; class=&quot;headerlink&quot; title=&quot;开始开发需要什么&quot;&gt;&lt;/a&gt;开始开发需要什么&lt;/h2&gt;&lt;h3 id=&quot;文档&quot;&gt;&lt;a href=&quot;#文档&quot; class=&quot;headerlink&quot; title=&quot;文档&quot;&gt;&lt;/a&gt;文档&lt;/h3&gt;&lt;p&gt;官方文档：&lt;a href=&quot;https://electronjs.org/docs&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://electronjs.org/docs&lt;/a&gt;&lt;br&gt;中文资料集合：&lt;a href=&quot;https://github.com/amhoho/electron-cn-docs&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/amhoho/electron-cn-docs&lt;/a&gt;&lt;br&gt;electron英文资料大集合： &lt;a href=&quot;https://github.com/sindresorhus/awesome-electron&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/sindresorhus/awesome-electron&lt;/a&gt;&lt;/p&gt;
     
     </summary>
     
