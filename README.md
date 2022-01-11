@@ -5,6 +5,10 @@ update my blog by hexo
 使用hexo 迭代我的旧blog.
 hexo源码在hexo-src 分支，hexo deploy生成文件在gh-pages分支。
 
+## issue as blog
+
+hexo的方式还是不够敏捷，直接在issue写吧～
+
 ## TODO list
 
 - 迁移旧博文
