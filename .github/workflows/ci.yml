@@ -1,0 +1,17 @@
+name: Issue to Hexo
+on:
+  issues:
+    # Sufficient to trigger this workflow when an issue is milestoned
+    types: [ milestoned ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: gsongsong/issue-to-hexo
+        with:
+          issue_url: ${{ github.event.issue.url }}
+          # Personal access token used to get information of Issue
+          token: ${{ secrets.token }}
+      # At this point, a markdown file is generated and untracked
+      # Take further action, e.g. generate (`hexo generate`), commit and push
