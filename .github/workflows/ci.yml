@@ -18,4 +18,6 @@ jobs:
       # At this point, a markdown file is generated and untracked
       # Take further action, e.g. generate (`hexo generate`), commit and push
       - name: commitchange
-        run: git commit -am "issueblocg " & git push
+        run: |
+          git commit -am "issueblocg "
+          git push
