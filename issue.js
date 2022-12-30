@@ -11,6 +11,8 @@ try {
     const endpoint = issueUrl.substring(index);
     // const token = core.getInput('token');
     const token = process.env.token
+    console.log(`issueUrl: ${issueUrl}`);
+    console.log(`token: ${token}`);
 
     const gh = new Octokit({ auth: token });
 
