@@ -7,7 +7,7 @@
   },
   "scripts": {
     "deploy": "hexo d",
-    "issue-post": "node ./.github/.workflows/scripts/issue.js"
+    "issue-post": "node ./issue.js"
   },
   "dependencies": {
     "hexo": "^6.3.0",
