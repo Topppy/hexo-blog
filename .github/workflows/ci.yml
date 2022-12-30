@@ -21,6 +21,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
+          issue_url: ${{ github.event.issue.url }}
+          # Personal access token used to get information of Issue
+          token: ${{ secrets.token }}
       - name: Cache NPM dependencies
         uses: actions/cache@v2
         with:
@@ -31,10 +34,6 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: Issue to post
-        with:
-          issue_url: ${{ github.event.issue.url }}
-          # Personal access token used to get information of Issue
-          token: ${{ secrets.token }}
         run: npm run issue-post
       - name: commitchange
         run: |
