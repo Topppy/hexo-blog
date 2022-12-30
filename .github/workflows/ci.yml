@@ -9,17 +9,32 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: post issues
-        uses: internalstability/action-issue-to-hexo@v1.0.0
-        with:
-          issue_url: ${{ github.event.issue.url }}
-          # Personal access token used to get information of Issue
-          token: ${{ secrets.token }}
+      # - name: post issues
+        # uses: internalstability/action-issue-to-hexo@v1.0.0
+        # with:
+        #   issue_url: ${{ github.event.issue.url }}
+        #   # Personal access token used to get information of Issue
+        #   token: ${{ secrets.token }}
       # At this point, a markdown file is generated and untracked
       # Take further action, e.g. generate (`hexo generate`), commit and push
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Cache NPM dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-npm-cache
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache
+      - name: Install Dependencies
+        run: npm install
+      - name: Issue to post
+        run: npm run issue-post
       - name: commitchange
         run: |
           git config  user.name 'Topppy'
           git config  user.email 'Topppy@users.noreply.github.com'
-          git commit -am "issueblocg "
+          git commit -am "issueblog: ${{ github.event.issue.url }} "
           git push

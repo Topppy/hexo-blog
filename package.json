@@ -3,7 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "5.4.0"
+    "version": "6.3.0"
+  },
+  "scripts": {
+    "deploy": "hexo d",
+    "issue-post": "node ./.github/.workflows/scripts/issue.js"
   },
   "dependencies": {
     "hexo": "^6.3.0",
