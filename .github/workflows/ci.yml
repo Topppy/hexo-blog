@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: gsongsong/issue-to-hexo
+      - uses: gsongsong/issue-to-hexo@master
         with:
           issue_url: ${{ github.event.issue.url }}
           # Personal access token used to get information of Issue
