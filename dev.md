@@ -1,5 +1,13 @@
 ## 开发
 
+
+## 问题
+
+在github action执行hexo d报错
+
+https://github.com/Topppy/hexo-blog/actions/runs/3806364633/jobs/6475093797
+
+
 ## 附录
 
 升级hexo：https://novnan.github.io/Hexo/update_hexo/

@@ -2,7 +2,7 @@ name: Deploy Hexo
 on:
   push:
     branches:
-      - hexo-src # default branch
+      - hexo-src-test # default branch
 
 jobs:
   pages:
