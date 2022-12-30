@@ -19,5 +19,7 @@ jobs:
       # Take further action, e.g. generate (`hexo generate`), commit and push
       - name: commitchange
         run: |
+          git config  user.name 'Topppy'
+          git config  user.email 'Topppy@users.noreply.github.com'
           git commit -am "issueblocg "
           git push
