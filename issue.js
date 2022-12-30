@@ -5,14 +5,14 @@ const Hexo =require('hexo');
 const MILESTONE_PUBLISH = 'publish';
 
 try {
+    console.log(`issueUrl: ${process.env.issueUrl}`);
+    console.log(`token: ${process.env.issueToken}`);
     // const issueUrl = core.getInput('issue_url');
     const issueUrl = process.env.issueUrl
     const index = issueUrl.indexOf('/repos');
     const endpoint = issueUrl.substring(index);
     // const token = core.getInput('token');
-    const token = process.env.token
-    console.log(`issueUrl: ${issueUrl}`);
-    console.log(`token: ${token}`);
+    const token = process.env.issueToken
 
     const gh = new Octokit({ auth: token });
 

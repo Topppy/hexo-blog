@@ -34,7 +34,7 @@ jobs:
         env:
           issue_url: ${{ github.event.issue.url }}
           # Personal access token used to get information of Issue
-          token: ${{ secrets.token }}
+          issueToken: ${{ secrets.token }}
         run: npm run issue-post
       - name: commitchange
         run: |
