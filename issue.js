@@ -23,7 +23,6 @@ try {
             console.log('title:', title);
             console.log('date:', date);
             console.log('labels:', labels);
-            console.log('content:', content);
             if (milestone.title !== MILESTONE_PUBLISH) {
                 console.log(`Issue does not have milestone ${MILESTONE_PUBLISH}`);
             } else {
@@ -35,16 +34,6 @@ try {
                     content,
                 }).then(res => {
                     console.log('Done hexo post')
-                    console.log(res)
-                    console.log(process.cwd())
-                    exec(`cat ${res.path}`, (error, stdout, stderr) => {
-                        if (error) {
-                            console.error(`exec error: ${error}`);
-                            return;
-                        }
-                        console.log(`stdout: ${stdout}`);
-                        console.error(`stderr: ${stderr}`);
-                    })
                 });
             }
         }).catch((reason) => {
