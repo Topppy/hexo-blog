@@ -44,15 +44,9 @@ jobs:
           # Personal access token used to get information of Issue
           issueToken: ${{ secrets.GITHUB_TOKEN }}
         run: npm run issue-post
-      - run: git diff HEAD -- . ':(exclude)package-lock.json'
-      - name: View Post path
-        env: 
-          POST_PATH: ${{ env.POST_PATH }}
-        run: echo "POST_PATH, ${{ env.POST_PATH }}"
-      - name: Cat Post
-        env: 
-          POST_PATH: ${{ env.POST_PATH }}
-        run: cat ${{ env.POST_PATH }}
+      - run: ls source/_posts
+      - run: git status
+
       # - name: commitchange
       #   run: |
       #     git config  user.name 'Topppy'

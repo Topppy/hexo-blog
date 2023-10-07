@@ -36,25 +36,15 @@ try {
                 }).then(res => {
                     console.log('Done hexo post')
                     console.log(res)
-                    process.env.POST_PATH = res.path
-                    console.log(process.env.POST_PATH)
                     console.log(process.cwd())
                     exec(`cat ${res.path}`, (error, stdout, stderr) => {
                         if (error) {
-                          console.error(`exec error: ${error}`);
-                          return;
+                            console.error(`exec error: ${error}`);
+                            return;
                         }
                         console.log(`stdout: ${stdout}`);
                         console.error(`stderr: ${stderr}`);
-                      })
-                    exec(`git diff HEAD -- . ':(exclude)package-lock.json'`, (error, stdout, stderr) => {
-                        if (error) {
-                          console.error(`exec error: ${error}`);
-                          return;
-                        }
-                        console.log(`stdout: ${stdout}`);
-                        console.error(`stderr: ${stderr}`);
-                      })
+                    })
                 });
             }
         }).catch((reason) => {
