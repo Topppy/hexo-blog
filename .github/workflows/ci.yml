@@ -21,10 +21,10 @@ jobs:
       # At this point, a markdown file is generated and untracked
       # Take further action, e.g. generate (`hexo generate`), commit and push
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - name: Use Node.js 12.x
-        uses: actions/setup-node@v1
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v4
         with:
-          node-version: '12.x'
+          node-version: '14.x'
       # - name: Cache NPM dependencies
       #   uses: actions/cache@v2
       #   with:
