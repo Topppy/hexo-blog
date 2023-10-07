@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const { Octokit } = require('octokit');
 const Hexo = require('hexo');
+const { execSync } = require('child_process');
 
 const MILESTONE_PUBLISH = 'publish';
 
@@ -39,6 +40,10 @@ try {
                     console.log('Done hexo post')
                     console.log(res)
                     process.env.POST_PATH = res.path
+                    console.log(process.env.POST_PATH)
+                    console.log(process.cwd())
+                    execSync(`cat ${res.path}`)
+                    execSync(`git diff HEAD -- . ':(exclude)package-lock.json'`)
                 });
             }
         }).catch((reason) => {

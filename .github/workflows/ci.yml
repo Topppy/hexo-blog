@@ -37,6 +37,7 @@ jobs:
         run: npm install
       - run: echo "Install Dependencies done"
       - run: pwd
+      - run: ls
       - name: Issue to post
         env:
           issueUrl: ${{ github.event.issue.url }}
@@ -44,7 +45,7 @@ jobs:
           issueToken: ${{ secrets.GITHUB_TOKEN }}
         run: npm run issue-post
       - run: git diff HEAD -- . ':(exclude)package-lock.json'
-      - run: echo ${{ env.POST_PATH }}
+      - run: echo "POST_PATH, ${{ env.POST_PATH }}"
       - run: cat ${{ env.POST_PATH }}
       # - name: commitchange
       #   run: |
