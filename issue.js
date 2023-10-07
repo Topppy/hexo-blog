@@ -21,9 +21,8 @@ try {
         console.log(`Converting issue ${endpoint} to Hexo post...`);
         gh.request(`GET ${endpoint}`).then((response) => {
             const { title, updated_at: date, labels, milestone, body: content } = response.data;
-            console.log('tile:', tile);
+            console.log('title:', title);
             console.log('date:', date);
-            console.log('labels:', labels);
             console.log('labels:', labels);
             console.log('milestone:', milestone);
             if (milestone.title !== MILESTONE_PUBLISH) {
@@ -35,6 +34,9 @@ try {
                     date,
                     tags,
                     content,
+                }).then(res => {
+                    console.log('Done hexo post')
+                    console.log(res)
                 });
             }
         }).catch((reason) => {
