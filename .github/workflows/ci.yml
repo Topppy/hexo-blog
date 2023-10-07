@@ -48,8 +48,8 @@ jobs:
       - run: git status
       - name: commitchange
         run: |
-          git config  user.name 'Topppy'
-          git config  user.email 'Topppy@users.noreply.github.com'
+          git config --global user.name "Topppy"
+          git config --global user.email "Topppy@users.noreply.github.com"
           git add .
           git commit -m "issueblog: ${{ github.event.issue.url }} "
           git push
