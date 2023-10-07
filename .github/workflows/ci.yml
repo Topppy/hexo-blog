@@ -22,7 +22,7 @@ jobs:
       # Take further action, e.g. generate (`hexo generate`), commit and push
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - name: Use Node.js 14.x
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3.8.1
         with:
           node-version: '14.x'
       # - name: Cache NPM dependencies
