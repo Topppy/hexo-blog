@@ -37,6 +37,7 @@ try {
                 }).then(res => {
                     console.log('Done hexo post')
                     console.log(res)
+                    process.env.POST_PATH = res.path
                 });
             }
         }).catch((reason) => {
