@@ -45,8 +45,8 @@ jobs:
           issueToken: ${{ secrets.GITHUB_TOKEN }}
         run: npm run issue-post
       - run: git diff HEAD -- . ':(exclude)package-lock.json'
-      - run: echo "POST_PATH, ${{ env.POST_PATH }}"
-      - run: cat ${{ env.POST_PATH }}
+      - run: echo "POST_PATH, ${{ process.env.POST_PATH }}"
+      - run: cat ${{ process.env.POST_PATH }}
       # - name: commitchange
       #   run: |
       #     git config  user.name 'Topppy'

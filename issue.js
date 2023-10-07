@@ -1,7 +1,7 @@
 const core = require('@actions/core');
 const { Octokit } = require('octokit');
 const Hexo = require('hexo');
-const { execSync } = require('child_process');
+const { exec } = require('child_process');
 
 const MILESTONE_PUBLISH = 'publish';
 
@@ -39,7 +39,7 @@ try {
                     process.env.POST_PATH = res.path
                     console.log(process.env.POST_PATH)
                     console.log(process.cwd())
-                    execSync(`cat ${res.path}`, (error, stdout, stderr) => {
+                    exec(`cat ${res.path}`, (error, stdout, stderr) => {
                         if (error) {
                           console.error(`exec error: ${error}`);
                           return;
@@ -47,7 +47,7 @@ try {
                         console.log(`stdout: ${stdout}`);
                         console.error(`stderr: ${stderr}`);
                       })
-                    execSync(`git diff HEAD -- . ':(exclude)package-lock.json'`, (error, stdout, stderr) => {
+                    exec(`git diff HEAD -- . ':(exclude)package-lock.json'`, (error, stdout, stderr) => {
                         if (error) {
                           console.error(`exec error: ${error}`);
                           return;
