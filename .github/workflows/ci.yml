@@ -47,9 +47,16 @@ jobs:
       - run: ls source/_posts
       - run: git status
       - name: commitchange
+        env:
+          ID_RSA: ${{secrets.ID_RSA}}
+          EMAIL: ${{secrets.EMAIL}}
         run: |
+          mkdir -p ~/.ssh/
+          echo "$ID_RSA" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
           git config --global user.name "Topppy"
-          git config --global user.email "Topppy@users.noreply.github.com"
+          git config --global user.email $EMAIL
           git add .
           git commit -m "issueblog: ${{ github.event.issue.url }} "
           git push
