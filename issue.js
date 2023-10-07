@@ -24,7 +24,7 @@ try {
             console.log('title:', title);
             console.log('date:', date);
             console.log('labels:', labels);
-            console.log('milestone:', milestone);
+            console.log('content:', content);
             if (milestone.title !== MILESTONE_PUBLISH) {
                 console.log(`Issue does not have milestone ${MILESTONE_PUBLISH}`);
             } else {
