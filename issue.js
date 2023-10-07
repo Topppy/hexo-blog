@@ -20,19 +20,16 @@ try {
         console.log(`Converting issue ${endpoint} to Hexo post...`);
         gh.request(`GET ${endpoint}`).then((response) => {
             const { title, updated_at: date, labels, milestone, body: content } = response.data;
-            const filePath = `source/_posts/${title.replace(/\s+/g, '-')}.md}`
             console.log('title:', title);
             console.log('date:', date);
             console.log('labels:', labels);
             console.log('content:', content);
-            console.log('filePath:', filePath);
             if (milestone.title !== MILESTONE_PUBLISH) {
                 console.log(`Issue does not have milestone ${MILESTONE_PUBLISH}`);
             } else {
                 const tags = labels.map((label) => label.name);
                 hexo.post.create({
                     title,
-                    path: filePath,
                     date,
                     tags,
                     content,
@@ -42,8 +39,22 @@ try {
                     process.env.POST_PATH = res.path
                     console.log(process.env.POST_PATH)
                     console.log(process.cwd())
-                    execSync(`cat ${res.path}`)
-                    execSync(`git diff HEAD -- . ':(exclude)package-lock.json'`)
+                    execSync(`cat ${res.path}`, (error, stdout, stderr) => {
+                        if (error) {
+                          console.error(`exec error: ${error}`);
+                          return;
+                        }
+                        console.log(`stdout: ${stdout}`);
+                        console.error(`stderr: ${stderr}`);
+                      })
+                    execSync(`git diff HEAD -- . ':(exclude)package-lock.json'`, (error, stdout, stderr) => {
+                        if (error) {
+                          console.error(`exec error: ${error}`);
+                          return;
+                        }
+                        console.log(`stdout: ${stdout}`);
+                        console.error(`stderr: ${stderr}`);
+                      })
                 });
             }
         }).catch((reason) => {
