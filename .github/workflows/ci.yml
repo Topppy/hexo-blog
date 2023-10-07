@@ -36,13 +36,15 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - run: echo "Install Dependencies done"
+      - run: pwd
       - name: Issue to post
         env:
           issueUrl: ${{ github.event.issue.url }}
           # Personal access token used to get information of Issue
           issueToken: ${{ secrets.GITHUB_TOKEN }}
         run: npm run issue-post
-      - run: git diff
+      - run: git diff HEAD -- . ':(exclude)package-lock.json'
+      - run: echo ${{ env.POST_PATH }}
       - run: cat ${{ env.POST_PATH }}
       # - name: commitchange
       #   run: |
