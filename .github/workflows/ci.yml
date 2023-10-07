@@ -53,5 +53,4 @@ jobs:
           git add .
           git commit -m "issueblog: ${{ github.event.issue.url }} "
           git push
-      - name: Publish gh-pages
-        run: npm run deploy
+          npm run deploy
