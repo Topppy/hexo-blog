@@ -38,7 +38,7 @@ jobs:
       - run: echo "Install Dependencies done"
       - name: Issue to post
         env:
-          issue_url: ${{ github.event.issue.url }}
+          issueUrl: ${{ github.event.issue.url }}
           # Personal access token used to get information of Issue
           issueToken: ${{ secrets.GITHUB_TOKEN }}
         run: npm run issue-post
