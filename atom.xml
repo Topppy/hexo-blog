@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Topppy&#39;s Blog</title>
+  
+  <subtitle>FE developer</subtitle>
+  <link href="https://topppy.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://topppy.github.io/"/>
+  <updated>2023-10-27T06:12:45.845Z</updated>
+  <id>https://topppy.github.io/</id>
+  
+  <author>
+    <name>Topppy</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>IOS webview audiocontext 播放无声音</title>
+    <link href="https://topppy.github.io/2023/10/27/IOS-webview-audiocontext-%E6%92%AD%E6%94%BE%E6%97%A0%E5%A3%B0%E9%9F%B3/"/>
+    <id>https://topppy.github.io/2023/10/27/IOS-webview-audiocontext-%E6%92%AD%E6%94%BE%E6%97%A0%E5%A3%B0%E9%9F%B3/</id>
+    <published>2023-10-27T06:12:15.000Z</published>
+    <updated>2023-10-27T06:12:45.845Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;背景：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page,</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>moov前置加速视频首次可见</title>
+    <link href="https://topppy.github.io/2023/10/25/moov%E5%89%8D%E7%BD%AE%E5%8A%A0%E9%80%9F%E8%A7%86%E9%A2%91%E9%A6%96%E6%AC%A1%E5%8F%AF%E8%A7%81/"/>
+    <id>https://topppy.github.io/2023/10/25/moov%E5%89%8D%E7%BD%AE%E5%8A%A0%E9%80%9F%E8%A7%86%E9%A2%91%E9%A6%96%E6%AC%A1%E5%8F%AF%E8%A7%81/</id>
+    <published>2023-10-25T08:51:27.000Z</published>
+    <updated>2023-10-27T06:12:31.452Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>直播弹幕互动游戏</title>
+    <link href="https://topppy.github.io/2023/10/25/%E7%9B%B4%E6%92%AD%E5%BC%B9%E5%B9%95%E4%BA%92%E5%8A%A8%E6%B8%B8%E6%88%8F/"/>
+    <id>https://topppy.github.io/2023/10/25/%E7%9B%B4%E6%92%AD%E5%BC%B9%E5%B9%95%E4%BA%92%E5%8A%A8%E6%B8%B8%E6%88%8F/</id>
+    <published>2023-10-25T08:31:27.000Z</published>
+    <updated>2023-10-27T06:12:31.456Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;弹幕互动游戏</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【drawio探秘】导入drawio输出的png图片可以二次编辑</title>
+    <link href="https://topppy.github.io/2023/10/25/%E3%80%90drawio%E6%8E%A2%E7%A7%98%E3%80%91%E5%AF%BC%E5%85%A5drawio%E8%BE%93%E5%87%BA%E7%9A%84png%E5%9B%BE%E7%89%87%E5%8F%AF%E4%BB%A5%E4%BA%8C%E6%AC%A1%E7%BC%96%E8%BE%91/"/>
+    <id>https://topppy.github.io/2023/10/25/%E3%80%90drawio%E6%8E%A2%E7%A7%98%E3%80%91%E5%AF%BC%E5%85%A5drawio%E8%BE%93%E5%87%BA%E7%9A%84png%E5%9B%BE%E7%89%87%E5%8F%AF%E4%BB%A5%E4%BA%8C%E6%AC%A1%E7%BC%96%E8%BE%91/</id>
+    <published>2023-10-25T08:29:34.000Z</published>
+    <updated>2023-10-27T06:12:31.456Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;猜测思路：&quot;&gt;&lt;a href=&quot;#猜测思路：&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>typescript的eslint自定义rule：校验type类型注释</title>
+    <link href="https://topppy.github.io/2023/10/25/typescript%E7%9A%84eslint%E8%87%AA%E5%AE%9A%E4%B9%89rule%EF%BC%9A%E6%A0%A1%E9%AA%8Ctype%E7%B1%BB%E5%9E%8B%E6%B3%A8%E9%87%8A/"/>
+    <id>https://topppy.github.io/2023/10/25/typescript%E7%9A%84eslint%E8%87%AA%E5%AE%9A%E4%B9%89rule%EF%BC%9A%E6%A0%A1%E9%AA%8Ctype%E7%B1%BB%E5%9E%8B%E6%B3%A8%E9%87%8A/</id>
+    <published>2023-10-25T08:28:16.000Z</published>
+    <updated>2023-10-27T06:12:31.452Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;dts文件or</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>基于乐谱生成旋律路径动画（与音乐同步时间播放）</title>
+    <link href="https://topppy.github.io/2023/10/20/%E5%9F%BA%E4%BA%8E%E4%B9%90%E8%B0%B1%E7%94%9F%E6%88%90%E6%97%8B%E5%BE%8B%E8%B7%AF%E5%BE%84%E5%8A%A8%E7%94%BB%EF%BC%88%E4%B8%8E%E9%9F%B3%E4%B9%90%E5%90%8C%E6%AD%A5%E6%97%B6%E9%97%B4%E6%92%AD%E6%94%BE%EF%BC%89/"/>
+    <id>https://topppy.github.io/2023/10/20/%E5%9F%BA%E4%BA%8E%E4%B9%90%E8%B0%B1%E7%94%9F%E6%88%90%E6%97%8B%E5%BE%8B%E8%B7%AF%E5%BE%84%E5%8A%A8%E7%94%BB%EF%BC%88%E4%B8%8E%E9%9F%B3%E4%B9%90%E5%90%8C%E6%AD%A5%E6%97%B6%E9%97%B4%E6%92%AD%E6%94%BE%EF%BC%89/</id>
+    <published>2023-10-20T10:15:01.000Z</published>
+    <updated>2023-10-27T06:12:31.456Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;基于乐谱的音符时值和音高生成平滑曲线路径&lt;/li&gt;
+&lt;li&gt;以乐谱时间为x，沿路径运动动画&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>如何实现浏览器内容保存为本地文件并持续静默保存最新编辑内容</title>
+    <link href="https://topppy.github.io/2023/10/20/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E5%AE%B9%E4%BF%9D%E5%AD%98%E4%B8%BA%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%B9%B6%E6%8C%81%E7%BB%AD%E9%9D%99%E9%BB%98%E4%BF%9D%E5%AD%98%E6%9C%80%E6%96%B0%E7%BC%96%E8%BE%91%E5%86%85%E5%AE%B9/"/>
+    <id>https://topppy.github.io/2023/10/20/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E5%AE%B9%E4%BF%9D%E5%AD%98%E4%B8%BA%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%B9%B6%E6%8C%81%E7%BB%AD%E9%9D%99%E9%BB%98%E4%BF%9D%E5%AD%98%E6%9C%80%E6%96%B0%E7%BC%96%E8%BE%91%E5%86%85%E5%AE%B9/</id>
+    <published>2023-10-20T09:39:14.000Z</published>
+    <updated>2023-10-27T06:12:31.456Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;背景：&quot;&gt;&lt;a href=&quot;#背景：&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>关于react hook 返回组件模式的讨论</title>
+    <link href="https://topppy.github.io/2023/10/19/%E5%85%B3%E4%BA%8Ereact-hook-%E8%BF%94%E5%9B%9E%E7%BB%84%E4%BB%B6%E6%A8%A1%E5%BC%8F%E7%9A%84%E8%AE%A8%E8%AE%BA/"/>
+    <id>https://topppy.github.io/2023/10/19/%E5%85%B3%E4%BA%8Ereact-hook-%E8%BF%94%E5%9B%9E%E7%BB%84%E4%BB%B6%E6%A8%A1%E5%BC%8F%E7%9A%84%E8%AE%A8%E8%AE%BA/</id>
+    <published>2023-10-19T08:50:03.000Z</published>
+    <updated>2023-10-27T06:12:31.456Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;hook-return-component&quot;&gt;&lt;a href=&quot;#hook-return-component&quot; class=&quot;headerlink&quot; title=&quot;hook return component&quot;&gt;&lt;/a&gt;hook return</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ts笔记：More on Functions</title>
+    <link href="https://topppy.github.io/2023/10/18/ts%E7%AC%94%E8%AE%B0%EF%BC%9AMore-on-Functions/"/>
+    <id>https://topppy.github.io/2023/10/18/ts%E7%AC%94%E8%AE%B0%EF%BC%9AMore-on-Functions/</id>
+    <published>2023-10-18T06:28:00.000Z</published>
+    <updated>2023-10-27T06:12:31.452Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ts笔记: Everyday Types</title>
+    <link href="https://topppy.github.io/2023/10/16/ts%E7%AC%94%E8%AE%B0-Everyday-Types/"/>
+    <id>https://topppy.github.io/2023/10/16/ts%E7%AC%94%E8%AE%B0-Everyday-Types/</id>
+    <published>2023-10-16T07:24:41.000Z</published>
+    <updated>2023-10-27T06:12:31.452Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>技术充电React18</title>
+    <link href="https://topppy.github.io/2023/10/13/%E6%8A%80%E6%9C%AF%E5%85%85%E7%94%B5React18/"/>
+    <id>https://topppy.github.io/2023/10/13/%E6%8A%80%E6%9C%AF%E5%85%85%E7%94%B5React18/</id>
+    <published>2023-10-13T07:11:37.000Z</published>
+    <updated>2023-10-27T06:12:31.456Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;React18&quot;&gt;&lt;a href=&quot;#React18&quot; class=&quot;headerlink&quot; title=&quot;React18&quot;&gt;&lt;/a&gt;React18&lt;/h2&gt;&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>使用 electron13 + electron-react-boilerplate 一些包报错+native包问题</title>
+    <link href="https://topppy.github.io/2023/10/13/%E4%BD%BF%E7%94%A8-electron13-electron-react-boilerplate-%E4%B8%80%E4%BA%9B%E5%8C%85%E6%8A%A5%E9%94%99-native%E5%8C%85%E9%97%AE%E9%A2%98/"/>
+    <id>https://topppy.github.io/2023/10/13/%E4%BD%BF%E7%94%A8-electron13-electron-react-boilerplate-%E4%B8%80%E4%BA%9B%E5%8C%85%E6%8A%A5%E9%94%99-native%E5%8C%85%E9%97%AE%E9%A2%98/</id>
+    <published>2023-10-13T07:10:20.000Z</published>
+    <updated>2023-10-27T06:12:31.456Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;能run起来的最粗暴的方式就是&lt;br&gt;把nodeIntegration打开，把contextIsolation关掉。&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>electron内页面nav卡住</title>
+    <link href="https://topppy.github.io/2023/10/13/electron%E5%86%85%E9%A1%B5%E9%9D%A2nav%E5%8D%A1%E4%BD%8F/"/>
+    <id>https://topppy.github.io/2023/10/13/electron%E5%86%85%E9%A1%B5%E9%9D%A2nav%E5%8D%A1%E4%BD%8F/</id>
+    <published>2023-10-13T07:07:37.000Z</published>
+    <updated>2023-10-27T06:12:31.448Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;现象：&lt;br&gt;无法使用location的api刷新 or</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>electron-dl 库的download方法在断网情况下，promise不会reject</title>
+    <link href="https://topppy.github.io/2023/10/13/electron-dl-%E5%BA%93%E7%9A%84download%E6%96%B9%E6%B3%95%E5%9C%A8%E6%96%AD%E7%BD%91%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8Cpromise%E4%B8%8D%E4%BC%9Areject-1/"/>
+    <id>https://topppy.github.io/2023/10/13/electron-dl-%E5%BA%93%E7%9A%84download%E6%96%B9%E6%B3%95%E5%9C%A8%E6%96%AD%E7%BD%91%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8Cpromise%E4%B8%8D%E4%BC%9Areject-1/</id>
+    <published>2023-10-13T06:40:18.000Z</published>
+    <updated>2023-10-27T06:12:31.436Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;这个问题是他们库的实现上缺少功能，目前只能自己再包一层promise，手动监听一下 downloadItem的updated事件，如果state是injected，就reject&lt;/p&gt;
+&lt;figure class=&quot;highlight</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>electron 主进程调用渲染进程发送请求</title>
+    <link href="https://topppy.github.io/2023/10/13/electron-%E4%B8%BB%E8%BF%9B%E7%A8%8B%E8%B0%83%E7%94%A8%E6%B8%B2%E6%9F%93%E8%BF%9B%E7%A8%8B%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82/"/>
+    <id>https://topppy.github.io/2023/10/13/electron-%E4%B8%BB%E8%BF%9B%E7%A8%8B%E8%B0%83%E7%94%A8%E6%B8%B2%E6%9F%93%E8%BF%9B%E7%A8%8B%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82/</id>
+    <published>2023-10-13T06:38:19.000Z</published>
+    <updated>2023-10-27T06:12:31.448Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>react 组件脚手架：nwb vs Neutrino</title>
+    <link href="https://topppy.github.io/2023/10/08/react-%E7%BB%84%E4%BB%B6%E8%84%9A%E6%89%8B%E6%9E%B6%EF%BC%9Anwb-vs-Neutrino/"/>
+    <id>https://topppy.github.io/2023/10/08/react-%E7%BB%84%E4%BB%B6%E8%84%9A%E6%89%8B%E6%9E%B6%EF%BC%9Anwb-vs-Neutrino/</id>
+    <published>2023-10-08T10:01:06.000Z</published>
+    <updated>2023-10-27T06:12:31.452Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;nwb&quot;&gt;&lt;a href=&quot;#nwb&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>邮箱账号输入下拉建议点击无效bug</title>
+    <link href="https://topppy.github.io/2023/10/08/%E9%82%AE%E7%AE%B1%E8%B4%A6%E5%8F%B7%E8%BE%93%E5%85%A5%E4%B8%8B%E6%8B%89%E5%BB%BA%E8%AE%AE%E7%82%B9%E5%87%BB%E6%97%A0%E6%95%88bug/"/>
+    <id>https://topppy.github.io/2023/10/08/%E9%82%AE%E7%AE%B1%E8%B4%A6%E5%8F%B7%E8%BE%93%E5%85%A5%E4%B8%8B%E6%8B%89%E5%BB%BA%E8%AE%AE%E7%82%B9%E5%87%BB%E6%97%A0%E6%95%88bug/</id>
+    <published>2023-10-08T09:40:17.000Z</published>
+    <updated>2023-10-27T06:12:31.456Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;需求&quot;&gt;&lt;a href=&quot;#需求&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>输入框限制字符长度导致中文输入法bug</title>
+    <link href="https://topppy.github.io/2023/10/08/%E8%BE%93%E5%85%A5%E6%A1%86%E9%99%90%E5%88%B6%E5%AD%97%E7%AC%A6%E9%95%BF%E5%BA%A6%E5%AF%BC%E8%87%B4%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95bug/"/>
+    <id>https://topppy.github.io/2023/10/08/%E8%BE%93%E5%85%A5%E6%A1%86%E9%99%90%E5%88%B6%E5%AD%97%E7%AC%A6%E9%95%BF%E5%BA%A6%E5%AF%BC%E8%87%B4%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95bug/</id>
+    <published>2023-10-08T09:38:28.000Z</published>
+    <updated>2023-10-27T06:12:31.456Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;我在别的网站也遇到过这种现象，就是一个限制了比如10长度的input标签，假设我想输入“中文输入法”，才5个字符是啊，然而当我使用拼音&amp;gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>firfox的textarea设置rows并同时设置overflow：scroll 无效</title>
+    <link href="https://topppy.github.io/2023/10/08/firfox%E7%9A%84textarea%E8%AE%BE%E7%BD%AErows%E5%B9%B6%E5%90%8C%E6%97%B6%E8%AE%BE%E7%BD%AEoverflow%EF%BC%9Ascroll-%E6%97%A0%E6%95%88/"/>
+    <id>https://topppy.github.io/2023/10/08/firfox%E7%9A%84textarea%E8%AE%BE%E7%BD%AErows%E5%B9%B6%E5%90%8C%E6%97%B6%E8%AE%BE%E7%BD%AEoverflow%EF%BC%9Ascroll-%E6%97%A0%E6%95%88/</id>
+    <published>2023-10-08T09:32:12.000Z</published>
+    <updated>2023-10-27T06:12:31.448Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;改为div包裹textarea，rows增大，用div来做滚动&lt;/p&gt;
+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>gitlabci在docker中执行yarn install 报错</title>
+    <link href="https://topppy.github.io/2023/10/08/gitlabci%E5%9C%A8docker%E4%B8%AD%E6%89%A7%E8%A1%8Cyarn-install-%E6%8A%A5%E9%94%99/"/>
+    <id>https://topppy.github.io/2023/10/08/gitlabci%E5%9C%A8docker%E4%B8%AD%E6%89%A7%E8%A1%8Cyarn-install-%E6%8A%A5%E9%94%99/</id>
+    <published>2023-10-08T09:07:14.000Z</published>
+    <updated>2023-10-27T06:12:31.448Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;报错信息：&lt;br&gt;&lt;code&gt;chromedriver installation failed error with http(s) request: error: read</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>

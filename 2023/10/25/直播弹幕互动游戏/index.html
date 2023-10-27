@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/hexo-blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/hexo-blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"topppy.github.io","root":"/hexo-blog/","images":"/hexo-blog/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/hexo-blog/js/config.js"></script>
+
+    <meta name="description" content="简介弹幕互动游戏 是近年来在游戏（误：直播）行业中越来越受到欢迎的游戏形式。这种游戏通过收集玩家的弹幕信息，将其实时显示在游戏画面中，增加了互动性和趣味性，在抖音、B站等直播平台，目前已经有很多高人气的弹幕互动类游戏。其中既有第三方开发的也有平台自身研发的。   特点弹幕互动游戏最大的特点就是弹幕互动。传统的游戏模式往往是单向的，玩家只是被动地接受游戏的内容。而弹幕互动游戏则不同，玩家可以在游戏中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="直播弹幕互动游戏">
+<meta property="og:url" content="https://topppy.github.io/2023/10/25/%E7%9B%B4%E6%92%AD%E5%BC%B9%E5%B9%95%E4%BA%92%E5%8A%A8%E6%B8%B8%E6%88%8F/index.html">
+<meta property="og:site_name" content="Topppy&#39;s Blog">
+<meta property="og:description" content="简介弹幕互动游戏 是近年来在游戏（误：直播）行业中越来越受到欢迎的游戏形式。这种游戏通过收集玩家的弹幕信息，将其实时显示在游戏画面中，增加了互动性和趣味性，在抖音、B站等直播平台，目前已经有很多高人气的弹幕互动类游戏。其中既有第三方开发的也有平台自身研发的。   特点弹幕互动游戏最大的特点就是弹幕互动。传统的游戏模式往往是单向的，玩家只是被动地接受游戏的内容。而弹幕互动游戏则不同，玩家可以在游戏中">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://user-images.githubusercontent.com/9689442/221814516-5acdd0aa-a5dc-4c98-b619-2bbb502834f5.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/9689442/221814630-ae187097-50f8-4a25-8a9a-28a32fbe2a68.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/9689442/221814931-ac1da372-d599-4000-b604-169e2a149383.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/9689442/221815082-04303610-75e7-4444-ad08-6f1f0d393fe5.png">
+<meta property="og:image" content="https://www.plantuml.com/plantuml/png/SoWkIImgAStDuKeiBSdFAyrDIYtYUh9ZzxD9QnLqxHIUpUbzshNmwSmL2bOAptRiUDRH_tpAxfTp5t719K2gdazPyQnZExeIY2YAALOAJ_ViVBfpAgfsY7LmEGWNK-9PJ_kJtKkUTIv_iR3d_PwUPxEtF9ks0Tb6AhcRoo4rBmKO8W00">
+<meta property="og:image" content="https://user-images.githubusercontent.com/9689442/221815478-7e59758a-36d9-44da-8f1c-9f29fae29821.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/9689442/221815898-99a49e28-893d-4b62-af06-98d581aba5bd.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/9689442/221816031-b4c5f4fc-025a-44fb-94e7-42bacdd012da.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/9689442/221816900-c00ef2a9-4bd9-4342-a9a9-f0d43ce993a2.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/9689442/221817388-4bb2757b-bc64-412e-a102-af516f0f0fee.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/9689442/221817478-58daf078-a031-4d80-b054-6feb39e85e26.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/9689442/221817994-be48481e-2720-454d-a01f-2538df950da7.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/9689442/221818330-73cd5c23-2ac4-4ed1-a910-01d10463cbf4.png">
+<meta property="article:published_time" content="2023-10-25T08:31:27.000Z">
+<meta property="article:modified_time" content="2023-10-27T06:12:31.456Z">
+<meta property="article:author" content="Topppy">
+<meta property="article:tag" content="frontend">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/9689442/221814516-5acdd0aa-a5dc-4c98-b619-2bbb502834f5.png">
+
+
+<link rel="canonical" href="https://topppy.github.io/2023/10/25/%E7%9B%B4%E6%92%AD%E5%BC%B9%E5%B9%95%E4%BA%92%E5%8A%A8%E6%B8%B8%E6%88%8F/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://topppy.github.io/2023/10/25/%E7%9B%B4%E6%92%AD%E5%BC%B9%E5%B9%95%E4%BA%92%E5%8A%A8%E6%B8%B8%E6%88%8F/","path":"2023/10/25/直播弹幕互动游戏/","title":"直播弹幕互动游戏"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>直播弹幕互动游戏 | Topppy's Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/hexo-blog/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/hexo-blog/atom.xml" title="Topppy's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/hexo-blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Topppy's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">FE developer</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">特点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E6%A8%A1%E5%BC%8F%E5%A4%9A%E6%A0%B7%E5%8C%96%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">游戏模式多样化：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E6%97%B6%E5%8F%88%E4%B8%8D%E2%80%9C%E5%AE%9E%E6%97%B6%E2%80%9D"><span class="nav-number">2.2.</span> <span class="nav-text">实时又不“实时”</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%88%91%E4%BB%AC%E6%9D%A5%E8%AF%95%E7%9D%80%E6%95%B4%E4%B8%80%E4%B8%AA%E7%9B%B4%E6%92%AD%E5%BC%B9%E5%B9%95%E4%BA%92%E5%8A%A8%E6%B8%B8%E6%88%8F%E7%8E%A9%E4%B8%80%E4%B8%8B"><span class="nav-number"></span> <span class="nav-text">我们来试着整一个直播弹幕互动游戏玩一下</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B4%E6%92%AD"><span class="nav-number">1.</span> <span class="nav-text">直播</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8b%E7%AB%99%E7%9A%84%E5%AE%98%E6%96%B9%E7%9B%B4%E6%92%AD%E8%BD%AF%E4%BB%B6%EF%BC%9A%EF%BC%88%E7%9B%AE%E5%89%8D%E4%B8%8D%E5%85%BC%E5%AE%B9%E9%9D%9EM1%E7%9A%84mac%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">使用b站的官方直播软件：（目前不兼容非M1的mac）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OBS-%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8F%92%E4%BB%B6-b%E7%AB%99%E7%9B%B4%E6%92%AD%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80%E5%92%8C%E6%8E%A8%E6%B5%81%E7%A0%81"><span class="nav-number">1.2.</span> <span class="nav-text">OBS+第三方插件 + b站直播服务器地址和推流码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%B9%E5%B9%95"><span class="nav-number">2.</span> <span class="nav-text">弹幕</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E7%9B%B4%E6%92%AD%E9%97%B4%E5%BC%B9%E5%B9%95%E6%95%B0%E6%8D%AE"><span class="nav-number">2.1.</span> <span class="nav-text">获取直播间弹幕数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F"><span class="nav-number">3.</span> <span class="nav-text">游戏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E9%A1%B5%E7%89%88%E7%BA%A2%E7%99%BD%E6%9C%BA%E6%B8%B8%E6%88%8F"><span class="nav-number">3.1.</span> <span class="nav-text">网页版红白机游戏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%8A%8A%E6%B8%B8%E6%88%8F%E8%B7%9F%E5%BC%B9%E5%B9%95%E8%BF%9E%E6%8E%A5%E8%B5%B7%E6%9D%A5"><span class="nav-number">4.</span> <span class="nav-text">如何把游戏跟弹幕连接起来</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E4%BA%86%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">4.1.</span> <span class="nav-text">遇到了第一个问题：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B6%85%E7%BA%A7%E7%8E%9B%E4%B8%BD"><span class="nav-number">4.2.</span> <span class="nav-text">超级玛丽</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%AB%E9%9B%B7"><span class="nav-number">5.</span> <span class="nav-text">扫雷</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">5.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93-amp-%E5%B1%95%E6%9C%9B"><span class="nav-number">6.</span> <span class="nav-text">总结&amp;展望</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Topppy</p>
+  <div class="site-description" itemprop="description">Can you hear me?</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/hexo-blog/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/hexo-blog/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://topppy.github.io/2023/10/25/%E7%9B%B4%E6%92%AD%E5%BC%B9%E5%B9%95%E4%BA%92%E5%8A%A8%E6%B8%B8%E6%88%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/hexo-blog/images/avatar.gif">
+      <meta itemprop="name" content="Topppy">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Topppy's Blog">
+      <meta itemprop="description" content="Can you hear me?">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="直播弹幕互动游戏 | Topppy's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          直播弹幕互动游戏
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-10-25 08:31:27" itemprop="dateCreated datePublished" datetime="2023-10-25T08:31:27+00:00">2023-10-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-10-27 06:12:31" itemprop="dateModified" datetime="2023-10-27T06:12:31+00:00">2023-10-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>弹幕互动游戏 是近年来在游戏（误：直播）行业中越来越受到欢迎的游戏形式。这种游戏通过收集玩家的弹幕信息，将其实时显示在游戏画面中，增加了互动性和趣味性，在抖音、B站等直播平台，目前已经有很多高人气的弹幕互动类游戏。其中既有第三方开发的也有平台自身研发的。</p>
+<p><img src="https://user-images.githubusercontent.com/9689442/221814516-5acdd0aa-a5dc-4c98-b619-2bbb502834f5.png" alt="image"></p>
+<hr>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p>弹幕互动游戏最大的特点就是弹幕互动。传统的游戏模式往往是单向的，玩家只是被动地接受游戏的内容。而弹幕互动游戏则不同，玩家可以在游戏中发射弹幕，通过与其他玩家互动，增加了游戏的趣味性和互动性。此外，弹幕互动游戏还具有以下特点：多样化的游戏模式、实时互动的体验、全球玩家的互动等。</p>
+<hr>
+<h3 id="游戏模式多样化："><a href="#游戏模式多样化：" class="headerlink" title="游戏模式多样化："></a>游戏模式多样化：</h3><ol>
+<li>玩家阵营对抗，用户通过弹幕选择阵营，生成AI小兵做阵营对抗，点赞 or 消费不同金额的礼物可以获取额外的优势（氪金外挂），帮助己方阵营获胜。eg.抖音《森林派对》</li>
+</ol>
+<p><img src="https://user-images.githubusercontent.com/9689442/221814630-ae187097-50f8-4a25-8a9a-28a32fbe2a68.png" alt="image"></p>
+<ol start="2">
+<li>玩家与主播同阵营，对抗第三方：AI角色&#x2F;障碍，</li>
+<li>玩家对抗主播：玩家通过弹幕生产AI角色&#x2F;障碍来阻碍主播获得胜利。eg。《是兄弟就来砍我》</li>
+</ol>
+<p><img src="https://user-images.githubusercontent.com/9689442/221814931-ac1da372-d599-4000-b604-169e2a149383.png" alt="image"></p>
+<ol start="4">
+<li>主播间的对抗，结合2、3玩法，玩家可以选择帮助自己支持的直播间，给同阵营主播提供帮助，给对方阵营主播使绊子，以达到己方获胜的目的。如果说1、2、3更多像一个单机游戏，那么4更像一个网游。</li>
+<li>主播授权给观众操作传统游戏角色的权利，有点儿偏向于社会学实验的性质，操作难度极高，最早是在国外游戏直播平台twitch上出现，代表案例：累计有超过百万名观众通过弹幕参与通关神奇宝贝，后来国内主播也有效仿之作，比如B站的万人原神：</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1xQ4y1Q7CU/?vd_source=13a87a9b97c2b7b5b32c8f91714ede90">https://www.bilibili.com/video/BV1xQ4y1Q7CU/?vd_source=13a87a9b97c2b7b5b32c8f91714ede90</a></p>
+<hr>
+<h3 id="实时又不“实时”"><a href="#实时又不“实时”" class="headerlink" title="实时又不“实时”"></a>实时又不“实时”</h3><hr>
+<p>传统游戏直播模式，</p>
+<p>以玩家作为信息的接收方为主，部分主播会制定自己的私人规则，来提升玩家的参与度，比如：</p>
+<ol>
+<li>礼物贡献高的玩家可以直接参与游戏（多人网游场景</li>
+</ol>
+<p><img src="https://user-images.githubusercontent.com/9689442/221815082-04303610-75e7-4444-ad08-6f1f0d393fe5.png" alt="image"></p>
+<ol start="2">
+<li>主播阅读弹幕互动，“谢谢xxx送的xxxx” 🔥</li>
+</ol>
+<hr>
+<p>互动弹幕游戏模式</p>
+<p>虽然弹幕互动游戏声称自己是实时的，但是直播弹幕互动实际上是高延迟的一个操作。具体体现在几个阶段：</p>
+<ol>
+<li>用户收到主播游戏画面的延迟</li>
+<li>主播延迟收到用户弹幕</li>
+<li>弹幕作用于游戏的效果再通过直播流延迟播放给用户</li>
+</ol>
+<p>用户完成一次弹幕交互，至少需要3次通信，而且是远远滞后的。</p>
+<p><img src="https://www.plantuml.com/plantuml/png/SoWkIImgAStDuKeiBSdFAyrDIYtYUh9ZzxD9QnLqxHIUpUbzshNmwSmL2bOAptRiUDRH_tpAxfTp5t719K2gdazPyQnZExeIY2YAALOAJ_ViVBfpAgfsY7LmEGWNK-9PJ_kJtKkUTIv_iR3d_PwUPxEtF9ks0Tb6AhcRoo4rBmKO8W00" alt="image"></p>
+<p>这就限制了弹幕互动游戏的种类，高实时操作性的游戏，在弹幕互动场景下变成了hard模式，这个一会我们可以体验一下。</p>
+<hr>
+<h1 id="我们来试着整一个直播弹幕互动游戏玩一下"><a href="#我们来试着整一个直播弹幕互动游戏玩一下" class="headerlink" title="我们来试着整一个直播弹幕互动游戏玩一下"></a>我们来试着整一个直播弹幕互动游戏玩一下</h1><p>几个要素</p>
+<ul>
+<li>直播</li>
+<li>弹幕</li>
+<li>游戏</li>
+<li>弹幕和游戏的连接</li>
+</ul>
+<p>我们以B站为例</p>
+<hr>
+<h2 id="直播"><a href="#直播" class="headerlink" title="直播"></a>直播</h2><hr>
+<h3 id="使用b站的官方直播软件：（目前不兼容非M1的mac）"><a href="#使用b站的官方直播软件：（目前不兼容非M1的mac）" class="headerlink" title="使用b站的官方直播软件：（目前不兼容非M1的mac）"></a>使用b站的官方直播软件：（目前不兼容非M1的mac）</h3><p><a target="_blank" rel="noopener" href="https://live.bilibili.com/liveHime?source=activity"><a target="_blank" rel="noopener" href="https://live.bilibili.com/liveHime?source=activity">哔哩哔哩直播姬下载</a></a></p>
+<p>实际上，B站自己的直播端在直播游戏这个场景不太好用，亲测同设备的情况下，为满足直播+游戏性能，清晰度很低画质很烂。</p>
+<hr>
+<h3 id="OBS-第三方插件-b站直播服务器地址和推流码"><a href="#OBS-第三方插件-b站直播服务器地址和推流码" class="headerlink" title="OBS+第三方插件 + b站直播服务器地址和推流码"></a>OBS+第三方插件 + b站直播服务器地址和推流码</h3><p>在B站开启直播间后，可以在个人中心：我的直播间，看到服务器地址和推流码</p>
+<p><img src="https://user-images.githubusercontent.com/9689442/221815478-7e59758a-36d9-44da-8f1c-9f29fae29821.png" alt="image"></p>
+<p>在obs的直播设置中填写服务器地址和推流码</p>
+<p><img src="https://user-images.githubusercontent.com/9689442/221815898-99a49e28-893d-4b62-af06-98d581aba5bd.png" alt="Untitled"></p>
+<p>OBS 提供了捕捉</p>
+<ul>
+<li>窗口</li>
+<li>网页</li>
+<li>屏幕</li>
+<li>…</li>
+</ul>
+<p>等能力，所以我们可以采取的方案可以有</p>
+<ul>
+<li>自己开发一个网页，在网页中订阅弹幕+控制游戏，OBS捕捉该网页</li>
+<li>自己开发一个弹幕订阅+ 执行native方法的软件， native游戏【客户端同学可以尝试一下</li>
+</ul>
+<p>下面分别说一下弹幕和游戏的part</p>
+<h2 id="弹幕"><a href="#弹幕" class="headerlink" title="弹幕"></a>弹幕</h2><hr>
+<p>b站开放了主播直播端的插件开发开放平台</p>
+<p><a target="_blank" rel="noopener" href="https://open-live.bilibili.com/"><a target="_blank" rel="noopener" href="https://open-live.bilibili.com/">哔哩哔哩直播开放平台</a></a></p>
+<p>开发者可以</p>
+<ol>
+<li>申请开发密钥</li>
+<li>开发互动应用</li>
+<li>上架B站的商城</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://play-live.bilibili.com/"><a target="_blank" rel="noopener" href="https://play-live.bilibili.com/">哔哩哔哩饭贩</a></a></p>
+<hr>
+<p>有了密钥之后</p>
+<h3 id="获取直播间弹幕数据"><a href="#获取直播间弹幕数据" class="headerlink" title="获取直播间弹幕数据"></a>获取直播间弹幕数据</h3><p><img src="https://user-images.githubusercontent.com/9689442/221816031-b4c5f4fc-025a-44fb-94e7-42bacdd012da.png" alt="image"></p>
+<p>B站给开发这提供了获取直播间数据的流程和demo代码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> websockets</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> hmac</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> sha256</span><br><span class="line"><span class="keyword">import</span> proto</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BiliClient</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, roomId, key, secret, host = <span class="string">&#x27;live-open.biliapi.com&#x27;</span></span>):</span><br><span class="line">        self.roomId = roomId</span><br><span class="line">        self.key = key</span><br><span class="line">        self.secret = secret</span><br><span class="line">        self.host = host</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 事件循环</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">        loop = asyncio.get_event_loop()</span><br><span class="line">        websocket = loop.run_until_complete(self.connect())</span><br><span class="line">        tasks = [</span><br><span class="line">            asyncio.ensure_future(self.recvLoop(websocket)),</span><br><span class="line">            asyncio.ensure_future(self.heartBeat(websocket)), </span><br><span class="line">        ]</span><br><span class="line">        loop.run_until_complete(asyncio.gather(*tasks))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># http的签名</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sign</span>(<span class="params">self, params</span>):</span><br><span class="line">        key = self.key</span><br><span class="line">        secret = self.secret</span><br><span class="line">        md5 = hashlib.md5()</span><br><span class="line">        md5.update(params.encode())</span><br><span class="line">        ts = time.time()</span><br><span class="line">        nonce = random.randint(<span class="number">1</span>,<span class="number">100000</span>)+time.time()</span><br><span class="line">        md5data = md5.hexdigest()</span><br><span class="line">        headerMap = &#123;</span><br><span class="line">        <span class="string">&quot;x-bili-timestamp&quot;</span>: <span class="built_in">str</span>(<span class="built_in">int</span>(ts)),</span><br><span class="line">        <span class="string">&quot;x-bili-signature-method&quot;</span>: <span class="string">&quot;HMAC-SHA256&quot;</span>,</span><br><span class="line">        <span class="string">&quot;x-bili-signature-nonce&quot;</span>: <span class="built_in">str</span>(nonce),</span><br><span class="line">        <span class="string">&quot;x-bili-accesskeyid&quot;</span>: key,</span><br><span class="line">        <span class="string">&quot;x-bili-signature-version&quot;</span>: <span class="string">&quot;1.0&quot;</span>,</span><br><span class="line">        <span class="string">&quot;x-bili-content-md5&quot;</span>: md5data,</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        headerList = <span class="built_in">sorted</span>(headerMap)</span><br><span class="line">        headerStr = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> key <span class="keyword">in</span> headerList:</span><br><span class="line">            headerStr = headerStr+ key+<span class="string">&quot;:&quot;</span>+<span class="built_in">str</span>(headerMap[key])+<span class="string">&quot;\n&quot;</span></span><br><span class="line">        headerStr = headerStr.rstrip(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">        appsecret = secret.encode() </span><br><span class="line">        data = headerStr.encode()</span><br><span class="line">        signature = hmac.new(appsecret, data, digestmod=sha256).hexdigest()</span><br><span class="line">        headerMap[<span class="string">&quot;Authorization&quot;</span>] = signature</span><br><span class="line">        headerMap[<span class="string">&quot;Content-Type&quot;</span>] = <span class="string">&quot;application/json&quot;</span></span><br><span class="line">        headerMap[<span class="string">&quot;Accept&quot;</span>] = <span class="string">&quot;application/json&quot;</span></span><br><span class="line">        <span class="keyword">return</span> headerMap</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取长链信息</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">websocketInfoReq</span>(<span class="params">self, postUrl, params</span>):</span><br><span class="line">        headerMap = self.sign(params)</span><br><span class="line">        r = requests.post(url=postUrl, headers=headerMap, data=params, verify=<span class="literal">False</span>)</span><br><span class="line">        data = json.loads(r.content)</span><br><span class="line">        <span class="built_in">print</span>(data)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;ws://&quot;</span> + data[<span class="string">&#x27;data&#x27;</span>][<span class="string">&#x27;host&#x27;</span>][<span class="number">0</span>]+<span class="string">&quot;:&quot;</span>+<span class="built_in">str</span>(data[<span class="string">&#x27;data&#x27;</span>][<span class="string">&#x27;ws_port&#x27;</span>][<span class="number">0</span>])+<span class="string">&quot;/sub&quot;</span>, data[<span class="string">&#x27;data&#x27;</span>][<span class="string">&#x27;auth_body&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 长链的auth包</span></span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">auth</span>(<span class="params">self, websocket, authBody</span>):</span><br><span class="line">        req = proto.Proto()</span><br><span class="line">        req.body = authBody</span><br><span class="line">        req.op = <span class="number">7</span></span><br><span class="line">        <span class="keyword">await</span> websocket.send(req.pack())</span><br><span class="line">        buf = <span class="keyword">await</span> websocket.recv()</span><br><span class="line">        resp = proto.Proto()</span><br><span class="line">        resp.unpack(buf)</span><br><span class="line">        respBody = json.loads(resp.body)</span><br><span class="line">        <span class="keyword">if</span> respBody[<span class="string">&quot;code&quot;</span>] != <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;auth 失败&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;auth 成功&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 长链的心跳包</span></span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">heartBeat</span>(<span class="params">self, websocket</span>):</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">await</span> asyncio.ensure_future(asyncio.sleep(<span class="number">20</span>))</span><br><span class="line">            req = proto.Proto()</span><br><span class="line">            req.op = <span class="number">2</span></span><br><span class="line">            <span class="keyword">await</span> websocket.send(req.pack())</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;[BiliClient] send heartBeat success&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 长链的接受循环</span></span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">recvLoop</span>(<span class="params">self, websocket</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[BiliClient] run recv...&quot;</span>)</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            recvBuf = <span class="keyword">await</span> websocket.recv()</span><br><span class="line">            resp = proto.Proto()</span><br><span class="line">            resp.unpack(recvBuf)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">connect</span>(<span class="params">self</span>):</span><br><span class="line">        postUrl = <span class="string">&quot;https://%s/v1/common/websocketInfo&quot;</span>%self.host</span><br><span class="line">        params = <span class="string">&#x27;&#123;&quot;room_id&quot;:%s&#125;&#x27;</span>%self.roomId</span><br><span class="line">        addr, authBody = self.websocketInfoReq(postUrl, params)</span><br><span class="line">        <span class="built_in">print</span>(addr, authBody)</span><br><span class="line">        websocket = <span class="keyword">await</span> websockets.connect(addr)</span><br><span class="line">        <span class="keyword">await</span> self.auth(websocket, authBody)</span><br><span class="line">        <span class="keyword">return</span> websocket</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        cli = BiliClient(</span><br><span class="line">            roomId = <span class="number">23105976</span>,</span><br><span class="line">            key = <span class="string">&quot;&quot;</span>,</span><br><span class="line">            secret = <span class="string">&quot;&quot;</span>,</span><br><span class="line">            host = <span class="string">&quot;live-open.biliapi.com&quot;</span>)</span><br><span class="line">        cli.run()</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;err&quot;</span>, e)</span><br></pre></td></tr></table></figure>
+
+<p>参考这个流程那么互动弹幕的核心逻辑就是：</p>
+<ol>
+<li>获取ws地址端口</li>
+<li>建立ws链接</li>
+<li>收发数据</li>
+<li>解析出弹幕</li>
+<li>执行游戏指令&#x2F;操作</li>
+</ol>
+<hr>
+<p>我们可以看一下效果</p>
+<p><img src="https://user-images.githubusercontent.com/9689442/221816900-c00ef2a9-4bd9-4342-a9a9-f0d43ce993a2.png" alt="image"></p>
+<p>这里演示的是开源项目<a target="_blank" rel="noopener" href="https://github.com/xfgryujk/blivechat%E7%9A%84%E6%9C%AC%E5%9C%B0python%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E8%BF%99%E9%87%8C%E5%B0%B1%E6%98%AF%E5%AE%9E%E7%8E%B0%E4%BA%86%E4%B8%8A%E8%BF%B0%E6%B5%81%E7%A8%8B%EF%BC%88mock%E7%89%88%E6%9C%AC%EF%BC%89">https://github.com/xfgryujk/blivechat的本地python服务器，这里就是实现了上述流程（mock版本）</a></p>
+<p>如果我们把room ID换成B站线上正在开播的直播间ID，同样可以抓到弹幕信息。</p>
+<p>好，弹幕我们已经搞到了，下一步，选择游戏</p>
+<h2 id="游戏"><a href="#游戏" class="headerlink" title="游戏"></a>游戏</h2><p>这里为了对比出效果，我选择了两类游戏， 实时操作类 和非实时解谜类，代表作</p>
+<ul>
+<li>红白机：<a target="_blank" rel="noopener" href="https://www.playfc.cn/">https://www.playfc.cn/</a><ul>
+<li>激龟快打</li>
+<li>超级玛丽</li>
+</ul>
+</li>
+<li>扫雷:<a target="_blank" rel="noopener" href="https://zhongyangxun.github.io/mine-sweeper/build/">https://zhongyangxun.github.io/mine-sweeper/build/</a></li>
+</ul>
+<hr>
+<h3 id="网页版红白机游戏"><a href="#网页版红白机游戏" class="headerlink" title="网页版红白机游戏"></a>网页版红白机游戏</h3><p>网页版红白机游戏的基本原理</p>
+<ul>
+<li>JavaScript NES 模拟器</li>
+<li>加载 .nes 文件</li>
+<li>注册事件监听</li>
+<li>循环frameTicker<ul>
+<li>使用canvas渲染每一帧</li>
+<li>audioContext播放音频采样</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>我们以模拟器<a target="_blank" rel="noopener" href="https://github.com/bfirsh/jsnes">https://github.com/bfirsh/jsnes</a> 为例</p>
+<p>核心使用代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实例化NES模拟器</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">nes</span> = <span class="keyword">new</span> <span class="title function_">NES</span>(&#123;</span><br><span class="line">      <span class="attr">onFrame</span>: <span class="variable language_">this</span>.<span class="property">screen</span>.<span class="property">setBuffer</span>,  <span class="comment">// canvas</span></span><br><span class="line">      <span class="attr">onStatusUpdate</span>: <span class="variable language_">console</span>.<span class="property">log</span>,</span><br><span class="line">      <span class="attr">onAudioSample</span>: <span class="variable language_">this</span>.<span class="property">speakers</span>.<span class="property">writeSample</span>, <span class="comment">// 音频</span></span><br><span class="line">      <span class="attr">sampleRate</span>: <span class="variable language_">this</span>.<span class="property">speakers</span>.<span class="title function_">getSampleRate</span>()</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 事件</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">gamepadController</span> = <span class="keyword">new</span> <span class="title class_">GamepadController</span>(&#123;</span><br><span class="line">      <span class="attr">onButtonDown</span>: <span class="variable language_">this</span>.<span class="property">nes</span>.<span class="property">buttonDown</span>,</span><br><span class="line">      <span class="attr">onButtonUp</span>: <span class="variable language_">this</span>.<span class="property">nes</span>.<span class="property">buttonUp</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">keyboardController</span> = <span class="keyword">new</span> <span class="title class_">KeyboardController</span>(&#123;</span><br><span class="line">      <span class="attr">onButtonDown</span>: <span class="variable language_">this</span>.<span class="property">gamepadController</span>.<span class="title function_">disableIfGamepadEnabled</span>(</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">nes</span>.<span class="property">buttonDown</span></span><br><span class="line">      ),</span><br><span class="line">      <span class="attr">onButtonUp</span>: <span class="variable language_">this</span>.<span class="property">gamepadController</span>.<span class="title function_">disableIfGamepadEnabled</span>(</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">nes</span>.<span class="property">buttonUp</span></span><br><span class="line">      )</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Load keys from localStorage (if they exist)</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">keyboardController</span>.<span class="title function_">loadKeys</span>();</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;keydown&quot;</span>, <span class="variable language_">this</span>.<span class="property">keyboardController</span>.<span class="property">handleKeyDown</span>);</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;keyup&quot;</span>, <span class="variable language_">this</span>.<span class="property">keyboardController</span>.<span class="property">handleKeyUp</span>);</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(</span><br><span class="line">  <span class="string">&quot;keypress&quot;</span>,</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">keyboardController</span>.<span class="property">handleKeyPress</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加载.nes：ROM</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">nes</span>.<span class="title function_">loadROM</span>(<span class="variable language_">this</span>.<span class="property">props</span>.<span class="property">romData</span>);</span><br></pre></td></tr></table></figure>
+
+<p>其Web UI</p>
+<p><img src="https://user-images.githubusercontent.com/9689442/221817388-4bb2757b-bc64-412e-a102-af516f0f0fee.png" alt="image"></p>
+<p>好我们目前至少跑起来了一个游戏了，下一步</p>
+<hr>
+<h2 id="如何把游戏跟弹幕连接起来"><a href="#如何把游戏跟弹幕连接起来" class="headerlink" title="如何把游戏跟弹幕连接起来"></a>如何把游戏跟弹幕连接起来</h2><p>一个思路：解析弹幕执行游戏指令</p>
+<p>红白机游戏的游戏内只有6个控制键</p>
+<ul>
+<li>up</li>
+<li>down</li>
+<li>left</li>
+<li>right</li>
+<li>A</li>
+<li>B</li>
+</ul>
+<p>游戏外当然还有start\pause等（暂时先不管</p>
+<p>在js的NES 模拟器中，这些控制键被映射成为了键盘的的按键</p>
+<p><img src="https://user-images.githubusercontent.com/9689442/221817478-58daf078-a031-4d80-b054-6feb39e85e26.png" alt="image"></p>
+<p>我们要做的就是</p>
+<ul>
+<li>收到用户’wasd’弹幕</li>
+<li>解析出来每个字符</li>
+<li>模拟触发浏览器的键盘事件</li>
+<li>控制游戏</li>
+</ul>
+<hr>
+<h3 id="遇到了第一个问题："><a href="#遇到了第一个问题：" class="headerlink" title="遇到了第一个问题："></a>遇到了第一个问题：</h3><p>为了方便插拔游戏，我把游戏加载在iframe中，遇到了iframe跨域问题，无法获取iframe的内容窗口并派发键盘事件，这个解决方案非常常见就是使用postMessage</p>
+<p>在弹幕订阅页：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="variable constant_">KEY_MAP</span> <span class="keyword">from</span> <span class="string">&#x27;../keyboard&#x27;</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 忍者神龟4等NES游戏</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">delay</span> = sec =&gt; <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> <span class="built_in">setTimeout</span>(resolve, sec))</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">TurtleTrigger</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">reg</span> = <span class="regexp">/([A-Za-z0-9])/g</span></span><br><span class="line">		<span class="comment">// iframe</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">dom</span> = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;iframeContain&#x27;</span>).<span class="property">contentWindow</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">processing</span> = <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 发送模拟键盘事件给iframe</span></span><br><span class="line">  _run = <span class="keyword">async</span> key =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> evtOpt = <span class="variable constant_">KEY_MAP</span>[key.<span class="title function_">toUpperCase</span>()]</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">dom</span>.<span class="title function_">postMessage</span>(&#123; <span class="attr">key</span>: <span class="string">&#x27;keydown&#x27;</span>, <span class="attr">opt</span>: evtOpt &#125;, <span class="string">&quot;*&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">dom</span>.<span class="title function_">postMessage</span>(&#123; <span class="attr">key</span>: <span class="string">&#x27;keyup&#x27;</span>, <span class="attr">opt</span>: evtOpt &#125;, <span class="string">&quot;*&quot;</span>)</span><br><span class="line">        <span class="title function_">resolve</span>()</span><br><span class="line">      &#125;, <span class="number">100</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 弹幕处理函数 </span></span><br><span class="line">  process = <span class="keyword">async</span> danmu =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">processing</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;trigger proccessing&#x27;</span>)</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">processing</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 正则把字母提取出来 </span></span><br><span class="line">    <span class="keyword">const</span> matched = danmu.<span class="title function_">match</span>(<span class="variable language_">this</span>.<span class="property">reg</span>)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;matched&#x27;</span>, matched)</span><br><span class="line">    <span class="keyword">if</span> (!matched) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">processing</span> = <span class="literal">false</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// console.log(&#x27;run matched&#x27;, matched)</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 逐一执行</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> value <span class="keyword">of</span> matched) &#123;</span><br><span class="line">      <span class="keyword">await</span> <span class="variable language_">this</span>.<span class="title function_">_run</span>(value)</span><br><span class="line">      <span class="keyword">await</span> <span class="title function_">delay</span>(<span class="number">30</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">processing</span> = <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在NES游戏页面</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">componentDidMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;message&#x27;</span>, <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;msg=====&#x27;</span>,e.<span class="property">data</span>)</span><br><span class="line">      <span class="keyword">const</span> &#123; key ,opt&#125; = e.<span class="property">data</span></span><br><span class="line">      <span class="keyword">const</span> evt = <span class="keyword">new</span> <span class="title class_">KeyboardEvent</span>(key, opt)</span><br><span class="line">      <span class="variable language_">document</span>.<span class="title function_">dispatchEvent</span>(evt)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="超级玛丽"><a href="#超级玛丽" class="headerlink" title="超级玛丽"></a>超级玛丽</h3><p>这个游戏遇到了一个问题，超级玛丽中，长按和短按事有不同效果的</p>
+<ul>
+<li>短按jump，跳得矮</li>
+<li>长按jump：跳得高</li>
+<li>短按方向键：短暂拥有一下下加速度</li>
+<li>长按方向键：一直加速到最高</li>
+</ul>
+<p>而游戏中关卡被设计得是必须长按才能过去的，因此这里处理弹幕到时候，得实现长按效果</p>
+<p><img src="https://user-images.githubusercontent.com/9689442/221817994-be48481e-2720-454d-a01f-2538df950da7.png" alt="image"></p>
+<p>思路：</p>
+<p>合并相同key，延长按压时间</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 发送模拟键盘事件给iframe</span></span><br><span class="line">_run = <span class="title function_">async</span>(key, duration = <span class="number">1</span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> evtOpt = <span class="variable constant_">KEY_MAP</span>[key.<span class="title function_">toUpperCase</span>()]</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">dom</span>.<span class="title function_">postMessage</span>(&#123; <span class="attr">key</span>: <span class="string">&#x27;keydown&#x27;</span>, <span class="attr">opt</span>: evtOpt &#125;, <span class="string">&quot;*&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">dom</span>.<span class="title function_">postMessage</span>(&#123; <span class="attr">key</span>: <span class="string">&#x27;keyup&#x27;</span>, <span class="attr">opt</span>: evtOpt &#125;, <span class="string">&quot;*&quot;</span>)</span><br><span class="line">        <span class="title function_">resolve</span>()</span><br><span class="line">			<span class="comment">// 可调节按压时长</span></span><br><span class="line">      &#125;, duration * <span class="number">100</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 合并相同按键</span></span><br><span class="line">  <span class="title function_">sumSame</span>(<span class="params">chars</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> bucket = []</span><br><span class="line">    <span class="keyword">let</span> temp = &#123;</span><br><span class="line">      <span class="attr">key</span>: chars[<span class="number">0</span>],</span><br><span class="line">      <span class="attr">count</span>: <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt;= chars.<span class="property">length</span> - <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (temp.<span class="property">key</span> === chars[i]) &#123;</span><br><span class="line">        temp.<span class="property">count</span>++</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        bucket.<span class="title function_">push</span>(temp)</span><br><span class="line">        temp = &#123;</span><br><span class="line">          <span class="attr">key</span>: chars[i],</span><br><span class="line">          <span class="attr">count</span>: <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      i++</span><br><span class="line">    &#125;</span><br><span class="line">    bucket.<span class="title function_">push</span>(temp)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(bucket)</span><br><span class="line">    <span class="keyword">return</span> bucket</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">process = <span class="keyword">async</span> danmu =&gt; &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">mergeSameKey</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> sum = <span class="variable language_">this</span>.<span class="title function_">sumSame</span>(matched)</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">const</span> value <span class="keyword">of</span> sum) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(value)</span><br><span class="line">        <span class="keyword">await</span> <span class="variable language_">this</span>.<span class="title function_">_run</span>(value.<span class="property">key</span>, value.<span class="property">count</span>)</span><br><span class="line">        <span class="keyword">await</span> <span class="title function_">delay</span>(<span class="number">30</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">		<span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="扫雷"><a href="#扫雷" class="headerlink" title="扫雷"></a>扫雷</h2><p>模式是类似的</p>
+<ul>
+<li>ws订阅</li>
+<li>弹幕提取</li>
+<li>发消息给游戏窗口</li>
+</ul>
+<p>不同的点在于</p>
+<p><img src="https://user-images.githubusercontent.com/9689442/221818330-73cd5c23-2ac4-4ed1-a910-01d10463cbf4.png" alt="image"></p>
+<p>扫雷的操作方式：</p>
+<ul>
+<li>左键点击坐标：翻开</li>
+<li>右键点击格子：插旗</li>
+</ul>
+<p>这里如果转化为弹幕操作我们需要提取三个数据</p>
+<ul>
+<li>操作类型： left   or  right</li>
+<li>x坐标</li>
+<li>y坐标</li>
+</ul>
+<p>首先设定弹幕格式为4部分，</p>
+<ul>
+<li>首字符L或者R，表示操作类型</li>
+<li>数字表示x坐标</li>
+<li>空格，用来分割两个数字</li>
+<li>数字表示y坐标</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">L0 0</span><br><span class="line">R0 1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>那么整体的代码流程就很清晰了</p>
+<hr>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>弹幕订阅器</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 扫雷</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">SweeperTrigger</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">reg</span> = <span class="regexp">/^([lLRr])([0-9]+)\s([0-9]+)/</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">dom</span> = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;iframeContain&#x27;</span>).<span class="property">contentWindow</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">processing</span> = <span class="literal">false</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">mergeSameKey</span> = (props &amp;&amp; props.<span class="property">mergeSameKey</span>) || <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  _run = <span class="title function_">async</span>(key, x, y) =&gt; &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;_run&#x27;</span>, key, x, y)</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">dom</span>.<span class="title function_">postMessage</span>(&#123; <span class="attr">key</span>: key, <span class="attr">opt</span>: [x, y] &#125;, <span class="string">&quot;*&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  process = <span class="keyword">async</span> danmu =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">processing</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;trigger proccessing&#x27;</span>)</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">processing</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> matched = <span class="variable language_">this</span>.<span class="property">reg</span>.<span class="title function_">exec</span>(danmu)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;matched&#x27;</span>, danmu, matched)</span><br><span class="line">    <span class="comment">// 非法过滤</span></span><br><span class="line">    <span class="keyword">if</span> (!matched</span><br><span class="line">      || matched.<span class="property">length</span> !== <span class="number">4</span></span><br><span class="line">      || ![<span class="string">&#x27;L&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;R&#x27;</span>, <span class="string">&#x27;r&#x27;</span>].<span class="title function_">includes</span>(matched[<span class="number">1</span>])</span><br><span class="line">      || <span class="built_in">isNaN</span>(<span class="built_in">parseInt</span>(matched[<span class="number">2</span>]))</span><br><span class="line">      || <span class="built_in">isNaN</span>(<span class="built_in">parseInt</span>(matched[<span class="number">3</span>]))) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;非法指令&#x27;</span>)</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">processing</span> = <span class="literal">false</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> <span class="variable language_">this</span>.<span class="title function_">_run</span>(matched[<span class="number">1</span>].<span class="title function_">toUpperCase</span>(), <span class="built_in">parseInt</span>(matched[<span class="number">2</span>]), <span class="built_in">parseInt</span>(matched[<span class="number">3</span>]))</span><br><span class="line">  </span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">processing</span> = <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>游戏页</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="title function_">componentDidMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;message&#x27;</span>, <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> &#123; key, opt &#125; = e.<span class="property">data</span></span><br><span class="line">      <span class="keyword">if</span> (![<span class="string">&#x27;L&#x27;</span>, <span class="string">&#x27;R&#x27;</span>].<span class="title function_">includes</span>(key)) <span class="keyword">return</span></span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;msg=====&#x27;</span>, e.<span class="property">data</span>)</span><br><span class="line">      <span class="comment">// 边界检测</span></span><br><span class="line">      <span class="keyword">if</span> (opt[<span class="number">0</span>] &lt; <span class="number">0</span> || opt[<span class="number">0</span>] &gt; <span class="variable language_">this</span>.<span class="property">props</span>.<span class="property">rowNum</span> || opt[<span class="number">1</span>] &lt; <span class="number">0</span> || opt[<span class="number">1</span>] &gt; <span class="variable language_">this</span>.<span class="property">props</span>.<span class="property">rowNum</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 左键右键</span></span><br><span class="line">      <span class="keyword">if</span> (key === <span class="string">&#x27;L&#x27;</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">handleSquareClick</span>(opt[<span class="number">1</span>], opt[<span class="number">0</span>])</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">handleSquareContextMenu</span>(opt[<span class="number">1</span>], opt[<span class="number">0</span>])</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="总结-amp-展望"><a href="#总结-amp-展望" class="headerlink" title="总结&amp;展望"></a>总结&amp;展望</h2><p>web的互动游戏可以分为三层结构</p>
+<ul>
+<li>订阅层：处理ws等链接</li>
+<li>Trigger 层： 根据每个游戏设定的规则来处理弹幕转化为游戏指令</li>
+<li>游戏层：接受指令，执行操作，渲染游戏</li>
+</ul>
+<p>未来发展中，可以探索的几个方向</p>
+<ul>
+<li>抽离专门的Trigger编辑器，支持自定义规则</li>
+<li>开发Native Trigger，接入单机游戏尝试</li>
+<li>针对直播弹幕场景专门设计游戏：既有的游戏无法很好的适配弹幕互动长江，导致很多体验是有问题的</li>
+<li>互动游戏的平衡性设计<ul>
+<li>多人参与感，而不是头部用户</li>
+<li>避免金钱至上，保证直播间流量</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2023/10/25/%E3%80%90drawio%E6%8E%A2%E7%A7%98%E3%80%91%E5%AF%BC%E5%85%A5drawio%E8%BE%93%E5%87%BA%E7%9A%84png%E5%9B%BE%E7%89%87%E5%8F%AF%E4%BB%A5%E4%BA%8C%E6%AC%A1%E7%BC%96%E8%BE%91/" rel="prev" title="【drawio探秘】导入drawio输出的png图片可以二次编辑">
+                  <i class="fa fa-chevron-left"></i> 【drawio探秘】导入drawio输出的png图片可以二次编辑
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2023/10/25/moov%E5%89%8D%E7%BD%AE%E5%8A%A0%E9%80%9F%E8%A7%86%E9%A2%91%E9%A6%96%E6%AC%A1%E5%8F%AF%E8%A7%81/" rel="next" title="moov前置加速视频首次可见">
+                  moov前置加速视频首次可见 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Topppy</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/hexo-blog/js/comments.js"></script><script src="/hexo-blog/js/utils.js"></script><script src="/hexo-blog/js/motion.js"></script><script src="/hexo-blog/js/schemes/muse.js"></script><script src="/hexo-blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

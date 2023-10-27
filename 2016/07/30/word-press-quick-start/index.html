@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/hexo-blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/hexo-blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"topppy.github.io","root":"/hexo-blog/","images":"/hexo-blog/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/hexo-blog/js/config.js"></script>
+
+    <meta name="description" content="Wordpress 安装和使用我们可以在本机安装 wordpress，从而能在本地建站，折腾并调试。本文将详细介绍如何在 Mac 下安装 wordpress。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="word-press-quick-start">
+<meta property="og:url" content="https://topppy.github.io/2016/07/30/word-press-quick-start/index.html">
+<meta property="og:site_name" content="Topppy&#39;s Blog">
+<meta property="og:description" content="Wordpress 安装和使用我们可以在本机安装 wordpress，从而能在本地建站，折腾并调试。本文将详细介绍如何在 Mac 下安装 wordpress。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://topppy.github.io/hexo-blog/2016/07/30/word-press-quick-start/wp-1.png">
+<meta property="og:image" content="https://topppy.github.io/hexo-blog/2016/07/30/word-press-quick-start/wp-2.png">
+<meta property="og:image" content="https://topppy.github.io/hexo-blog/2016/07/30/word-press-quick-start/wp-3.jpg">
+<meta property="article:published_time" content="2016-07-30T00:20:53.000Z">
+<meta property="article:modified_time" content="2023-10-27T06:12:31.452Z">
+<meta property="article:author" content="Topppy">
+<meta property="article:tag" content="wordpress">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://topppy.github.io/hexo-blog/2016/07/30/word-press-quick-start/wp-1.png">
+
+
+<link rel="canonical" href="https://topppy.github.io/2016/07/30/word-press-quick-start/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://topppy.github.io/2016/07/30/word-press-quick-start/","path":"2016/07/30/word-press-quick-start/","title":"word-press-quick-start"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>word-press-quick-start | Topppy's Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/hexo-blog/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/hexo-blog/atom.xml" title="Topppy's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/hexo-blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Topppy's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">FE developer</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Wordpress-%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">Wordpress 安装和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A6%96%E5%85%88%E5%AE%89%E8%A3%85-XAMPP"><span class="nav-number">1.1.</span> <span class="nav-text">首先安装 XAMPP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD-xampp%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80%E5%8F%8C%E5%87%BB%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.1.</span> <span class="nav-text">下载 xampp下载地址双击安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E7%BB%88%E7%AB%AF%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%B8%8B%E9%9D%A2%E7%9A%84%E5%91%BD%E4%BB%A4%E5%90%AF%E5%8A%A8-XAMPP%EF%BC%9A"><span class="nav-number">1.1.2.</span> <span class="nav-text">在终端中使用下面的命令启动 XAMPP：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA-wordpress-%E5%AE%89%E8%A3%85%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.2.</span> <span class="nav-text">为 wordpress 安装数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD-wordpress"><span class="nav-number">1.3.</span> <span class="nav-text">下载 wordpress</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">1.4.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BB%E9%99%86-WordPress"><span class="nav-number">1.5.</span> <span class="nav-text">登陆 WordPress</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98%E5%8F%8A%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98"><span class="nav-number">1.6.</span> <span class="nav-text">更换主题及安装失败问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-number">1.6.1.</span> <span class="nav-text">注意:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E4%B8%8A%E4%BC%A0%E5%8F%8A%E5%A4%A7%E5%B0%8F%E9%99%90%E5%88%B6%E9%97%AE%E9%A2%98"><span class="nav-number">1.7.</span> <span class="nav-text">图片无法上传及大小限制问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E6%B3%95%E4%B8%8A%E4%BC%A0%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%EF%BC%9A"><span class="nav-number">1.7.1.</span> <span class="nav-text">无法上传问题解决：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E5%B0%8F%E9%99%90%E5%88%B6-2M-%E9%97%AE%E9%A2%98%E2%80%94%E2%80%93%E8%A7%A3%E5%86%B3"><span class="nav-number">1.7.2.</span> <span class="nav-text">大小限制 2M 问题—–解决:</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Topppy</p>
+  <div class="site-description" itemprop="description">Can you hear me?</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/hexo-blog/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/hexo-blog/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://topppy.github.io/2016/07/30/word-press-quick-start/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/hexo-blog/images/avatar.gif">
+      <meta itemprop="name" content="Topppy">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Topppy's Blog">
+      <meta itemprop="description" content="Can you hear me?">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="word-press-quick-start | Topppy's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          word-press-quick-start
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-07-30 00:20:53" itemprop="dateCreated datePublished" datetime="2016-07-30T00:20:53+00:00">2016-07-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-10-27 06:12:31" itemprop="dateModified" datetime="2023-10-27T06:12:31+00:00">2023-10-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Wordpress-安装和使用"><a href="#Wordpress-安装和使用" class="headerlink" title="Wordpress 安装和使用"></a>Wordpress 安装和使用</h1><p>我们可以在本机安装 wordpress，从而能在本地建站，折腾并调试。本文将详细介绍如何在 Mac 下安装 wordpress。</p>
+<span id="more"></span>
+
+<p>[toc]</p>
+<h2 id="首先安装-XAMPP"><a href="#首先安装-XAMPP" class="headerlink" title="首先安装 XAMPP"></a>首先安装 XAMPP</h2><h3 id="下载-xampp下载地址双击安装"><a href="#下载-xampp下载地址双击安装" class="headerlink" title="下载 xampp下载地址双击安装"></a>下载 xampp<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/xampp/files/">下载地址</a>双击安装</h3><h3 id="在终端中使用下面的命令启动-XAMPP："><a href="#在终端中使用下面的命令启动-XAMPP：" class="headerlink" title="在终端中使用下面的命令启动 XAMPP："></a>在终端中使用下面的命令启动 XAMPP：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sudo /Applications/XAMPP/xamppfiles/xampp start</span><br><span class="line"></span><br><span class="line">// 终端提示输入密码</span><br><span class="line">Password:</span><br><span class="line"></span><br><span class="line">// 密码输入后回车</span><br><span class="line">Starting XAMPP <span class="keyword">for</span> Mac OS X 5.6.21-0...</span><br><span class="line">XAMPP: Starting Apache...already running.</span><br><span class="line">XAMPP: Starting MySQL...ok.</span><br><span class="line">XAMPP: Starting ProFTPD...ok.</span><br><span class="line">// 启动成功</span><br></pre></td></tr></table></figure>
+
+<p>安装成功之后在浏览器中输入 <code>http://localhost</code></p>
+<img src="/hexo-blog/2016/07/30/word-press-quick-start/wp-1.png" class="" title="This is an example image">
+
+<h2 id="为-wordpress-安装数据库"><a href="#为-wordpress-安装数据库" class="headerlink" title="为 wordpress 安装数据库"></a>为 wordpress 安装数据库</h2><p>wordpress 自身是不带数据库的，需要我们在 XAMPP 中创建数据库。在浏览器中输入：<a target="_blank" rel="noopener" href="http://localhost/phpmyadmin/%EF%BC%8C%E8%BF%9B%E5%85%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2%E3%80%82%E8%BE%93%E5%85%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8D%EF%BC%9Awordpress_test%EF%BC%88%E5%8F%AF%E8%87%AA%E5%AE%9A%E4%B9%89%EF%BC%89%EF%BC%8C%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99%E9%80%89%E6%8B%A9%EF%BC%9Autf8_general_ci">http://localhost/phpmyadmin/，进入数据库管理界面。输入数据库名：wordpress_test（可自定义），排序规则选择：utf8_general_ci</a></p>
+<h2 id="下载-wordpress"><a href="#下载-wordpress" class="headerlink" title="下载 wordpress"></a>下载 wordpress</h2><p>下载 wordpress(最新版本)，然后解压 wordpress 至：&#x2F;Applications&#x2F;XAMPP&#x2F;xamppfiles&#x2F;htdocs&#x2F; 下</p>
+<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>拷贝 &#x2F;Applications&#x2F;XAMPP&#x2F;xamppfiles&#x2F;htdocs&#x2F;wordpress&#x2F;wp-config-sample.php 的内容至 新建的文件&#x2F;Applications&#x2F;XAMPP&#x2F;xamppfiles&#x2F;htdocs&#x2F;wordpress&#x2F;wp-config.php，然后用文本编辑器打开，进行如下三处修改：</p>
+<ul>
+<li>修改数据库名称 database_name_here 为你的数据库名</li>
+<li>修改数据库用户名 username_here 为 root</li>
+<li>修改数据库密码为空，就是把 password_here 删除</li>
+</ul>
+<h2 id="登陆-WordPress"><a href="#登陆-WordPress" class="headerlink" title="登陆 WordPress"></a>登陆 WordPress</h2><p>在浏览器中输入：<a target="_blank" rel="noopener" href="http://localhost/wordpress/%EF%BC%8C%E4%BD%A0%E5%BA%94%E8%AF%A5%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E5%A6%82%E4%B8%8B%E8%AE%BE%E7%BD%AE%E9%A1%B5%E9%9D%A2">http://localhost/wordpress/，你应该可以看到如下设置页面</a></p>
+<img src="/hexo-blog/2016/07/30/word-press-quick-start/wp-2.png" class="" title="This is an example image">
+<p>在这个设置页面设置站点标题，登陆用户名，密码即可。然后就可以看到如下页面</p>
+<img src="/hexo-blog/2016/07/30/word-press-quick-start/wp-3.jpg" class="" title="This is an example image">
+<p>恭喜，wordpress 已经成功安装了</p>
+<h2 id="更换主题及安装失败问题"><a href="#更换主题及安装失败问题" class="headerlink" title="更换主题及安装失败问题"></a>更换主题及安装失败问题</h2><p>有两种方法：</p>
+<ol>
+<li>下载主题包，解压，上传到服务器 wp-content&#x2F;themes 目录下，然后进入管理后台，启用新主题即可。</li>
+<li>直接在后台主题管理处，根据需求搜索主题，然后点击安装，即可实现在线安装。</li>
+</ol>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意:"></a>注意:</h3><p>在线安装主题、插件有可能会出现失败情况，错误提示是没有权限,<br>解决办法如下：<br>将 wp-content 文件夹的权限改为 755，将 wp-content&#x2F;theme 和 wp-content&#x2F;plugin 文件夹的权限改为 777。如果还是提示同样的错误无法安装主题和插件的话，那就只能将 wp-content 文件夹的权限改为 777（下策）。</p>
+<h2 id="图片无法上传及大小限制问题"><a href="#图片无法上传及大小限制问题" class="headerlink" title="图片无法上传及大小限制问题"></a>图片无法上传及大小限制问题</h2><p>WordPress 管理后台支持图片上传，但是第一次使用时候报错（阿里云下 PHP+Apache+nginx 环境）,</p>
+<h3 id="无法上传问题解决："><a href="#无法上传问题解决：" class="headerlink" title="无法上传问题解决："></a>无法上传问题解决：</h3><ol>
+<li>uploads 文件夹不存在———新建该文件夹</li>
+<li>数据库 wp_options 表的 uploads_path 键的值不为 wp-contents&#x2F;uploads——-输入该值</li>
+<li>wp-content 权限改为 755 uploads 权限改为 777</li>
+</ol>
+<h3 id="大小限制-2M-问题—–解决"><a href="#大小限制-2M-问题—–解决" class="headerlink" title="大小限制 2M 问题—–解决:"></a>大小限制 2M 问题—–解决:</h3><ol>
+<li>主机的 etc&#x2F;php5&#x2F;fpm 目录下 php.ini 文件修改以下字段的值如下</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">upload_max_filesize = 32M</span><br><span class="line">post_max_size = 32M</span><br><span class="line">max_execution_time = 300</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>cd 到 &#x2F;etc&#x2F;nigix&#x2F;目录下找到 nginx 的 config 文件 修改以下字段的值如下</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line"><span class="comment">#...</span></span><br><span class="line">    client_max_body_size 32M;</span><br><span class="line"><span class="comment">#...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>然后重启 php-fpm 和 nginx</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service nginx restart</span><br><span class="line">service php5-fpm restart</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://easyengine.io/tutorials/php/increase-file-upload-size-limit/">参考链接</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/hexo-blog/tags/wordpress/" rel="tag"># wordpress</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2016/05/18/canvas-pie/" rel="prev" title="canvas-pie">
+                  <i class="fa fa-chevron-left"></i> canvas-pie
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2016/08/28/git-status-introduction/" rel="next" title="git-status-introduction">
+                  git-status-introduction <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Topppy</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/hexo-blog/js/comments.js"></script><script src="/hexo-blog/js/utils.js"></script><script src="/hexo-blog/js/motion.js"></script><script src="/hexo-blog/js/schemes/muse.js"></script><script src="/hexo-blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

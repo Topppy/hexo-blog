@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/hexo-blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/hexo-blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"topppy.github.io","root":"/hexo-blog/","images":"/hexo-blog/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/hexo-blog/js/config.js"></script>
+
+    <meta name="description" content="https:&#x2F;&#x2F;www.typescriptlang.org&#x2F;docs&#x2F;handbook&#x2F;2&#x2F;functions.html  函数声明两种：  箭头函数式 123function greeter(fn: (a: string) &#x3D;&gt; void) &amp;#123;  fn(&quot;Hello, World&quot;);&amp;#125;  对象式 123456type DescribableFu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ts笔记：More on Functions">
+<meta property="og:url" content="https://topppy.github.io/2023/10/18/ts%E7%AC%94%E8%AE%B0%EF%BC%9AMore-on-Functions/index.html">
+<meta property="og:site_name" content="Topppy&#39;s Blog">
+<meta property="og:description" content="https:&#x2F;&#x2F;www.typescriptlang.org&#x2F;docs&#x2F;handbook&#x2F;2&#x2F;functions.html  函数声明两种：  箭头函数式 123function greeter(fn: (a: string) &#x3D;&gt; void) &amp;#123;  fn(&quot;Hello, World&quot;);&amp;#125;  对象式 123456type DescribableFu">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-18T06:28:00.000Z">
+<meta property="article:modified_time" content="2023-10-27T06:12:31.452Z">
+<meta property="article:author" content="Topppy">
+<meta property="article:tag" content="frontend">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://topppy.github.io/2023/10/18/ts%E7%AC%94%E8%AE%B0%EF%BC%9AMore-on-Functions/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://topppy.github.io/2023/10/18/ts%E7%AC%94%E8%AE%B0%EF%BC%9AMore-on-Functions/","path":"2023/10/18/ts笔记：More-on-Functions/","title":"ts笔记：More on Functions"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ts笔记：More on Functions | Topppy's Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/hexo-blog/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/hexo-blog/atom.xml" title="Topppy's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/hexo-blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Topppy's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">FE developer</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">函数声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">泛型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B%E7%9A%84%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97"><span class="nav-number">3.</span> <span class="nav-text">泛型的实践指南</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0%E4%B8%8B%E7%A7%BB-%E6%B3%9B%E5%9E%8B%E5%B0%BD%E5%8F%AF%E8%83%BD%E4%B8%8B%E6%B2%89%E5%88%B0%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8F%B6%E5%AD%90%E7%BB%93%E7%82%B9%EF%BC%8C-%E5%88%AB%E5%A4%AA%E2%80%9C%E6%B3%9B%E2%80%9D%E4%BA%86"><span class="nav-number">3.0.1.</span> <span class="nav-text">类型参数下移(泛型尽可能下沉到类型的叶子结点， 别太“泛”了)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%BD%E5%8F%AF%E8%83%BD%E5%87%8F%E5%B0%91%E6%B3%9B%E5%9E%8B%E7%9A%84%E6%95%B0%E9%87%8F%EF%BC%88%E8%83%BD%E7%94%A8%E4%B8%80%E4%B8%AA-%E5%B0%B1%E4%B8%8D%E8%A6%81%E7%94%A8%E4%B8%A4%E4%B8%AA0"><span class="nav-number">3.0.2.</span> <span class="nav-text">尽可能减少泛型的数量（能用一个 就不要用两个0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B%E5%8F%98%E9%87%8F%E5%BA%94%E8%AF%A5%E5%87%BA%E7%8E%B02%E6%AC%A1%EF%BC%88%E5%A6%82%E6%9E%9C%E8%BF%99%E4%B8%AA%E5%8F%98%E9%87%8F%E4%B8%8D%E4%BC%9A%E7%94%A8%E5%88%B0%E7%AC%AC%E4%BA%8C%E6%AC%A1%EF%BC%8C%E9%82%A3%E4%B8%BA%E5%95%A5%E8%A6%81%E5%A3%B0%E6%98%8E%E8%BF%99%E4%B8%AA%E6%B3%9B%E5%9E%8B%E5%91%A2%EF%BC%9F%EF%BC%89"><span class="nav-number">3.0.3.</span> <span class="nav-text">泛型变量应该出现2次（如果这个变量不会用到第二次，那为啥要声明这个泛型呢？）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E5%87%BD%E6%95%B0%E4%B8%AD%E5%A3%B0%E6%98%8Ethis"><span class="nav-number">4.</span> <span class="nav-text">在函数中声明this</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Topppy</p>
+  <div class="site-description" itemprop="description">Can you hear me?</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/hexo-blog/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/hexo-blog/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://topppy.github.io/2023/10/18/ts%E7%AC%94%E8%AE%B0%EF%BC%9AMore-on-Functions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/hexo-blog/images/avatar.gif">
+      <meta itemprop="name" content="Topppy">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Topppy's Blog">
+      <meta itemprop="description" content="Can you hear me?">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ts笔记：More on Functions | Topppy's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ts笔记：More on Functions
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-10-18 06:28:00" itemprop="dateCreated datePublished" datetime="2023-10-18T06:28:00+00:00">2023-10-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-10-27 06:12:31" itemprop="dateModified" datetime="2023-10-27T06:12:31+00:00">2023-10-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/2/functions.html">https://www.typescriptlang.org/docs/handbook/2/functions.html</a></p>
+</blockquote>
+<h2 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h2><p>两种：</p>
+<ol>
+<li><p>箭头函数式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function greeter(fn: (a: string) =&gt; void) &#123;</span><br><span class="line">  fn(&quot;Hello, World&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对象式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type DescribableFunction = &#123;</span><br><span class="line">  (someArg: number): boolean;</span><br><span class="line">&#125;;</span><br><span class="line">function doSomething(fn: DescribableFunction) &#123;</span><br><span class="line">  console.log( fn(6));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种允许声明函数属性:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">type DescribableFunction = &#123;</span><br><span class="line">  description: string;</span><br><span class="line">  (someArg: number): boolean;</span><br><span class="line">&#125;;</span><br><span class="line">function doSomething(fn: DescribableFunction) &#123;</span><br><span class="line">  console.log(fn.description + &quot; returned &quot; + fn(6));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>允许重载声明</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">type DescribableFunction = &#123;</span><br><span class="line">  (someArg: number): boolean;</span><br><span class="line">  (someArg: string): boolean;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function doSomething(fn: DescribableFunction) &#123;</span><br><span class="line">  console.log( fn(6));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>允许声明构造函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type SomeConstructor = &#123;</span><br><span class="line">  new (s: string): SomeObject;</span><br><span class="line">&#125;;</span><br><span class="line">function fn(ctor: SomeConstructor) &#123;</span><br><span class="line">  return new ctor(&quot;hello&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么既支持new操作符也支持直接调用的函数，可以利用重载+new声明：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">interface CallOrConstruct &#123;</span><br><span class="line">  new (s: string): Date;</span><br><span class="line">  (n?: number): number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>为了解决支持不同类型参数的通用函数的声明问题。我们声明一个类型的变量：泛型，用来指代未知的类型。可以理解为一元一次数学方程中的x变量： 2x+1&#x3D;5， 只要x能满足函数方程就可以，x可以是任何类型。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function firstElement&lt;Type&gt;(arr: Type[]): Type | undefined &#123;</span><br><span class="line">  return arr[0];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// s is of type &#x27;string&#x27;</span><br><span class="line">const s = firstElement([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]);</span><br><span class="line">// n is of type &#x27;number&#x27;</span><br><span class="line">const n = firstElement([1, 2, 3]);</span><br><span class="line">// u is of type undefined</span><br><span class="line">const u = firstElement([]);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上例中，泛型Type的具体类型是ts推断出来的，我们没有明确的手动告诉ts。</p>
+</blockquote>
+<p>也可以约束泛型坍塌为具有某些特性的类型。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function longest&lt;Type extends &#123; length: number &#125;&gt;(a: Type, b: Type) &#123;</span><br><span class="line">  if (a.length &gt;= b.length) &#123;</span><br><span class="line">    return a;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return b;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">// longerArray is of type &#x27;number[]&#x27;</span><br><span class="line">const longerArray = longest([1, 2], [1, 2, 3]);</span><br><span class="line">// longerString is of type &#x27;alice&#x27; | &#x27;bob&#x27;</span><br><span class="line">const longerString = longest(&quot;alice&quot;, &quot;bob&quot;);</span><br><span class="line">// Error! Numbers don&#x27;t have a &#x27;length&#x27; property</span><br><span class="line">const notOK = longest(10, 100);</span><br></pre></td></tr></table></figure>
+<p>更严谨的可以手动指定类型（有时候ts没那么“聪明”可以自己推断出正确的类型）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function combine&lt;Type&gt;(arr1: Type[], arr2: Type[]): Type[] &#123;</span><br><span class="line">  return arr1.concat(arr2);</span><br><span class="line">&#125;</span><br><span class="line">const arr = combine&lt;string | number&gt;([1, 2, 3], [&quot;hello&quot;]);</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h2 id="泛型的实践指南"><a href="#泛型的实践指南" class="headerlink" title="泛型的实践指南"></a>泛型的实践指南</h2><h4 id="类型参数下移-泛型尽可能下沉到类型的叶子结点，-别太“泛”了"><a href="#类型参数下移-泛型尽可能下沉到类型的叶子结点，-别太“泛”了" class="headerlink" title="类型参数下移(泛型尽可能下沉到类型的叶子结点， 别太“泛”了)"></a>类型参数下移(泛型尽可能下沉到类型的叶子结点， 别太“泛”了)</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function firstElement1&lt;Type&gt;(arr: Type[]) &#123;</span><br><span class="line">  return arr[0];</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">function firstElement2&lt;Type extends any[]&gt;(arr: Type) &#123;</span><br><span class="line">  return arr[0];</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">// a: number (good)</span><br><span class="line">const a = firstElement1([1, 2, 3]);</span><br><span class="line">// b: any (bad)</span><br><span class="line">const b = firstElement2([1, 2, 3]);</span><br></pre></td></tr></table></figure>
+<p>这里 第二种写法跟any一样，泛型白用</p>
+<h4 id="尽可能减少泛型的数量（能用一个-就不要用两个0"><a href="#尽可能减少泛型的数量（能用一个-就不要用两个0" class="headerlink" title="尽可能减少泛型的数量（能用一个 就不要用两个0"></a>尽可能减少泛型的数量（能用一个 就不要用两个0</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function filter1&lt;Type&gt;(arr: Type[], func: (arg: Type) =&gt; boolean): Type[] &#123;</span><br><span class="line">  return arr.filter(func);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">function filter2&lt;Type, Func extends (arg: Type) =&gt; boolean&gt;(</span><br><span class="line">  arr: Type[],</span><br><span class="line">  func: Func</span><br><span class="line">): Type[] &#123;</span><br><span class="line">  return arr.filter(func);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里Func就是一个没啥用的泛型</p>
+<h4 id="泛型变量应该出现2次（如果这个变量不会用到第二次，那为啥要声明这个泛型呢？）"><a href="#泛型变量应该出现2次（如果这个变量不会用到第二次，那为啥要声明这个泛型呢？）" class="headerlink" title="泛型变量应该出现2次（如果这个变量不会用到第二次，那为啥要声明这个泛型呢？）"></a>泛型变量应该出现2次（如果这个变量不会用到第二次，那为啥要声明这个泛型呢？）</h4><p>反例：Str 不如直接用string</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function greet&lt;Str extends string&gt;(s: Str) &#123;</span><br><span class="line">  console.log(&quot;Hello, &quot; + s);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">greet(&quot;world&quot;);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+<h2 id="在函数中声明this"><a href="#在函数中声明this" class="headerlink" title="在函数中声明this"></a>在函数中声明this</h2><p>大部分时候ts通过推断来判断this指向谁，但是js里this的指向的判定规则还蛮复杂的，ts支持我们告诉他this应该是谁</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">const user = &#123;</span><br><span class="line">  id: 123,</span><br><span class="line"> </span><br><span class="line">  admin: false,</span><br><span class="line">  becomeAdmin: function () &#123;</span><br><span class="line">    this.admin = true;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">interface DB &#123;</span><br><span class="line">  filterUsers(filter: (this: User) =&gt; boolean): User[];</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">const db = getDB();</span><br><span class="line">// 这里我们声明，this的类型应该是User</span><br><span class="line">const admins = db.filterUsers(function (this: User) &#123;</span><br><span class="line">  return this.admin;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这种技巧非常适合在回调函数的类型声明中使用，</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2023/10/16/ts%E7%AC%94%E8%AE%B0-Everyday-Types/" rel="prev" title="ts笔记: Everyday Types">
+                  <i class="fa fa-chevron-left"></i> ts笔记: Everyday Types
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2023/10/19/%E5%85%B3%E4%BA%8Ereact-hook-%E8%BF%94%E5%9B%9E%E7%BB%84%E4%BB%B6%E6%A8%A1%E5%BC%8F%E7%9A%84%E8%AE%A8%E8%AE%BA/" rel="next" title="关于react hook 返回组件模式的讨论">
+                  关于react hook 返回组件模式的讨论 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Topppy</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/hexo-blog/js/comments.js"></script><script src="/hexo-blog/js/utils.js"></script><script src="/hexo-blog/js/motion.js"></script><script src="/hexo-blog/js/schemes/muse.js"></script><script src="/hexo-blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

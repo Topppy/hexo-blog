@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/hexo-blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/hexo-blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"topppy.github.io","root":"/hexo-blog/","images":"/hexo-blog/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/hexo-blog/js/config.js"></script>
+
+    <meta name="description" content="能run起来的最粗暴的方式就是把nodeIntegration打开，把contextIsolation关掉。 12345678910const config: BrowserWindowConstructorOptions &#x3D; &amp;#123;    show: false,    webPreferences: &amp;#123;      nodeIntegration: true,      cont">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 electron13 + electron-react-boilerplate 一些包报错+native包问题">
+<meta property="og:url" content="https://topppy.github.io/2023/10/13/%E4%BD%BF%E7%94%A8-electron13-electron-react-boilerplate-%E4%B8%80%E4%BA%9B%E5%8C%85%E6%8A%A5%E9%94%99-native%E5%8C%85%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="Topppy&#39;s Blog">
+<meta property="og:description" content="能run起来的最粗暴的方式就是把nodeIntegration打开，把contextIsolation关掉。 12345678910const config: BrowserWindowConstructorOptions &#x3D; &amp;#123;    show: false,    webPreferences: &amp;#123;      nodeIntegration: true,      cont">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-13T07:10:20.000Z">
+<meta property="article:modified_time" content="2023-10-27T06:12:31.456Z">
+<meta property="article:author" content="Topppy">
+<meta property="article:tag" content="frontend">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://topppy.github.io/2023/10/13/%E4%BD%BF%E7%94%A8-electron13-electron-react-boilerplate-%E4%B8%80%E4%BA%9B%E5%8C%85%E6%8A%A5%E9%94%99-native%E5%8C%85%E9%97%AE%E9%A2%98/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://topppy.github.io/2023/10/13/%E4%BD%BF%E7%94%A8-electron13-electron-react-boilerplate-%E4%B8%80%E4%BA%9B%E5%8C%85%E6%8A%A5%E9%94%99-native%E5%8C%85%E9%97%AE%E9%A2%98/","path":"2023/10/13/使用-electron13-electron-react-boilerplate-一些包报错-native包问题/","title":"使用 electron13 + electron-react-boilerplate 一些包报错+native包问题"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>使用 electron13 + electron-react-boilerplate 一些包报错+native包问题 | Topppy's Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/hexo-blog/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/hexo-blog/atom.xml" title="Topppy's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/hexo-blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Topppy's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">FE developer</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Topppy</p>
+  <div class="site-description" itemprop="description">Can you hear me?</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/hexo-blog/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/hexo-blog/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://topppy.github.io/2023/10/13/%E4%BD%BF%E7%94%A8-electron13-electron-react-boilerplate-%E4%B8%80%E4%BA%9B%E5%8C%85%E6%8A%A5%E9%94%99-native%E5%8C%85%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/hexo-blog/images/avatar.gif">
+      <meta itemprop="name" content="Topppy">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Topppy's Blog">
+      <meta itemprop="description" content="Can you hear me?">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="使用 electron13 + electron-react-boilerplate 一些包报错+native包问题 | Topppy's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用 electron13 + electron-react-boilerplate 一些包报错+native包问题
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-10-13 07:10:20" itemprop="dateCreated datePublished" datetime="2023-10-13T07:10:20+00:00">2023-10-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-10-27 06:12:31" itemprop="dateModified" datetime="2023-10-27T06:12:31+00:00">2023-10-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>能run起来的最粗暴的方式就是<br>把nodeIntegration打开，把contextIsolation关掉。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const config: BrowserWindowConstructorOptions = &#123;</span><br><span class="line">    show: false,</span><br><span class="line">    webPreferences: &#123;</span><br><span class="line">      nodeIntegration: true,</span><br><span class="line">      contextIsolation: false,</span><br><span class="line">      webSecurity: false,</span><br><span class="line">      preload: preloadPath,</span><br><span class="line">      enableRemoteModule: true,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果装native包，务必在 app&#x2F;release&#x2F;下安装，并且要使用 npm 而不是yarn.</p>
+<p>electron-react-boilerplate 使用的rebuild版本有问题，直接升级到最新版本。</p>
+<p>未解决问题。 基于ffi-napi 多次调用win32的方法，QueryDisplayConfig，node进程会直接中断退出。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line">import log from &#x27;electron-log&#x27;</span><br><span class="line"></span><br><span class="line">const ffi = require(&#x27;ffi-napi&#x27;)</span><br><span class="line">const ref = require(&#x27;ref-napi&#x27;) // 对接C++指针</span><br><span class="line">const refStruct = require(&#x27;ref-struct-napi&#x27;) // 对接C++结构体</span><br><span class="line">const refArray = require(&#x27;ref-array-napi&#x27;) // 对接C++数组</span><br><span class="line"></span><br><span class="line">// 屏幕的四种模式</span><br><span class="line"></span><br><span class="line">export const sdcApplay = 0x80 // 屏幕设置辅助参数</span><br><span class="line"></span><br><span class="line">export enum DisplayMode &#123;</span><br><span class="line">  internal = 1, // 仅电脑屏</span><br><span class="line">  clone = 2, // 复制</span><br><span class="line">  extend = 4, // 扩展</span><br><span class="line">  external = 8, // 仅第二屏幕</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 这两个结构体的内容太复杂，而且实际项目用不到，所以直接算一下结构体的大小填充个无用数据</span><br><span class="line">const DISPLAYCONFIG_PATH_INFO = refStruct(&#123;</span><br><span class="line">  unuse: refArray(ref.types.int, 72 / 4),</span><br><span class="line">&#125;)</span><br><span class="line">const DISPLAYCONFIG_MODE_INFO = refStruct(&#123;</span><br><span class="line">  unuse: refArray(ref.types.int, 64 / 4),</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">const PathArrayType = refArray(ref.refType(DISPLAYCONFIG_PATH_INFO))</span><br><span class="line">const ModeArrayType = refArray(ref.refType(DISPLAYCONFIG_MODE_INFO))</span><br><span class="line"></span><br><span class="line">const libm = ffi.Library(&#x27;user32&#x27;, &#123;</span><br><span class="line">  SetDisplayConfig: [&#x27;long&#x27;, [&#x27;int&#x27;, &#x27;pointer&#x27;, &#x27;int&#x27;, &#x27;pointer&#x27;, &#x27;int&#x27;]],</span><br><span class="line">  GetDisplayConfigBufferSizes: [</span><br><span class="line">    &#x27;long&#x27;,</span><br><span class="line">    [&#x27;int&#x27;, ref.refType(ref.types.int), ref.refType(ref.types.int)],</span><br><span class="line">  ],</span><br><span class="line">  QueryDisplayConfig: [</span><br><span class="line">    &#x27;long&#x27;,</span><br><span class="line">    [</span><br><span class="line">      &#x27;int&#x27;,</span><br><span class="line">      ref.refType(ref.types.int),</span><br><span class="line">      PathArrayType,</span><br><span class="line">      ref.refType(ref.types.int),</span><br><span class="line">      ModeArrayType,</span><br><span class="line">      ref.refType(ref.types.int),</span><br><span class="line">    ],</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  setDisplayMode: (mode: DisplayMode) =&gt; &#123;</span><br><span class="line">    log.info(</span><br><span class="line">      &#x27;=====================================================================setDisplayMode&#x27;,</span><br><span class="line">      mode,</span><br><span class="line">    )</span><br><span class="line">    // eslint-disable-next-line no-bitwise</span><br><span class="line">    const re = libm.SetDisplayConfig(0, null, 0, null, sdcApplay | mode)</span><br><span class="line">    return re</span><br><span class="line">  &#125;,</span><br><span class="line">  getDisplayMode: () =&gt; &#123;</span><br><span class="line">    const requiredPaths = ref.alloc(ref.types.int)</span><br><span class="line">    const requiredModes = ref.alloc(ref.types.int)</span><br><span class="line">    // 获取QueryDisplayConfig的2-5参数，不用动</span><br><span class="line">    const result2 = libm.GetDisplayConfigBufferSizes(</span><br><span class="line">      2,</span><br><span class="line">      requiredPaths,</span><br><span class="line">      requiredModes,</span><br><span class="line">    )</span><br><span class="line">    log.info(result2, requiredPaths.deref(), requiredModes.deref())</span><br><span class="line"></span><br><span class="line">    const PathArray = refArray(DISPLAYCONFIG_PATH_INFO, requiredPaths.deref())</span><br><span class="line">    const ModeAyyay = refArray(DISPLAYCONFIG_MODE_INFO, requiredModes.deref())</span><br><span class="line">    const paths = new PathArray()</span><br><span class="line">    const modes = new ModeAyyay()</span><br><span class="line"></span><br><span class="line">    // 查询结果存储在flags</span><br><span class="line">    log.info(&#x27;new flags&#x27;)</span><br><span class="line">    const flags1 = ref.alloc(ref.types.int)</span><br><span class="line">    // 2到5参数没有用到，参数1是常量</span><br><span class="line">    log.info(&#x27;start get&#x27;)</span><br><span class="line">    libm.QueryDisplayConfig(</span><br><span class="line">      4,</span><br><span class="line">      requiredPaths,</span><br><span class="line">      paths.ref(),</span><br><span class="line">      requiredModes,</span><br><span class="line">      modes.ref(),</span><br><span class="line">      flags1,</span><br><span class="line">    )</span><br><span class="line">    // log.info(&#x27;save re&#x27;)</span><br><span class="line">    // const re = flags1.deref()</span><br><span class="line">    log.info(</span><br><span class="line">      &#x27;=====================================================================getDisplayMode&#x27;,</span><br><span class="line">      flags1.deref(),</span><br><span class="line">    )</span><br><span class="line">    return flags1.deref()</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>mac需要动态不引入win32的native包（会报错）</p>
+<p>需要安装node-gyp构建环境（开发机 &amp; 打包机）</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/nodejs/node-gyp#on-windows">https://github.com/nodejs/node-gyp#on-windows</a><br>python 3.9 安装 + 环境变量（要选给all users 安装）<br> npm config set python “C:\Programs\Python\Python39\python.exe”<br>npm install windows-build-tools -g</p>
+</blockquote>
+<p>卡住解决：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e2f12fab2b78">https://www.jianshu.com/p/e2f12fab2b78</a></p>
+<p>参考资料文档：</p>
+<p>如何实现外界屏幕模式切换<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/wangyunman/article/details/103080818">https://blog.csdn.net/wangyunman/article/details/103080818</a><br>调用Windows API：SetDisplayConfig<br>调用displayswitch.exe 可以实现，但是会有一个切换的系统级UI变化，<a target="_blank" rel="noopener" href="https://renenyffenegger.ch/notes/Windows/dirs/Windows/System32/DisplaySwitch_exe#:~:text=DisplaySwitch.exe%20can%20be%20used,the%20windows%2Bp%20keyboard%20shortcut">https://renenyffenegger.ch/notes/Windows/dirs/Windows/System32/DisplaySwitch_exe#:~:text=DisplaySwitch.exe%20can%20be%20used,the%20windows%2Bp%20keyboard%20shortcut</a>.</p>
+<p>在 Electron 下调用 Win32 API 的经历</p>
+<p>node 如何执行 windows API<br><a target="_blank" rel="noopener" href="https://github.com/waitingsong/node-win32-api">https://github.com/waitingsong/node-win32-api</a></p>
+<p>外部函数接口 FFI —— 虚拟机中重要但不起眼的组件<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/32134367">https://zhuanlan.zhihu.com/p/32134367</a><br>node.js + Electron 调用 Windows API 踩坑日记<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_21487663/article/details/111099822">https://blog.csdn.net/qq_21487663/article/details/111099822</a><br>electron怎么调用windows的api？</p>
+<p>问题：</p>
+<ol>
+<li>electron 安装native包报错</li>
+<li>win32-api没有这个方法</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6854573212341108749#heading-9">https://juejin.cn/post/6854573212341108749#heading-9</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/YW_yang/article/details/117434122">https://blog.csdn.net/YW_yang/article/details/117434122</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_40450855/article/details/109318361?spm=1001.2101.3001.6650.2&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-2.no_search_link&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-2.no_search_link&utm_relevant_index=4">https://blog.csdn.net/weixin_40450855/article/details/109318361?spm=1001.2101.3001.6650.2&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-2.no_search_link&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-2.no_search_link&amp;utm_relevant_index=4</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/silenzio/p/11639960.html">https://www.cnblogs.com/silenzio/p/11639960.html</a></p>
+<p>锁版本， 统一 编译需要的C++版本，python版本</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2023/10/13/electron%E5%86%85%E9%A1%B5%E9%9D%A2nav%E5%8D%A1%E4%BD%8F/" rel="prev" title="electron内页面nav卡住">
+                  <i class="fa fa-chevron-left"></i> electron内页面nav卡住
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2023/10/13/%E6%8A%80%E6%9C%AF%E5%85%85%E7%94%B5React18/" rel="next" title="技术充电React18">
+                  技术充电React18 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Topppy</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/hexo-blog/js/comments.js"></script><script src="/hexo-blog/js/utils.js"></script><script src="/hexo-blog/js/motion.js"></script><script src="/hexo-blog/js/schemes/muse.js"></script><script src="/hexo-blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

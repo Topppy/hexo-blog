@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/hexo-blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/hexo-blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"topppy.github.io","root":"/hexo-blog/","images":"/hexo-blog/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/hexo-blog/js/config.js"></script>
+
+    <meta name="description" content="Electron 入门笔记Electron简介这个框架可以让你使用javascript开发Mac，Windows，Linux客户端。基本上可以理解为一个你自己的浏览器，访问本地的页面；而超出浏览器的部分是，你可以使用node拥有的能力。 Runtime 运行时Electron凭什么可以让js拥有开发客户端的能力？这就要从js的运行时说起，什么是运行时呢？  Js runtime就是用来执行Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="electron-starter-guide">
+<meta property="og:url" content="https://topppy.github.io/2019/06/06/electron-starter-guide/index.html">
+<meta property="og:site_name" content="Topppy&#39;s Blog">
+<meta property="og:description" content="Electron 入门笔记Electron简介这个框架可以让你使用javascript开发Mac，Windows，Linux客户端。基本上可以理解为一个你自己的浏览器，访问本地的页面；而超出浏览器的部分是，你可以使用node拥有的能力。 Runtime 运行时Electron凭什么可以让js拥有开发客户端的能力？这就要从js的运行时说起，什么是运行时呢？  Js runtime就是用来执行Java">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB60e1ec058d34cc2a9828a6846695eb63?method=download&shareKey=66db5604d56f2602a7a431b5ed92b9e3">
+<meta property="article:published_time" content="2019-06-06T16:54:50.000Z">
+<meta property="article:modified_time" content="2023-10-27T06:12:31.436Z">
+<meta property="article:author" content="Topppy">
+<meta property="article:tag" content="electron">
+<meta property="article:tag" content="react">
+<meta property="article:tag" content="starter">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/WEB60e1ec058d34cc2a9828a6846695eb63?method=download&shareKey=66db5604d56f2602a7a431b5ed92b9e3">
+
+
+<link rel="canonical" href="https://topppy.github.io/2019/06/06/electron-starter-guide/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://topppy.github.io/2019/06/06/electron-starter-guide/","path":"2019/06/06/electron-starter-guide/","title":"electron-starter-guide"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>electron-starter-guide | Topppy's Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/hexo-blog/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/hexo-blog/atom.xml" title="Topppy's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/hexo-blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Topppy's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">FE developer</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Electron-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">Electron 入门笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Electron%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">Electron简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Runtime-%E8%BF%90%E8%A1%8C%E6%97%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">Runtime 运行时</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%90%E8%A1%8C%E6%97%B6"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">浏览器运行时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Node-%E8%BF%90%E8%A1%8C%E6%97%B6"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">Node 运行时</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E5%BC%80%E5%8F%91%E9%9C%80%E8%A6%81%E4%BB%80%E4%B9%88"><span class="nav-number">1.2.</span> <span class="nav-text">开始开发需要什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E6%A1%A3"><span class="nav-number">1.2.1.</span> <span class="nav-text">文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#demo"><span class="nav-number">1.2.2.</span> <span class="nav-text">demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%BF%9B%E7%A8%8B%E5%92%8C%E6%B8%B2%E6%9F%93%E8%BF%9B%E7%A8%8B"><span class="nav-number">1.2.3.</span> <span class="nav-text">主进程和渲染进程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-number">1.3.</span> <span class="nav-text">知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%A6%E6%88%AAelectron%E6%B8%B2%E6%9F%93%E8%BF%9B%E7%A8%8B%E4%B8%AD%E7%BD%91%E9%A1%B5%E7%9A%84%E4%BC%AA%E5%8D%8F%E8%AE%AE%E8%AF%B7%E6%B1%82"><span class="nav-number">1.3.1.</span> <span class="nav-text">拦截electron渲染进程中网页的伪协议请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8electron%E5%A4%96%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BD%BF%E7%94%A8deeplink%E5%94%A4%E8%B5%B7electron%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">1.3.2.</span> <span class="nav-text">在electron外的浏览器使用deeplink唤起electron客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8electron%E4%B8%AD%E4%BD%BF%E7%94%A8devTools"><span class="nav-number">1.3.3.</span> <span class="nav-text">在electron中使用devTools</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%90%AFwebview%E7%9A%84devTools"><span class="nav-number">1.3.4.</span> <span class="nav-text">开启webview的devTools</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webview%E5%A6%82%E4%BD%95%E5%AE%89%E5%85%A8%E6%89%A7%E8%A1%8CnodeApi"><span class="nav-number">1.3.5.</span> <span class="nav-text">webview如何安全执行nodeApi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%BC%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%BB%98%E8%AE%A4%E5%85%A8%E5%B1%8F%E6%98%BE%E7%A4%BA%E5%92%8C%E6%8E%A7%E5%88%B6"><span class="nav-number">1.3.6.</span> <span class="nav-text">打开客户端默认全屏显示和控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%A8%E5%B1%8F%E6%98%BE%E7%A4%BA"><span class="nav-number">1.3.6.1.</span> <span class="nav-text">全屏显示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A6%81%E6%AD%A2%E9%80%80%E5%87%BA%E5%85%A8%E5%B1%8F"><span class="nav-number">1.3.6.2.</span> <span class="nav-text">禁止退出全屏</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%88%E5%85%A8%E5%B1%8F%EF%BC%8C%E5%86%8D%E7%A6%81%E6%AD%A2%E6%9C%80%E5%A4%A7%E5%8C%96"><span class="nav-number">1.3.6.2.1.</span> <span class="nav-text">先全屏，再禁止最大化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%9A%90%E8%97%8F%E7%BB%BF%E8%89%B2%E6%8C%89%E9%92%AE"><span class="nav-number">1.3.6.2.2.</span> <span class="nav-text">隐藏绿色按钮</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%8C%85%E5%92%8C%E5%8F%91%E5%B8%83"><span class="nav-number">1.4.</span> <span class="nav-text">打包和发布</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Topppy</p>
+  <div class="site-description" itemprop="description">Can you hear me?</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/hexo-blog/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/hexo-blog/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://topppy.github.io/2019/06/06/electron-starter-guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/hexo-blog/images/avatar.gif">
+      <meta itemprop="name" content="Topppy">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Topppy's Blog">
+      <meta itemprop="description" content="Can you hear me?">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="electron-starter-guide | Topppy's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          electron-starter-guide
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-06-06 16:54:50" itemprop="dateCreated datePublished" datetime="2019-06-06T16:54:50+00:00">2019-06-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-10-27 06:12:31" itemprop="dateModified" datetime="2023-10-27T06:12:31+00:00">2023-10-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Electron-入门笔记"><a href="#Electron-入门笔记" class="headerlink" title="Electron 入门笔记"></a>Electron 入门笔记</h1><h2 id="Electron简介"><a href="#Electron简介" class="headerlink" title="Electron简介"></a>Electron简介</h2><p>这个框架可以让你使用javascript开发Mac，Windows，Linux客户端。基本上可以理解为一个你自己的浏览器，访问本地的页面；而超出浏览器的部分是，你可以使用node拥有的能力。</p>
+<h3 id="Runtime-运行时"><a href="#Runtime-运行时" class="headerlink" title="Runtime 运行时"></a>Runtime 运行时</h3><p>Electron凭什么可以让js拥有开发客户端的能力？这就要从js的运行时说起，什么是运行时呢？</p>
+<blockquote>
+<p>Js runtime就是用来执行JavaScript代码用的，为其提供了一个运行时环境，提供解释&#x2F;编译、自动内存管理（GC）、对象模型、核心库API等功能。</p>
+</blockquote>
+<p>我们熟悉的两个运行时分别是浏览器和Node</p>
+<h4 id="浏览器运行时"><a href="#浏览器运行时" class="headerlink" title="浏览器运行时"></a>浏览器运行时</h4><p><img src="https://note.youdao.com/yws/api/personal/file/WEB60e1ec058d34cc2a9828a6846695eb63?method=download&shareKey=66db5604d56f2602a7a431b5ed92b9e3" alt="image"></p>
+<p>前端开发最基本的就是运行在浏览器中的html、js，简单的提供可视化的UI和交互给用户，但是所有的一切，都是局限于浏览器内的，换句话说你最多只能做浏览器允许你做的事情，前端页面无法绕过浏览器直接在你的电脑里搞事情。而浏览器是一个沙盒环境。</p>
+<h4 id="Node-运行时"><a href="#Node-运行时" class="headerlink" title="Node 运行时"></a>Node 运行时</h4><h2 id="开始开发需要什么"><a href="#开始开发需要什么" class="headerlink" title="开始开发需要什么"></a>开始开发需要什么</h2><h3 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h3><p>官方文档：<a target="_blank" rel="noopener" href="https://electronjs.org/docs">https://electronjs.org/docs</a><br>中文资料集合：<a target="_blank" rel="noopener" href="https://github.com/amhoho/electron-cn-docs">https://github.com/amhoho/electron-cn-docs</a><br>electron英文资料大集合： <a target="_blank" rel="noopener" href="https://github.com/sindresorhus/awesome-electron">https://github.com/sindresorhus/awesome-electron</a></p>
+<span id="more"></span>
+
+<h3 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h3><ul>
+<li>快速开始demo：<a target="_blank" rel="noopener" href="https://github.com/electron/electron-quick-start">https://github.com/electron/electron-quick-start</a></li>
+<li>官方的APIdemo：<a target="_blank" rel="noopener" href="https://github.com/electron/electron-api-demos">https://github.com/electron/electron-api-demos</a></li>
+<li>官方typescript的demo： <a target="_blank" rel="noopener" href="https://github.com/electron/electron-quick-start-typescript">https://github.com/electron/electron-quick-start-typescript</a></li>
+</ul>
+<p>由于我最终选择的架构是ts+react，因此，可以参考这两个模板：</p>
+<ul>
+<li>electron的react模板： <a target="_blank" rel="noopener" href="https://github.com/electron-react-boilerplate/electron-react-boilerplate">https://github.com/electron-react-boilerplate/electron-react-boilerplate</a></li>
+<li>electron的react + ts样例：<a target="_blank" rel="noopener" href="https://github.com/electron-react-boilerplate/examples/tree/master/examples/typescript">https://github.com/electron-react-boilerplate/examples/tree/master/examples/typescript</a></li>
+</ul>
+<h3 id="主进程和渲染进程"><a href="#主进程和渲染进程" class="headerlink" title="主进程和渲染进程"></a>主进程和渲染进程</h3><p>这是跟web开发最大的不同点，electron的入口文件的进程是主进程, 在主进程中，你可以像在node环境一样开发，操作本地文件，主进程可以创建渲染进程，渲染进程就是展示我们看到的UI页面的的，可以理解为我们浏览器页面，因此我们使用React写的组件啊实际上实在渲染进程中运行的。</p>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="拦截electron渲染进程中网页的伪协议请求"><a href="#拦截electron渲染进程中网页的伪协议请求" class="headerlink" title="拦截electron渲染进程中网页的伪协议请求"></a>拦截electron渲染进程中网页的伪协议请求</h3><p>我们知道在传统的ios和android的客户端hybrid开发中，是可以跟客户端约定伪协议进行单方向通信的。那么在electron中，如何做到这一点呢，可以让外部网页与electron主进程通信。那就要使用electron的protocol模块。在主进程中，注册协议</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 拦截协议</span></span><br><span class="line">protocol.<span class="title function_">registerHttpProtocol</span>(<span class="string">&#x27;gayhub&#x27;</span>, <span class="function">(<span class="params">request, callback</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;protocol url:&#x27;</span>, url)</span><br><span class="line">  <span class="comment">// 打开electron的默认render之类的</span></span><br><span class="line">  mainWindow.<span class="title function_">loadURL</span>(<span class="string">`file://<span class="subst">$&#123;__dirname&#125;</span>/app.html`</span>);</span><br><span class="line">&#125;, <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (error) <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;Failed to register protocol&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这样我们在render进程渲染的网页如果有一个a标签</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;gayhub://home&quot;</span>&gt;</span>去往electron客户端的首页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="在electron外的浏览器使用deeplink唤起electron客户端"><a href="#在electron外的浏览器使用deeplink唤起electron客户端" class="headerlink" title="在electron外的浏览器使用deeplink唤起electron客户端"></a>在electron外的浏览器使用deeplink唤起electron客户端</h3><p>就比如我们在网页版的百度网盘，点击下载的时候，浏览器会弹窗提示要打开百度网盘的客户端吗？electron也可以实现这样的效果。<br>在主进程中，</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注册deeplink唤起</span></span><br><span class="line"><span class="comment">// https://electronjs.org/docs/api/app#appsetasdefaultprotocolclientprotocol-path-args</span></span><br><span class="line">app.<span class="title function_">setAsDefaultProtocolClient</span>(<span class="string">&#x27;gayhub&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果使用的是electron-builder打包的情况，在package.json中增加，</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;build&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">&quot;protocols&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;gayhub&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;schemes&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="string">&quot;gayhub&quot;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样，安装了我们打包的App之后，我们在浏览器的地址栏中输入 <code>gayhub://</code>, 就会有弹窗询问是否打开本地的客户端。</p>
+<h3 id="在electron中使用devTools"><a href="#在electron中使用devTools" class="headerlink" title="在electron中使用devTools"></a>在electron中使用devTools</h3><p>既然electron这么像一个浏览器，那么我们能不能也像浏览器一样开启devTools呢？可以的。<br>参考<a target="_blank" rel="noopener" href="https://electronjs.org/docs/tutorial/devtools-extension">文档</a>,使用 <code>electron-devtools-installer</code></p>
+<p>在app的ready事件回调中，安装devTool扩展程序，比如react，redux。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 扩展程序安装函数</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">installExtensions</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> installer = <span class="built_in">require</span>(<span class="string">&#x27;electron-devtools-installer&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> forceDownload = !!process.<span class="property">env</span>.<span class="property">UPGRADE_EXTENSIONS</span>;</span><br><span class="line">  <span class="comment">// react 和 redux 扩展</span></span><br><span class="line">  <span class="keyword">const</span> extensions = [<span class="string">&#x27;REACT_DEVELOPER_TOOLS&#x27;</span>, <span class="string">&#x27;REDUX_DEVTOOLS&#x27;</span>];</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">all</span>(</span><br><span class="line">    extensions.<span class="title function_">map</span>(<span class="function"><span class="params">name</span> =&gt;</span> installer.<span class="title function_">default</span>(installer[name], forceDownload))</span><br><span class="line">  ).<span class="title function_">catch</span>(<span class="variable language_">console</span>.<span class="property">log</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 主进程app ready事件</span></span><br><span class="line">app.<span class="title function_">on</span>(<span class="string">&#x27;ready&#x27;</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (</span><br><span class="line">      <span class="comment">// 仅在开发模式和debug生产模式安装扩展程序</span></span><br><span class="line">      process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&#x27;development&#x27;</span> ||</span><br><span class="line">      process.<span class="property">env</span>.<span class="property">DEBUG_PROD</span> === <span class="string">&#x27;true&#x27;</span></span><br><span class="line">    ) &#123;</span><br><span class="line">      <span class="comment">// 同步安装扩展程序</span></span><br><span class="line">      <span class="keyword">await</span> <span class="title function_">installExtensions</span>();</span><br><span class="line">      <span class="comment">// 注册快捷键</span></span><br><span class="line">      globalShortcut.<span class="title function_">register</span>(<span class="string">&#x27;Alt+CommandOrControl+I&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 跟Chrome一样 Command Option I 打开devtool</span></span><br><span class="line">        <span class="title class_">BrowserWindow</span>.<span class="title function_">getFocusedWindow</span>().<span class="property">webContents</span>.<span class="title function_">toggleDevTools</span>();</span><br><span class="line">      &#125;);</span><br><span class="line">      globalShortcut.<span class="title function_">register</span>(<span class="string">&#x27;CommandOrControl+R&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">         <span class="comment">// 跟Chrome一样 Command R 刷新页面</span></span><br><span class="line">        <span class="title class_">BrowserWindow</span>.<span class="title function_">getFocusedWindow</span>().<span class="property">webContents</span>.<span class="title function_">reload</span>();</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="开启webview的devTools"><a href="#开启webview的devTools" class="headerlink" title="开启webview的devTools"></a>开启webview的devTools</h3><p>electron是允许使用<code>&lt;webview/&gt;</code>标签来加载网页的，那么如果webview的网页出了问题，我们当然是想debug一下的。webview也可以使用devTools来debug，那么如何开启呢？很简单，只需要执行webview对象的openDevTool()方法就可以了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;webview&#x27;</span>).<span class="title function_">openDevTools</span>()</span><br></pre></td></tr></table></figure>
+
+<h3 id="webview如何安全执行nodeApi"><a href="#webview如何安全执行nodeApi" class="headerlink" title="webview如何安全执行nodeApi"></a>webview如何安全执行nodeApi</h3><p>ELectron给我们提供了使用Node的权限，同时也增加了风险，网页被攻击不仅可以影响浏览器的数据，也可以通过node访问文件系统shell等。官方处于安全性考虑，是不建议开启webview的nodeApi的访问权限的，但是我们可以通过preload给webview注入脚本，在脚本中我们可以暴露一些包装好的使用nodeApi的方法给webview使用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 关闭node访问权限</span></span><br><span class="line">nodeIntegration = <span class="literal">false</span></span><br><span class="line"><span class="comment">// 不要开启上下文隔离，开启后webiew作用域无法访问preload定义的变量</span></span><br><span class="line">contextIsolation = <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>这样在preload的js中，我们可以这样来跟electron通信</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; ipcRenderer, shell &#125; = <span class="built_in">require</span>(<span class="string">&#x27;electron&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">EDK</span> = &#123;</span><br><span class="line">  <span class="comment">// 通过webview元素与render进程通信</span></span><br><span class="line">  <span class="title function_">back</span>(<span class="params"></span>) &#123;</span><br><span class="line">    ipcRenderer.<span class="title function_">sendToHost</span>(<span class="string">&#x27;history:back&#x27;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 在默认浏览器中打开链接</span></span><br><span class="line">  <span class="title function_">openInBrowser</span>(<span class="params">url</span>) &#123;</span><br><span class="line">    shell.<span class="title function_">openExternal</span>(url);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">global</span>.<span class="property">EDK</span> = <span class="variable constant_">EDK</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="打开客户端默认全屏显示和控制"><a href="#打开客户端默认全屏显示和控制" class="headerlink" title="打开客户端默认全屏显示和控制"></a>打开客户端默认全屏显示和控制</h3><h4 id="全屏显示"><a href="#全屏显示" class="headerlink" title="全屏显示"></a>全屏显示</h4><p>在<code>new BrowserWindow</code> 的时候，设置全屏参数</p>
+<blockquote>
+<p>fullscreen</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 全屏打开</span></span><br><span class="line">mainWindow = <span class="keyword">new</span> <span class="title class_">BrowserWindow</span>(&#123;</span><br><span class="line">  <span class="attr">width</span>: <span class="number">1024</span>,</span><br><span class="line">  <span class="attr">height</span>: <span class="number">728</span>,</span><br><span class="line">  <span class="attr">resizable</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">fullscreen</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>注意到文档中还有另外一个参数</p>
+<blockquote>
+<p>simpleFullscreen</p>
+</blockquote>
+<p>有什么区别呢？</p>
+<ul>
+<li>fullscreen 在 mac下是一般意义上的全屏，会新开一个mac的全屏窗口，没有dock，鼠标移动到顶部，系统的菜单栏会显示出来，同时带有绿色toggle全屏按钮的标题栏也会显示出来。</li>
+<li>simpleFullscreen在mac中表现，更类似于最大化，他是在当前的主窗口最大化，本屏幕窗口打开的app都还在这个窗口，dock是可见的，鼠标移动到顶部，系统的菜单栏会显示出来，但是没有标题栏。</li>
+</ul>
+<p>对比之下，fullscreen是我们想要的效果</p>
+<h4 id="禁止退出全屏"><a href="#禁止退出全屏" class="headerlink" title="禁止退出全屏"></a>禁止退出全屏</h4><p>new BrowserWindow 有另一个参数</p>
+<blockquote>
+<p>fullscreenable<br>它的官方说明是： 窗口是否可以进入全屏状态. 在 macOS上, 最大化&#x2F;缩放按钮是否可用 。</p>
+</blockquote>
+<p>于是我在设置了fullscreen&#x3D;true的条件下，设置fullscreenable为false。</p>
+<p>结果： 窗口是禁止最大化toggle按钮了，但是打开也不是默认最大化的。这显然不是我需要的，看起来这两个参数同时设置有冲突。</p>
+<h5 id="先全屏，再禁止最大化"><a href="#先全屏，再禁止最大化" class="headerlink" title="先全屏，再禁止最大化"></a>先全屏，再禁止最大化</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 全屏打开</span></span><br><span class="line">mainWindow = <span class="keyword">new</span> <span class="title class_">BrowserWindow</span>(&#123;</span><br><span class="line">  <span class="attr">width</span>: <span class="number">1024</span>,</span><br><span class="line">  <span class="attr">height</span>: <span class="number">728</span>,</span><br><span class="line">  <span class="attr">resizable</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">fullscreen</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 禁用最大化/缩放按钮</span></span><br><span class="line">mainWindow.<span class="title function_">setFullScreenable</span>(<span class="literal">false</span>)</span><br></pre></td></tr></table></figure>
+
+<p>但是这个方案的缺点是，Mac系统有一个边框，上面有红色关闭按钮、绿色全屏toggle按钮，只不过点击绿色按钮没有反应。</p>
+<h5 id="隐藏绿色按钮"><a href="#隐藏绿色按钮" class="headerlink" title="隐藏绿色按钮"></a>隐藏绿色按钮</h5><p>new BrowserWindo参数</p>
+<blockquote>
+<p>frame</p>
+</blockquote>
+<p>设置为false可以隐藏标题栏和窗口控制按钮。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mainWindow = <span class="keyword">new</span> <span class="title class_">BrowserWindow</span>(&#123;</span><br><span class="line">  <span class="attr">width</span>: <span class="number">1024</span>,</span><br><span class="line">  <span class="attr">height</span>: <span class="number">728</span>,</span><br><span class="line">  <span class="attr">resizable</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">fullscreen</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">frame</span>: <span class="literal">false</span>,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="打包和发布"><a href="#打包和发布" class="headerlink" title="打包和发布"></a>打包和发布</h2><p>对我们前端来说，开发其实是相对来说最容易的一步，因为基本上还是在写js&#x2F;nodejs。electron开发，最终是要发布一个安装包给用户，因此关键并且陌生的部分是如何正确的构建和发布。</p>
+<p>对于构建，有三种方式可以选择</p>
+<ul>
+<li>electron-force</li>
+<li>electron-builder</li>
+<li>electron-package</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/hexo-blog/tags/electron/" rel="tag"># electron</a>
+              <a href="/hexo-blog/tags/react/" rel="tag"># react</a>
+              <a href="/hexo-blog/tags/starter/" rel="tag"># starter</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2019/05/06/learn-typescript-2/" rel="prev" title="learn-typescript-2">
+                  <i class="fa fa-chevron-left"></i> learn-typescript-2
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2019/06/12/gitlab-runner-mac-win/" rel="next" title="gitlab-runner-mac-win">
+                  gitlab-runner-mac-win <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Topppy</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/hexo-blog/js/comments.js"></script><script src="/hexo-blog/js/utils.js"></script><script src="/hexo-blog/js/motion.js"></script><script src="/hexo-blog/js/schemes/muse.js"></script><script src="/hexo-blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

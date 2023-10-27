@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/hexo-blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/hexo-blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"topppy.github.io","root":"/hexo-blog/","images":"/hexo-blog/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/hexo-blog/js/config.js"></script>
+
+    <meta name="description" content="背景：最近发现drawio的一些功能很黑魔法。比如首次创建一个文件，浏览器系统弹窗保存到本地，（到这为止都是常规保存文件的套路，很好实现）。接下来，你在浏览器中继续绘制编辑你创建的图表，ctrol+S 保存之后，神奇的事情发生了，没有任何系统弹窗，最新的内容已经被静默地写入了首次创建的文件中。 这个行为是有点反直觉的，相当于在无感知的情况下，直接读写系统文件。浏览器一般不会给这么大的权限。 如何实">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何实现浏览器内容保存为本地文件并持续静默保存最新编辑内容">
+<meta property="og:url" content="https://topppy.github.io/2023/10/20/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E5%AE%B9%E4%BF%9D%E5%AD%98%E4%B8%BA%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%B9%B6%E6%8C%81%E7%BB%AD%E9%9D%99%E9%BB%98%E4%BF%9D%E5%AD%98%E6%9C%80%E6%96%B0%E7%BC%96%E8%BE%91%E5%86%85%E5%AE%B9/index.html">
+<meta property="og:site_name" content="Topppy&#39;s Blog">
+<meta property="og:description" content="背景：最近发现drawio的一些功能很黑魔法。比如首次创建一个文件，浏览器系统弹窗保存到本地，（到这为止都是常规保存文件的套路，很好实现）。接下来，你在浏览器中继续绘制编辑你创建的图表，ctrol+S 保存之后，神奇的事情发生了，没有任何系统弹窗，最新的内容已经被静默地写入了首次创建的文件中。 这个行为是有点反直觉的，相当于在无感知的情况下，直接读写系统文件。浏览器一般不会给这么大的权限。 如何实">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://user-images.githubusercontent.com/9689442/178710146-4fc3067c-ed45-410f-855d-baa8d243dd1d.png">
+<meta property="article:published_time" content="2023-10-20T09:39:14.000Z">
+<meta property="article:modified_time" content="2023-10-27T06:12:31.456Z">
+<meta property="article:author" content="Topppy">
+<meta property="article:tag" content="frontend">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/9689442/178710146-4fc3067c-ed45-410f-855d-baa8d243dd1d.png">
+
+
+<link rel="canonical" href="https://topppy.github.io/2023/10/20/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E5%AE%B9%E4%BF%9D%E5%AD%98%E4%B8%BA%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%B9%B6%E6%8C%81%E7%BB%AD%E9%9D%99%E9%BB%98%E4%BF%9D%E5%AD%98%E6%9C%80%E6%96%B0%E7%BC%96%E8%BE%91%E5%86%85%E5%AE%B9/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://topppy.github.io/2023/10/20/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E5%AE%B9%E4%BF%9D%E5%AD%98%E4%B8%BA%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%B9%B6%E6%8C%81%E7%BB%AD%E9%9D%99%E9%BB%98%E4%BF%9D%E5%AD%98%E6%9C%80%E6%96%B0%E7%BC%96%E8%BE%91%E5%86%85%E5%AE%B9/","path":"2023/10/20/如何实现浏览器内容保存为本地文件并持续静默保存最新编辑内容/","title":"如何实现浏览器内容保存为本地文件并持续静默保存最新编辑内容"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>如何实现浏览器内容保存为本地文件并持续静默保存最新编辑内容 | Topppy's Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/hexo-blog/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/hexo-blog/atom.xml" title="Topppy's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/hexo-blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Topppy's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">FE developer</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">背景：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">如何实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%BC%E5%AE%B9%E6%80%A7%E5%BE%88%E4%B8%8D%E5%A5%BD%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">兼容性很不好：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">2.2.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-number">2.3.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E6%95%A3%E4%B8%80%E4%B8%8B%EF%BC%9A%E5%8F%AF%E4%BB%A5%E5%88%A9%E7%94%A8%E8%BF%99%E4%B8%AA%E7%89%B9%E6%80%A7%E8%BF%9B%E8%A1%8C%E6%94%BB%E5%87%BB%E5%90%97%EF%BC%9F"><span class="nav-number">2.4.</span> <span class="nav-text">发散一下：可以利用这个特性进行攻击吗？</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Topppy</p>
+  <div class="site-description" itemprop="description">Can you hear me?</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/hexo-blog/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/hexo-blog/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://topppy.github.io/2023/10/20/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E5%AE%B9%E4%BF%9D%E5%AD%98%E4%B8%BA%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%B9%B6%E6%8C%81%E7%BB%AD%E9%9D%99%E9%BB%98%E4%BF%9D%E5%AD%98%E6%9C%80%E6%96%B0%E7%BC%96%E8%BE%91%E5%86%85%E5%AE%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/hexo-blog/images/avatar.gif">
+      <meta itemprop="name" content="Topppy">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Topppy's Blog">
+      <meta itemprop="description" content="Can you hear me?">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="如何实现浏览器内容保存为本地文件并持续静默保存最新编辑内容 | Topppy's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何实现浏览器内容保存为本地文件并持续静默保存最新编辑内容
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-10-20 09:39:14" itemprop="dateCreated datePublished" datetime="2023-10-20T09:39:14+00:00">2023-10-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-10-27 06:12:31" itemprop="dateModified" datetime="2023-10-27T06:12:31+00:00">2023-10-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="背景："><a href="#背景：" class="headerlink" title="背景："></a>背景：</h2><p>最近发现drawio的一些功能很黑魔法。<br>比如首次创建一个文件，浏览器系统弹窗保存到本地，（到这为止都是常规保存文件的套路，很好实现）。<br>接下来，你在浏览器中继续绘制编辑你创建的图表，ctrol+S 保存之后，神奇的事情发生了，没有任何系统弹窗，最新的内容已经被静默地写入了首次创建的文件中。</p>
+<p>这个行为是有点反直觉的，相当于在无感知的情况下，直接读写系统文件。浏览器一般不会给这么大的权限。</p>
+<h2 id="如何实现"><a href="#如何实现" class="headerlink" title="如何实现"></a>如何实现</h2><p>如果有，也只能是浏览器提供的能力，于是，找到了这个 <code>API： FileSystemWritableFileStream</code></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemWritableFileStream">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemWritableFileStream</a></p>
+<h3 id="兼容性很不好："><a href="#兼容性很不好：" class="headerlink" title="兼容性很不好："></a>兼容性很不好：</h3><p><img src="https://user-images.githubusercontent.com/9689442/178710146-4fc3067c-ed45-410f-855d-baa8d243dd1d.png" alt="image"></p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><ol>
+<li>首次保存创造了一个FileSystemFileHandle对象：newHandle，提供对该读写文件的能力。</li>
+<li>更新文件内容的时候，通过FileSystemFileHandle创造一个对该文件写入流 ：writableStream。</li>
+<li>使用writableStream.write 写入最新的文本Blob，（注意此处是覆盖式的）。</li>
+<li>关闭流</li>
+</ol>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>file save<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      <span class="selector-id">#addText</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">400px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>保存为本地文件并持续实时保存最新编辑的内容<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>text to save:<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">id</span>=<span class="string">&quot;addText&quot;</span> <span class="attr">name</span>=<span class="string">&quot;addText&quot;</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;saveFile()&quot;</span>&gt;</span>1. start save<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;updateFile()&quot;</span>&gt;</span>2. update<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>file contents:<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;fileContent&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// https://developer.mozilla.org/en-US/docs/Web/API/FileSystemWritableFileStream</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> $textToAdd;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> $fileContent;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> newHandle;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> pickerOpts = &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">types</span>: [</span></span><br><span class="line"><span class="language-javascript">          &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">description</span>: <span class="string">&quot;Text file&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">accept</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">              <span class="string">&quot;text/plain&quot;</span>: [<span class="string">&quot;.txt&quot;</span>],</span></span><br><span class="line"><span class="language-javascript">            &#125;,</span></span><br><span class="line"><span class="language-javascript">          &#125;,</span></span><br><span class="line"><span class="language-javascript">        ],</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">suggestedName</span>: <span class="string">&quot;testFile&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">excludeAcceptAllOption</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">multiple</span>: <span class="literal">false</span>,</span></span><br><span class="line"><span class="language-javascript">      &#125;;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">saveFile</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// create a new handle</span></span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;showSaveFilePicker&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">        newHandle = <span class="keyword">await</span> <span class="variable language_">window</span>.<span class="title function_">showSaveFilePicker</span>(pickerOpts);</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;createWritable&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// create a FileSystemWritableFileStream to write to</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> writableStream = <span class="keyword">await</span> newHandle.<span class="title function_">createWritable</span>();</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">updateFile</span>();</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">getFileContents</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> fileData = <span class="keyword">await</span> newHandle.<span class="title function_">getFile</span>();</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> res = <span class="keyword">await</span> fileData.<span class="title function_">text</span>();</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;fileText: &quot;</span>, res);</span></span><br><span class="line"><span class="language-javascript">        $fileContent.<span class="property">innerText</span> = res;</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">updateFileContent</span>(<span class="params">text</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// create a FileSystemWritableFileStream to write to</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> writableStream = <span class="keyword">await</span> newHandle.<span class="title function_">createWritable</span>();</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> data = <span class="keyword">new</span> <span class="title class_">Blob</span>([text], &#123; <span class="attr">type</span>: <span class="string">&quot;text&quot;</span> &#125;);</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// write our file</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">await</span> writableStream.<span class="title function_">write</span>(data);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// close the file and write the contents to disk.</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">await</span> writableStream.<span class="title function_">close</span>();</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">updateFile</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> text = $textToAdd.<span class="property">value</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">await</span> <span class="title function_">updateFileContent</span>(text);</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">await</span> <span class="title function_">getFileContents</span>();</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;DOMContentLoaded&quot;</span>, <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        $textToAdd = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;addText&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">        $fileContent = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;fileContent&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">      &#125;);</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="发散一下：可以利用这个特性进行攻击吗？"><a href="#发散一下：可以利用这个特性进行攻击吗？" class="headerlink" title="发散一下：可以利用这个特性进行攻击吗？"></a>发散一下：可以利用这个特性进行攻击吗？</h3><p>比如前端通过js改写下载文件的内容。</p>
+<p>可以继续研究一下这个API有什么安全限制。</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7086054628294557733">https://juejin.cn/post/7086054628294557733</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2023/10/19/%E5%85%B3%E4%BA%8Ereact-hook-%E8%BF%94%E5%9B%9E%E7%BB%84%E4%BB%B6%E6%A8%A1%E5%BC%8F%E7%9A%84%E8%AE%A8%E8%AE%BA/" rel="prev" title="关于react hook 返回组件模式的讨论">
+                  <i class="fa fa-chevron-left"></i> 关于react hook 返回组件模式的讨论
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2023/10/20/%E5%9F%BA%E4%BA%8E%E4%B9%90%E8%B0%B1%E7%94%9F%E6%88%90%E6%97%8B%E5%BE%8B%E8%B7%AF%E5%BE%84%E5%8A%A8%E7%94%BB%EF%BC%88%E4%B8%8E%E9%9F%B3%E4%B9%90%E5%90%8C%E6%AD%A5%E6%97%B6%E9%97%B4%E6%92%AD%E6%94%BE%EF%BC%89/" rel="next" title="基于乐谱生成旋律路径动画（与音乐同步时间播放）">
+                  基于乐谱生成旋律路径动画（与音乐同步时间播放） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Topppy</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/hexo-blog/js/comments.js"></script><script src="/hexo-blog/js/utils.js"></script><script src="/hexo-blog/js/motion.js"></script><script src="/hexo-blog/js/schemes/muse.js"></script><script src="/hexo-blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

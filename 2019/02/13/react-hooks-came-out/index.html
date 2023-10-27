@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/hexo-blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/hexo-blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"topppy.github.io","root":"/hexo-blog/","images":"/hexo-blog/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/hexo-blog/js/config.js"></script>
+
+    <meta name="description" content="React Hooks 终于进稳定版本了！React 终于在16.8版本加入了期待已久的hooks特性。 什么是Hooks？Hooks的功能就是复用逻辑，甚至复用包括state的逻辑。 以往我们如果有跟state有关的逻辑，只能写在class组件中，纠缠在各个生命周期里，并且无法复用，样版代码很多。 有了hooks，你不在需要这样做了，你可以直接在fuction组件里复用写好的跟state相关的逻">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react-hooks-came-out">
+<meta property="og:url" content="https://topppy.github.io/2019/02/13/react-hooks-came-out/index.html">
+<meta property="og:site_name" content="Topppy&#39;s Blog">
+<meta property="og:description" content="React Hooks 终于进稳定版本了！React 终于在16.8版本加入了期待已久的hooks特性。 什么是Hooks？Hooks的功能就是复用逻辑，甚至复用包括state的逻辑。 以往我们如果有跟state有关的逻辑，只能写在class组件中，纠缠在各个生命周期里，并且无法复用，样版代码很多。 有了hooks，你不在需要这样做了，你可以直接在fuction组件里复用写好的跟state相关的逻">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-02-13T14:04:56.000Z">
+<meta property="article:modified_time" content="2023-10-27T06:12:31.452Z">
+<meta property="article:author" content="Topppy">
+<meta property="article:tag" content="react">
+<meta property="article:tag" content="hooks">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://topppy.github.io/2019/02/13/react-hooks-came-out/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://topppy.github.io/2019/02/13/react-hooks-came-out/","path":"2019/02/13/react-hooks-came-out/","title":"react-hooks-came-out"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>react-hooks-came-out | Topppy's Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/hexo-blog/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/hexo-blog/atom.xml" title="Topppy's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/hexo-blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Topppy's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">FE developer</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React-Hooks-%E7%BB%88%E4%BA%8E%E8%BF%9B%E7%A8%B3%E5%AE%9A%E7%89%88%E6%9C%AC%E4%BA%86%EF%BC%81"><span class="nav-number">1.</span> <span class="nav-text">React Hooks 终于进稳定版本了！</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFHooks%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">什么是Hooks？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%A0%E9%9C%80%E8%A6%81%E7%AB%8B%E5%88%BB%E5%AD%A6%E4%BC%9A%E5%B9%B6%E4%BD%BF%E7%94%A8hooks%E5%90%97%EF%BC%9F"><span class="nav-number">1.1.1.</span> <span class="nav-text">你需要立刻学会并使用hooks吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8hooks%E9%9C%80%E8%A6%81%E4%BB%80%E4%B9%88%E6%9D%A1%E4%BB%B6%EF%BC%9F"><span class="nav-number">1.1.2.</span> <span class="nav-text">使用hooks需要什么条件？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%A7%84%E8%8C%83hooks%E4%BB%A3%E7%A0%81%EF%BC%9F"><span class="nav-number">1.1.3.</span> <span class="nav-text">如何规范hooks代码？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hooks%E5%8F%AF%E4%BB%A5%E5%AE%8C%E5%85%A8%E6%9B%BF%E6%8D%A2class%E5%90%97%EF%BC%9F"><span class="nav-number">1.1.4.</span> <span class="nav-text">hooks可以完全替换class吗？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Hooks"><span class="nav-number">1.2.</span> <span class="nav-text">使用Hooks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#get-start"><span class="nav-number">1.2.2.</span> <span class="nav-text">get start</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Topppy</p>
+  <div class="site-description" itemprop="description">Can you hear me?</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/hexo-blog/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/hexo-blog/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://topppy.github.io/2019/02/13/react-hooks-came-out/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/hexo-blog/images/avatar.gif">
+      <meta itemprop="name" content="Topppy">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Topppy's Blog">
+      <meta itemprop="description" content="Can you hear me?">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="react-hooks-came-out | Topppy's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          react-hooks-came-out
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-02-13 14:04:56" itemprop="dateCreated datePublished" datetime="2019-02-13T14:04:56+00:00">2019-02-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-10-27 06:12:31" itemprop="dateModified" datetime="2023-10-27T06:12:31+00:00">2023-10-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="React-Hooks-终于进稳定版本了！"><a href="#React-Hooks-终于进稳定版本了！" class="headerlink" title="React Hooks 终于进稳定版本了！"></a>React Hooks 终于进稳定版本了！</h1><p>React 终于在16.8版本加入了期待已久的hooks特性。</p>
+<h2 id="什么是Hooks？"><a href="#什么是Hooks？" class="headerlink" title="什么是Hooks？"></a>什么是Hooks？</h2><p>Hooks的功能就是复用逻辑，甚至复用包括state的逻辑。</p>
+<p>以往我们如果有跟state有关的逻辑，只能写在class组件中，纠缠在各个生命周期里，并且无法复用，样版代码很多。</p>
+<p>有了hooks，你不在需要这样做了，你可以直接在fuction组件里复用写好的跟state相关的逻辑，代码量大大减少。每一次这个组件function被执行的时候，hooks都会被执行，这大概是它最像“钩子”的点吧。</p>
+<span id="more"></span>
+
+<h3 id="你需要立刻学会并使用hooks吗？"><a href="#你需要立刻学会并使用hooks吗？" class="headerlink" title="你需要立刻学会并使用hooks吗？"></a>你需要立刻学会并使用hooks吗？</h3><p>不需要。class组件不会被废弃，这个新特性对你的已有的业务代码毫无影响。也不需要使用hooks来重写你的旧代码。</p>
+<h3 id="使用hooks需要什么条件？"><a href="#使用hooks需要什么条件？" class="headerlink" title="使用hooks需要什么条件？"></a>使用hooks需要什么条件？</h3><p>react和react-dom 的版本要在16.8.0以上。</p>
+<h3 id="如何规范hooks代码？"><a href="#如何规范hooks代码？" class="headerlink" title="如何规范hooks代码？"></a>如何规范hooks代码？</h3><p>eslint插件：<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/eslint-plugin-react-hooks">eslint-plugin-react-hooks</a></p>
+<h3 id="hooks可以完全替换class吗？"><a href="#hooks可以完全替换class吗？" class="headerlink" title="hooks可以完全替换class吗？"></a>hooks可以完全替换class吗？</h3><p>如果涉及到 getSnapshotBeforeUpdate()和componentDidCatch()的话，那么不可以。也就是说其他的情况完全可以替换掉。</p>
+<h2 id="使用Hooks"><a href="#使用Hooks" class="headerlink" title="使用Hooks"></a>使用Hooks</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add react@^16.8.0 react-dom@^16.8.0</span><br></pre></td></tr></table></figure>
+
+<p>eslint 插件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add eslint-plugin-react-hooks@next --dev</span><br></pre></td></tr></table></figure>
+
+<p>eslintrc配置需要增加如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;plugins&quot;</span>: [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="string">&quot;react-hooks&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">&quot;rules&quot;</span>: &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="string">&quot;react-hooks/rules-of-hooks&quot;</span>: <span class="string">&quot;error&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="get-start"><a href="#get-start" class="headerlink" title="get start"></a>get start</h3><p>更多hooks的说明和使用可以看一下这个简单的DEMO，包括基础的hooks和hooks的规则，以及一个todo的例子。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Topppy/react-hook-tutorial">DEMO</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/hexo-blog/tags/react/" rel="tag"># react</a>
+              <a href="/hexo-blog/tags/hooks/" rel="tag"># hooks</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2019/02/12/use-quicklink/" rel="prev" title="use-quicklink">
+                  <i class="fa fa-chevron-left"></i> use-quicklink
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2019/04/30/learn-typescript-1/" rel="next" title="learn-typescript-1">
+                  learn-typescript-1 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Topppy</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/hexo-blog/js/comments.js"></script><script src="/hexo-blog/js/utils.js"></script><script src="/hexo-blog/js/motion.js"></script><script src="/hexo-blog/js/schemes/muse.js"></script><script src="/hexo-blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

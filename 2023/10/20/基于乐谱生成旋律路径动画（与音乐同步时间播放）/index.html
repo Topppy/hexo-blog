@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/hexo-blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/hexo-blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"topppy.github.io","root":"/hexo-blog/","images":"/hexo-blog/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/hexo-blog/js/config.js"></script>
+
+    <meta name="description" content="背景 基于乐谱的音符时值和音高生成平滑曲线路径 以乐谱时间为x，沿路径运动动画  anime.js animejs提供了svg路径动画能力，svg的点坐标是基于路径的长度获取的，整体的运动函数是线性函数，也就是说：  1234f(x,y) &#x3D; path.getPointAtLength(distance) distance &#x3D; totalLength * t &#x2F; duration &#x3D; g(tota">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于乐谱生成旋律路径动画（与音乐同步时间播放）">
+<meta property="og:url" content="https://topppy.github.io/2023/10/20/%E5%9F%BA%E4%BA%8E%E4%B9%90%E8%B0%B1%E7%94%9F%E6%88%90%E6%97%8B%E5%BE%8B%E8%B7%AF%E5%BE%84%E5%8A%A8%E7%94%BB%EF%BC%88%E4%B8%8E%E9%9F%B3%E4%B9%90%E5%90%8C%E6%AD%A5%E6%97%B6%E9%97%B4%E6%92%AD%E6%94%BE%EF%BC%89/index.html">
+<meta property="og:site_name" content="Topppy&#39;s Blog">
+<meta property="og:description" content="背景 基于乐谱的音符时值和音高生成平滑曲线路径 以乐谱时间为x，沿路径运动动画  anime.js animejs提供了svg路径动画能力，svg的点坐标是基于路径的长度获取的，整体的运动函数是线性函数，也就是说：  1234f(x,y) &#x3D; path.getPointAtLength(distance) distance &#x3D; totalLength * t &#x2F; duration &#x3D; g(tota">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://user-images.githubusercontent.com/9689442/178916875-0fa5b1e0-0f87-4c23-a059-649844474d89.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/9689442/178916875-0fa5b1e0-0f87-4c23-a059-649844474d89.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/9689442/178715028-ec64e731-fc7b-4379-8e8a-28df7e89abbc.jpg">
+<meta property="og:image" content="https://user-images.githubusercontent.com/9689442/178714998-b3e4cc27-da83-47ac-b1db-8a23ca85326b.jpg">
+<meta property="article:published_time" content="2023-10-20T10:15:01.000Z">
+<meta property="article:modified_time" content="2023-10-27T06:12:31.456Z">
+<meta property="article:author" content="Topppy">
+<meta property="article:tag" content="frontend">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/9689442/178916875-0fa5b1e0-0f87-4c23-a059-649844474d89.png">
+
+
+<link rel="canonical" href="https://topppy.github.io/2023/10/20/%E5%9F%BA%E4%BA%8E%E4%B9%90%E8%B0%B1%E7%94%9F%E6%88%90%E6%97%8B%E5%BE%8B%E8%B7%AF%E5%BE%84%E5%8A%A8%E7%94%BB%EF%BC%88%E4%B8%8E%E9%9F%B3%E4%B9%90%E5%90%8C%E6%AD%A5%E6%97%B6%E9%97%B4%E6%92%AD%E6%94%BE%EF%BC%89/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://topppy.github.io/2023/10/20/%E5%9F%BA%E4%BA%8E%E4%B9%90%E8%B0%B1%E7%94%9F%E6%88%90%E6%97%8B%E5%BE%8B%E8%B7%AF%E5%BE%84%E5%8A%A8%E7%94%BB%EF%BC%88%E4%B8%8E%E9%9F%B3%E4%B9%90%E5%90%8C%E6%AD%A5%E6%97%B6%E9%97%B4%E6%92%AD%E6%94%BE%EF%BC%89/","path":"2023/10/20/基于乐谱生成旋律路径动画（与音乐同步时间播放）/","title":"基于乐谱生成旋律路径动画（与音乐同步时间播放）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>基于乐谱生成旋律路径动画（与音乐同步时间播放） | Topppy's Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/hexo-blog/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/hexo-blog/atom.xml" title="Topppy's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/hexo-blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Topppy's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">FE developer</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%AD%A3%E6%AF%94%E4%BA%8Ex-t%E7%9A%84%E8%B7%AF%E5%BE%84%E5%8A%A8%E7%94%BB"><span class="nav-number">2.</span> <span class="nav-text">实现正比于x|t的路径动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E4%B9%90%E8%B0%B1%E7%BB%98%E5%88%B6%E5%B9%B3%E6%BB%91%E6%97%8B%E5%BE%8B%E8%B7%AF%E5%BE%84"><span class="nav-number">3.</span> <span class="nav-text">根据乐谱绘制平滑旋律路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Topppy</p>
+  <div class="site-description" itemprop="description">Can you hear me?</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/hexo-blog/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/hexo-blog/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://topppy.github.io/2023/10/20/%E5%9F%BA%E4%BA%8E%E4%B9%90%E8%B0%B1%E7%94%9F%E6%88%90%E6%97%8B%E5%BE%8B%E8%B7%AF%E5%BE%84%E5%8A%A8%E7%94%BB%EF%BC%88%E4%B8%8E%E9%9F%B3%E4%B9%90%E5%90%8C%E6%AD%A5%E6%97%B6%E9%97%B4%E6%92%AD%E6%94%BE%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/hexo-blog/images/avatar.gif">
+      <meta itemprop="name" content="Topppy">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Topppy's Blog">
+      <meta itemprop="description" content="Can you hear me?">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="基于乐谱生成旋律路径动画（与音乐同步时间播放） | Topppy's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于乐谱生成旋律路径动画（与音乐同步时间播放）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-10-20 10:15:01" itemprop="dateCreated datePublished" datetime="2023-10-20T10:15:01+00:00">2023-10-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-10-27 06:12:31" itemprop="dateModified" datetime="2023-10-27T06:12:31+00:00">2023-10-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
+<li>基于乐谱的音符时值和音高生成平滑曲线路径</li>
+<li>以乐谱时间为x，沿路径运动动画</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://animejs.com/documentation/#motionPath"><a target="_blank" rel="noopener" href="https://animejs.com/documentation/#motionPath">anime.js</a></a></p>
+<p>animejs提供了svg路径动画能力，svg的点坐标是基于路径的长度获取的，整体的运动函数是线性函数，也就是说： </p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">f</span>(x,y) = path.<span class="title function_">getPointAtLength</span>(distance) </span><br><span class="line">distance = totalLength * t / duration = <span class="title function_">g</span>(totalLength, t)</span><br><span class="line"><span class="title function_">f</span>(x,y) = path.<span class="title function_">getPointAtLength</span>(totalLength * t / duration)</span><br><span class="line"><span class="title function_">f</span>(x,y) = <span class="title function_">p</span>(totalLength, t)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>时间t0点的 x坐标 取决于 路径总长度。不同乐谱在相同t0时间点的x坐标是不一致的。</p>
+</blockquote>
+<p><img src="https://user-images.githubusercontent.com/9689442/178916875-0fa5b1e0-0f87-4c23-a059-649844474d89.png" alt="image"></p>
+<blockquote>
+<p>图中红色为基于路径总长度的svg动画，黑色为linear直线动画，可以看到在当前时间点，x是对不上的。</p>
+</blockquote>
+<p>而我们需要的音乐路径动画，是无论是什么乐谱，在t0点的x坐标是一致的</p>
+<p>即： y &#x3D; pathPoint(x) &#x3D; g(x)  ; x &#x3D; maxX * t&#x2F;duration &#x3D; f(t); </p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">y = <span class="title function_">pathPoint</span>(x) = <span class="title function_">g</span>(x)  </span><br><span class="line">x = maxX * t/ duration</span><br><span class="line">maxX = step * duration</span><br><span class="line">x = step * t </span><br><span class="line">x = <span class="title function_">f</span>(t)</span><br></pre></td></tr></table></figure>
+
+<p>或者降级为：音符内不严格 x&#x3D;f(t), 每个音符结束的时间点符合 x &#x3D; f(t);</p>
+<h2 id="实现正比于x-t的路径动画"><a href="#实现正比于x-t的路径动画" class="headerlink" title="实现正比于x|t的路径动画"></a>实现正比于x|t的路径动画</h2><p>切分乐谱的总svg路径，每个音符的svg为一个path，每个path生成一个路径动画，duration &#x3D;  音符持续时间，全部动画拼成一个timeline，总时长&#x3D; 乐谱时长， （中间休止符需要补全直线？）</p>
+<p><img src="https://user-images.githubusercontent.com/9689442/178916875-0fa5b1e0-0f87-4c23-a059-649844474d89.png" alt="image"></p>
+<blockquote>
+<p>图中蓝色块为每个音符起止时间点与x对应的动画（音符区间内x、t不严格对应）</p>
+</blockquote>
+<p>demo：</p>
+<p><a target="_blank" rel="noopener" href="https://codepen.io/Topppy/pen/dymGGrb">https://codepen.io/Topppy/pen/dymGGrb</a></p>
+<ul>
+<li>块1是x线性t的位移</li>
+<li>块2是一整条svg路径动画</li>
+<li>块3是两段path拼接的一条svg路径</li>
+</ul>
+<p>块1作为基准，可以看出块2全程x都与块1无法对齐，块2在中间点和结束点是对齐的，但是中间的不规则路径跟块1的x位移没有对齐，点击seek1按钮定位时间到中间点，可以明显看出来。</p>
+<p>块3是可以降级满足音乐旋律路径走谱的。</p>
+<h2 id="根据乐谱绘制平滑旋律路径"><a href="#根据乐谱绘制平滑旋律路径" class="headerlink" title="根据乐谱绘制平滑旋律路径"></a>根据乐谱绘制平滑旋律路径</h2><p>乐谱中需要占据时间的节点有两种</p>
+<ul>
+<li>音符（svg C）</li>
+<li>休止符（svg L&#x2F;H），（也可以忽略休止符）</li>
+</ul>
+<p>数据处理逻辑：（具体可以参考d3）</p>
+<ul>
+<li><del>点数据： 合并有序数组音符（notes） 和 休止符（rests）</del></li>
+<li>C曲线控制点数据： （这里percentage &#x3D; 0.5）<ul>
+<li>控制点1:  [x0 + 0.5 * (x1-x0), y0]</li>
+<li>控制点2:  [x0 + 0.5 * (x1-x0), y1]</li>
+</ul>
+</li>
+<li>svgPathList：<ul>
+<li>如果onset&#x3D;0的点不是note, 需要从（0，0）开始</li>
+<li>终点（score.duration, 0）</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/9689442/178715028-ec64e731-fc7b-4379-8e8a-28df7e89abbc.jpg" alt="IMG_6772"></p>
+<p>曲线的的曲率变化</p>
+<p>对称：p1.x &#x3D;distance(x1,x2)- p2.x</p>
+<p>非对称： p1.x &#x3D; p2.x</p>
+<p>也可以独立控制两个控制点的x的percentage</p>
+<p><img src="https://user-images.githubusercontent.com/9689442/178714998-b3e4cc27-da83-47ac-b1db-8a23ca85326b.jpg" alt="IMG_6771"></p>
+<p>最后demo：</p>
+<p><a target="_blank" rel="noopener" href="https://codepen.io/Topppy/pen/JjLGmBd?editors=1010">https://codepen.io/Topppy/pen/JjLGmBd?editors=1010</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>svg路径编辑器</p>
+<p><a target="_blank" rel="noopener" href="https://yqnn.github.io/svg-path-editor/"><a target="_blank" rel="noopener" href="https://yqnn.github.io/svg-path-editor/">SvgPathEditor</a></a></p>
+<p>d3的curve效果：<a target="_blank" rel="noopener" href="https://github.com/d3/d3-shape/blob/v3.1.0/README.md#curves">https://github.com/d3/d3-shape/blob/v3.1.0/README.md#curves</a></p>
+<p>d3的natural curve 源码:<a target="_blank" rel="noopener" href="https://github.com/d3/d3-shape/blob/main/src/curve/natural.js">https://github.com/d3/d3-shape/blob/main/src/curve/natural.js</a></p>
+<p>web audio 调节播放音频的音高 ： <a target="_blank" rel="noopener" href="https://zpl.fi/pitch-shifting-in-web-audio-api/">https://zpl.fi/pitch-shifting-in-web-audio-api/</a></p>
+<p>midi文件格式解析：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/59d74800b43b">https://www.jianshu.com/p/59d74800b43b</a>   </p>
+<p> Magenta魔改记-2：数据格式与数据集（涉及midi和mxl格式对比<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/49539387">https://zhuanlan.zhihu.com/p/49539387</a></p>
+<p>乐谱渲染：<a target="_blank" rel="noopener" href="https://github.com/0xfe/vexflow">https://github.com/0xfe/vexflow</a></p>
+<p>mxl乐谱渲染：<a target="_blank" rel="noopener" href="https://github.com/opensheetmusicdisplay/opensheetmusicdisplayddemo">https://github.com/opensheetmusicdisplay/opensheetmusicdisplayddemo</a></p>
+<p>demo页：<a target="_blank" rel="noopener" href="https://opensheetmusicdisplay.org/demos/public-typescript-demo/">https://opensheetmusicdisplay.org/demos/public-typescript-demo/</a></p>
+<p>❤️‍🔥基于机器学习的自动作曲：<a target="_blank" rel="noopener" href="https://magenta.tensorflow.org/">https://magenta.tensorflow.org/</a></p>
+<p><a target="_blank" rel="noopener" href="https://magenta.tensorflow.org/demos/web/">https://magenta.tensorflow.org/demos/web/</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/magenta/magenta">https://github.com/magenta/magenta</a></p>
+<p>music21 指南：计算音乐学分析python库：<a target="_blank" rel="noopener" href="https://github.com/lukewys/Magenta-Modification/blob/master/Music21%E7%AE%80%E6%98%8E%E6%8C%87%E5%8D%97.ipynb"><a target="_blank" rel="noopener" href="https://github.com/lukewys/Magenta-Modification/blob/master/Music21%E7%AE%80%E6%98%8E%E6%8C%87%E5%8D%97.ipynb">https://github.com/lukewys/Magenta-Modification/blob/master/Music21简明指南.ipynb</a></a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2023/10/20/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E5%AE%B9%E4%BF%9D%E5%AD%98%E4%B8%BA%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%B9%B6%E6%8C%81%E7%BB%AD%E9%9D%99%E9%BB%98%E4%BF%9D%E5%AD%98%E6%9C%80%E6%96%B0%E7%BC%96%E8%BE%91%E5%86%85%E5%AE%B9/" rel="prev" title="如何实现浏览器内容保存为本地文件并持续静默保存最新编辑内容">
+                  <i class="fa fa-chevron-left"></i> 如何实现浏览器内容保存为本地文件并持续静默保存最新编辑内容
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2023/10/25/typescript%E7%9A%84eslint%E8%87%AA%E5%AE%9A%E4%B9%89rule%EF%BC%9A%E6%A0%A1%E9%AA%8Ctype%E7%B1%BB%E5%9E%8B%E6%B3%A8%E9%87%8A/" rel="next" title="typescript的eslint自定义rule：校验type类型注释">
+                  typescript的eslint自定义rule：校验type类型注释 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Topppy</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/hexo-blog/js/comments.js"></script><script src="/hexo-blog/js/utils.js"></script><script src="/hexo-blog/js/motion.js"></script><script src="/hexo-blog/js/schemes/muse.js"></script><script src="/hexo-blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/hexo-blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/hexo-blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"topppy.github.io","root":"/hexo-blog/","images":"/hexo-blog/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/hexo-blog/js/config.js"></script>
+
+    <meta name="description" content="gitlab 配置 mac&#x2F;win 系统 runner，win 有问题【解决】gitlab 的 runner 就是触发 ci&#x2F;cd 之后，执行 gitlab-ci.yml 里的脚本的容器。一般呢，都是 docker。我最近有个 electron 的项目，想做 cicd 的自动打包，需要 mac 和 win 环境，于是先把自己的电脑配置为 runner 跑一次。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gitlab-runner-mac-win">
+<meta property="og:url" content="https://topppy.github.io/2019/06/12/gitlab-runner-mac-win/index.html">
+<meta property="og:site_name" content="Topppy&#39;s Blog">
+<meta property="og:description" content="gitlab 配置 mac&#x2F;win 系统 runner，win 有问题【解决】gitlab 的 runner 就是触发 ci&#x2F;cd 之后，执行 gitlab-ci.yml 里的脚本的容器。一般呢，都是 docker。我最近有个 electron 的项目，想做 cicd 的自动打包，需要 mac 和 win 环境，于是先把自己的电脑配置为 runner 跑一次。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB8e12e879cab34af525fcf198740e0471?method=download&shareKey=f6e3fd5c4ec3aa196c28d2d0cb2caa0e">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBd64bf2d2205c2cc6921f9146b86e3c1e?method=download&shareKey=3c5e8a856839fc8b03a359875be9bf67">
+<meta property="article:published_time" content="2019-06-12T15:18:13.000Z">
+<meta property="article:modified_time" content="2023-10-27T06:12:31.448Z">
+<meta property="article:author" content="Topppy">
+<meta property="article:tag" content="mac">
+<meta property="article:tag" content="windows">
+<meta property="article:tag" content="gitlab">
+<meta property="article:tag" content="runner">
+<meta property="article:tag" content="ci&#x2F;cd">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/WEB8e12e879cab34af525fcf198740e0471?method=download&shareKey=f6e3fd5c4ec3aa196c28d2d0cb2caa0e">
+
+
+<link rel="canonical" href="https://topppy.github.io/2019/06/12/gitlab-runner-mac-win/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://topppy.github.io/2019/06/12/gitlab-runner-mac-win/","path":"2019/06/12/gitlab-runner-mac-win/","title":"gitlab-runner-mac-win"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>gitlab-runner-mac-win | Topppy's Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/hexo-blog/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/hexo-blog/atom.xml" title="Topppy's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/hexo-blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Topppy's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">FE developer</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gitlab-%E9%85%8D%E7%BD%AE-mac-x2F-win-%E7%B3%BB%E7%BB%9F-runner%EF%BC%8Cwin-%E6%9C%89%E9%97%AE%E9%A2%98%E3%80%90%E8%A7%A3%E5%86%B3%E3%80%91"><span class="nav-number">1.</span> <span class="nav-text">gitlab 配置 mac&#x2F;win 系统 runner，win 有问题【解决】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mac"><span class="nav-number">1.1.</span> <span class="nav-text">mac</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-runner"><span class="nav-number">1.1.1.</span> <span class="nav-text">安装 runner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C"><span class="nav-number">1.1.2.</span> <span class="nav-text">注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%BF%99%E4%B8%AA-runner"><span class="nav-number">1.1.3.</span> <span class="nav-text">使用这个 runner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">1.1.4.</span> <span class="nav-text">参考</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#win"><span class="nav-number">1.2.</span> <span class="nav-text">win</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C-runner"><span class="nav-number">1.2.2.</span> <span class="nav-text">注册 runner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-runner-%E6%9C%8D%E5%8A%A1%E5%B9%B6%E5%90%AF%E5%8A%A8"><span class="nav-number">1.2.3.</span> <span class="nav-text">安装 runner 服务并启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.5.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#gitlab-%E6%8A%A5%E9%94%99%E4%B9%B1%E7%A0%81"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">gitlab 报错乱码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gitlab-%E6%89%A7%E8%A1%8C-git-%E6%8A%A5%E9%94%99%E4%B9%B1%E7%A0%81"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">gitlab 执行 git 报错乱码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DEBUG-PROD-x3D-true-yarn-package-%E6%8A%A5%E9%94%99"><span class="nav-number">1.2.6.</span> <span class="nav-text">DEBUG_PROD&#x3D;true yarn package 报错</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Topppy</p>
+  <div class="site-description" itemprop="description">Can you hear me?</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/hexo-blog/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/hexo-blog/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://topppy.github.io/2019/06/12/gitlab-runner-mac-win/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/hexo-blog/images/avatar.gif">
+      <meta itemprop="name" content="Topppy">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Topppy's Blog">
+      <meta itemprop="description" content="Can you hear me?">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="gitlab-runner-mac-win | Topppy's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          gitlab-runner-mac-win
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-06-12 15:18:13" itemprop="dateCreated datePublished" datetime="2019-06-12T15:18:13+00:00">2019-06-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-10-27 06:12:31" itemprop="dateModified" datetime="2023-10-27T06:12:31+00:00">2023-10-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="gitlab-配置-mac-x2F-win-系统-runner，win-有问题【解决】"><a href="#gitlab-配置-mac-x2F-win-系统-runner，win-有问题【解决】" class="headerlink" title="gitlab 配置 mac&#x2F;win 系统 runner，win 有问题【解决】"></a>gitlab 配置 mac&#x2F;win 系统 runner，win 有问题【解决】</h1><p>gitlab 的 runner 就是触发 ci&#x2F;cd 之后，执行 gitlab-ci.yml 里的脚本的容器。一般呢，都是 docker。我最近有个 electron 的项目，想做 cicd 的自动打包，需要 mac 和 win 环境，于是先把自己的电脑配置为 runner 跑一次。</p>
+<span id="more"></span>
+
+<h2 id="mac"><a href="#mac" class="headerlink" title="mac"></a>mac</h2><h3 id="安装-runner"><a href="#安装-runner" class="headerlink" title="安装 runner"></a>安装 runner</h3><ul>
+<li><p>下载</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo curl --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-darwin-amd64</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>给权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chmod</span> +x /usr/local/bin/gitlab-runner</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装和启动 runner 服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">gitlab-runner install</span><br><span class="line">gitlab-runner start</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>检验安装结果</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-runner -h</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h3><ul>
+<li><p>获取 tocken</p>
+<ul>
+<li>在项目的 Setting &gt; CI&#x2F;CD 页<ul>
+<li>Runners settings &gt; Specific Runners</li>
+<li>获取 URL 和 tocken<br><img src="https://note.youdao.com/yws/api/personal/file/WEB8e12e879cab34af525fcf198740e0471?method=download&shareKey=f6e3fd5c4ec3aa196c28d2d0cb2caa0e" alt="image"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>执行注册命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-runner register</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">➜  gitlab-runner register</span><br><span class="line">Runtime platform                                    <span class="built_in">arch</span>=amd64 os=darwin pid=68127 revision=ac2a293c version=11.11.2</span><br><span class="line">WARNING: Running <span class="keyword">in</span> user-mode.</span><br><span class="line">WARNING: Use sudo <span class="keyword">for</span> system-mode:</span><br><span class="line">WARNING: $ sudo gitlab-runner...</span><br><span class="line"></span><br><span class="line">Please enter the gitlab-ci coordinator URL (e.g. https://gitlab.com/):</span><br><span class="line"><span class="comment"># 输入获取的URL</span></span><br><span class="line"></span><br><span class="line">Please enter the gitlab-ci token <span class="keyword">for</span> this runner:</span><br><span class="line"><span class="comment"># 输入tocken</span></span><br><span class="line"></span><br><span class="line">Please enter the gitlab-ci description <span class="keyword">for</span> this runner:</span><br><span class="line">[hostname]: my-runner</span><br><span class="line"></span><br><span class="line">Please enter the gitlab-ci tags <span class="keyword">for</span> this runner (comma separated):</span><br><span class="line">mac</span><br><span class="line"></span><br><span class="line">Registering runner... succeeded                     runner=6sbhZbPi</span><br><span class="line"></span><br><span class="line">Registering runner... succeeded                     runner=6sbhZbPi</span><br><span class="line"></span><br><span class="line">Please enter the executor: docker, parallels, shell, docker-ssh+machine, kubernetes, docker-ssh, ssh, virtualbox, docker+machine:</span><br><span class="line">shell</span><br><span class="line"></span><br><span class="line">Runner registered successfully. Feel free to start it, but <span class="keyword">if</span> it<span class="string">&#x27;s running already the config should be automatically reloaded!</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入项目的 Setting &gt; CI&#x2F;CD 页查看新注册的 runner</p>
+<ul>
+<li>Runners settings &gt; Specific Runners</li>
+</ul>
+</li>
+</ul>
+<h3 id="使用这个-runner"><a href="#使用这个-runner" class="headerlink" title="使用这个 runner"></a>使用这个 runner</h3><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.gitlab.com/runner/install/osx.html">https://docs.gitlab.com/runner/install/osx.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.gitlab.com/runner/register/index.html">https://docs.gitlab.com/runner/register/index.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://qii404.me/2018/06/21/gitlab-runner.html">https://qii404.me/2018/06/21/gitlab-runner.html</a></li>
+</ul>
+<h2 id="win"><a href="#win" class="headerlink" title="win"></a>win</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
+<li>创建一个文件夹，eg: C:\GitLab-Runner</li>
+<li>下载二进制安装包（x86&#x2F;amd64），（我用的 x86）放到我们创建的文件夹里，重命名二进制包为 gitlab-runner.exe</li>
+</ul>
+<h3 id="注册-runner"><a href="#注册-runner" class="headerlink" title="注册 runner"></a>注册 runner</h3><ul>
+<li><p>开一个 powershell 右键以管理员运行</p>
+</li>
+<li><p>进入刚刚创建的文件夹路径</p>
+</li>
+<li><p>执行注册命令,</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.\gitlab-runner.exe register</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>跟 mac 下的 runner 注册流程一致，输入 gitlab 项目里的网址 URL 和 tocken，选择 executor 为 shell，tag 为 windows</p>
+</li>
+</ul>
+<h3 id="安装-runner-服务并启动"><a href="#安装-runner-服务并启动" class="headerlink" title="安装 runner 服务并启动"></a>安装 runner 服务并启动</h3><ul>
+<li><p>执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.\gitlab-runner.exe install</span><br><span class="line">.\gitlab-runner.exe start</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="参考-1"><a href="#参考-1" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.gitlab.com/runner/install/windows.html">https://docs.gitlab.com/runner/install/windows.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://my.oschina.net/u/3756690/blog/1839652">https://my.oschina.net/u/3756690/blog/1839652</a></li>
+<li>中文乱码，<a target="_blank" rel="noopener" href="https://scfido.github.io/2018/07/11/GitLab-CI%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.html">https://scfido.github.io/2018/07/11/GitLab-CI%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/newP/p/5735366.html#_Toc458009356">https://www.cnblogs.com/newP/p/5735366.html#_Toc458009356</a></li>
+</ul>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><h4 id="gitlab-报错乱码"><a href="#gitlab-报错乱码" class="headerlink" title="gitlab 报错乱码"></a>gitlab 报错乱码</h4><p>参考中文乱码的解决方案，无效；另一个方案为改系统语言为英文，重启依旧有乱码。</p>
+<h4 id="gitlab-执行-git-报错乱码"><a href="#gitlab-执行-git-报错乱码" class="headerlink" title="gitlab 执行 git 报错乱码"></a>gitlab 执行 git 报错乱码</h4><p>执行 shell 为 powershell，报错信息看起来 git’clone 没有成功；但是环境变量已经配置好了。重启电脑之后好了。</p>
+<h3 id="DEBUG-PROD-x3D-true-yarn-package-报错"><a href="#DEBUG-PROD-x3D-true-yarn-package-报错" class="headerlink" title="DEBUG_PROD&#x3D;true yarn package 报错"></a>DEBUG_PROD&#x3D;true yarn package 报错</h3><p><img src="https://note.youdao.com/yws/api/personal/file/WEBd64bf2d2205c2cc6921f9146b86e3c1e?method=download&shareKey=3c5e8a856839fc8b03a359875be9bf67" alt="image"></p>
+<p>原因为，在 windows 中的执行环境为 powershell，设置 node 临时环境变量的语法跟 linux 系统不一样。</p>
+<p>改为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$env</span>:DEBUG_PROD=<span class="literal">true</span>; yarn package</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/hexo-blog/tags/mac/" rel="tag"># mac</a>
+              <a href="/hexo-blog/tags/windows/" rel="tag"># windows</a>
+              <a href="/hexo-blog/tags/gitlab/" rel="tag"># gitlab</a>
+              <a href="/hexo-blog/tags/runner/" rel="tag"># runner</a>
+              <a href="/hexo-blog/tags/ci-cd/" rel="tag"># ci/cd</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2019/06/06/electron-starter-guide/" rel="prev" title="electron-starter-guide">
+                  <i class="fa fa-chevron-left"></i> electron-starter-guide
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2019/06/12/learn-typescript-3/" rel="next" title="learn-typescript-3">
+                  learn-typescript-3 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Topppy</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/hexo-blog/js/comments.js"></script><script src="/hexo-blog/js/utils.js"></script><script src="/hexo-blog/js/motion.js"></script><script src="/hexo-blog/js/schemes/muse.js"></script><script src="/hexo-blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

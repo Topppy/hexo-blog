@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/hexo-blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/hexo-blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"topppy.github.io","root":"/hexo-blog/","images":"/hexo-blog/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/hexo-blog/js/config.js"></script>
+
+    <meta name="description" content="React18React 18 超全升级指南  ReactDOM.render替换为createRoot，影响范围：第三方组件库。 setState的同步异步breakChange useSyncExternalStore：订阅外部数据 &amp; 解决tear问题 想深入理解的话：https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;502917860 什么是tear（撕裂）：https">
+<meta property="og:type" content="article">
+<meta property="og:title" content="技术充电React18">
+<meta property="og:url" content="https://topppy.github.io/2023/10/13/%E6%8A%80%E6%9C%AF%E5%85%85%E7%94%B5React18/index.html">
+<meta property="og:site_name" content="Topppy&#39;s Blog">
+<meta property="og:description" content="React18React 18 超全升级指南  ReactDOM.render替换为createRoot，影响范围：第三方组件库。 setState的同步异步breakChange useSyncExternalStore：订阅外部数据 &amp; 解决tear问题 想深入理解的话：https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;502917860 什么是tear（撕裂）：https">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-13T07:11:37.000Z">
+<meta property="article:modified_time" content="2023-10-27T06:12:31.456Z">
+<meta property="article:author" content="Topppy">
+<meta property="article:tag" content="frontend">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://topppy.github.io/2023/10/13/%E6%8A%80%E6%9C%AF%E5%85%85%E7%94%B5React18/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://topppy.github.io/2023/10/13/%E6%8A%80%E6%9C%AF%E5%85%85%E7%94%B5React18/","path":"2023/10/13/技术充电React18/","title":"技术充电React18"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>技术充电React18 | Topppy's Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/hexo-blog/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/hexo-blog/atom.xml" title="Topppy's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/hexo-blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Topppy's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">FE developer</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#React18"><span class="nav-number">1.</span> <span class="nav-text">React18</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%AB%A0-amp-%E5%B7%A5%E5%85%B7"><span class="nav-number">2.</span> <span class="nav-text">文章&amp;工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%84%9F%E6%83%B3"><span class="nav-number">3.</span> <span class="nav-text">感想</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Topppy</p>
+  <div class="site-description" itemprop="description">Can you hear me?</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/hexo-blog/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/hexo-blog/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://topppy.github.io/2023/10/13/%E6%8A%80%E6%9C%AF%E5%85%85%E7%94%B5React18/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/hexo-blog/images/avatar.gif">
+      <meta itemprop="name" content="Topppy">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Topppy's Blog">
+      <meta itemprop="description" content="Can you hear me?">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="技术充电React18 | Topppy's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          技术充电React18
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-10-13 07:11:37" itemprop="dateCreated datePublished" datetime="2023-10-13T07:11:37+00:00">2023-10-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-10-27 06:12:31" itemprop="dateModified" datetime="2023-10-27T06:12:31+00:00">2023-10-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="React18"><a href="#React18" class="headerlink" title="React18"></a>React18</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7078511027091931167">React 18 超全升级指南</a></p>
+<ul>
+<li>ReactDOM.render替换为createRoot，影响范围：第三方组件库。</li>
+<li>setState的同步异步breakChange</li>
+<li>useSyncExternalStore：订阅外部数据 &amp; 解决tear问题</li>
+<li>想深入理解的话：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/502917860">https://www.zhihu.com/question/502917860</a></li>
+<li>什么是tear（撕裂）：<a target="_blank" rel="noopener" href="https://github.com/reactwg/react-18/discussions/69%EF%BC%8C">https://github.com/reactwg/react-18/discussions/69，</a></li>
+<li>简言之：在fiber的分块更新时域不连续性前提下，并发存在多源修改数据的可能性，等你第二次接着渲染的时候，数据可能被人改了，同一render内两块渲染的数据不一致。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/486902510">如何升级到react18</a></p>
+<ul>
+<li>关于strictMode的变化</li>
+<li>不再支持IE</li>
+</ul>
+<p>配合<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=8dUpL8SCO1w">React Conf 2021</a>食用<br><a target="_blank" rel="noopener" href="https://github.com/reactwg/react-18/discussions/70">Concurrent React for Library Maintainers</a></p>
+<p>hooks：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://cooperhu.com/2020/09/03/useEffect-componentDidMount/">useEffect 与componentDidMount的差异</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/348701319">useEfffect与useLayoutEffect的差异</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/275776067">React Concurrent Mode三连：是什么&#x2F;为什么&#x2F;怎么做</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/425009300">React 18 Concurrent 之 useDeferredValue &lt;译&gt;</a></li>
+</ul>
+<h2 id="文章-amp-工具"><a href="#文章-amp-工具" class="headerlink" title="文章&amp;工具"></a>文章&amp;工具</h2><ul>
+<li>手势库 <a target="_blank" rel="noopener" href="https://use-gesture.netlify.app/%EF%BC%8C%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%8B%96%E6%8B%BD%E6%BB%9A%E5%8A%A8%E7%AD%89%E7%9A%84%E6%89%8B%E5%8A%BF%E7%9A%84hook%E5%BA%93%EF%BC%8C%E6%9B%B4%E6%96%B0%E9%A2%91%E7%B9%81%E6%96%87%E6%A1%A3demo%E5%AE%8C%E5%96%84%E3%80%82">https://use-gesture.netlify.app/，移动端拖拽滚动等的手势的hook库，更新频繁文档demo完善。</a></li>
+<li>常用hook库，<a target="_blank" rel="noopener" href="https://ahooks.js.org/zh-CN%EF%BC%8C%E6%9C%89%E9%9D%9E%E5%B8%B8%E5%A4%9A%E8%AE%BE%E8%AE%A1%E4%BC%98%E7%A7%80%E7%9A%84hook%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%9C%8B%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF">https://ahooks.js.org/zh-CN，有非常多设计优秀的hook，可以看源码实现思路</a> or 自己练习实现一下。配套的blog文档含金量也很高，例如：<a target="_blank" rel="noopener" href="https://github.com/alibaba/hooks/blob/master/docs/guide/blog/function.zh-CN.md">ahooks 函数处理规范（函数引用不变的原理）</a></li>
+<li>react测试库，目前支持react 18还在WIP<ul>
+<li>组件，<a target="_blank" rel="noopener" href="https://github.com/testing-library/react-testing-library">https://github.com/testing-library/react-testing-library</a></li>
+<li>hook，<a target="_blank" rel="noopener" href="https://github.com/testing-library/react-hooks-testing-library">https://github.com/testing-library/react-hooks-testing-library</a></li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/d2forum/16th">去年D2的ppt资料</a></li>
+</ul>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>从新的hook可以窥探到，react的发展越来越不像一个 UI 库了，有了更复杂&amp;难以理解的设计理念，甚至明明白白的告诉你：“哪些特性普通开发者不用关心，只需要使用react给你的一般API就可以，复杂的事情我们我们已经帮你处理好了”。</p>
+<p>React的用户被分层了。一部分普通用户学会 how to use， 一部分库开发者要学会 why and how to make it right and fast。</p>
+<p>不变的是react那个核心的设计思想（仅本人感受到的）：用技术抹平人的差异性，让更多的人可以低成本的 产出 高性能的结果。这或许是一种研发的工业化？</p>
+<p>工人分化为：点点点机器的工人和研发机器的工人。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2023/10/13/%E4%BD%BF%E7%94%A8-electron13-electron-react-boilerplate-%E4%B8%80%E4%BA%9B%E5%8C%85%E6%8A%A5%E9%94%99-native%E5%8C%85%E9%97%AE%E9%A2%98/" rel="prev" title="使用 electron13 + electron-react-boilerplate 一些包报错+native包问题">
+                  <i class="fa fa-chevron-left"></i> 使用 electron13 + electron-react-boilerplate 一些包报错+native包问题
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2023/10/16/ts%E7%AC%94%E8%AE%B0-Everyday-Types/" rel="next" title="ts笔记: Everyday Types">
+                  ts笔记: Everyday Types <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Topppy</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/hexo-blog/js/comments.js"></script><script src="/hexo-blog/js/utils.js"></script><script src="/hexo-blog/js/motion.js"></script><script src="/hexo-blog/js/schemes/muse.js"></script><script src="/hexo-blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

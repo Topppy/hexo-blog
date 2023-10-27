@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/hexo-blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/hexo-blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"topppy.github.io","root":"/hexo-blog/","images":"/hexo-blog/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/hexo-blog/js/config.js"></script>
+
+    <meta name="description" content="背景：  The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page, 由于IOS的特殊性，audioContext的初始state&#x3D;’suspended’, 不会播放声音；必须通过用户交互的回调中ctx.resume()来解锁ctx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IOS webview audiocontext 播放无声音">
+<meta property="og:url" content="https://topppy.github.io/2023/10/27/IOS-webview-audiocontext-%E6%92%AD%E6%94%BE%E6%97%A0%E5%A3%B0%E9%9F%B3/index.html">
+<meta property="og:site_name" content="Topppy&#39;s Blog">
+<meta property="og:description" content="背景：  The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page, 由于IOS的特殊性，audioContext的初始state&#x3D;’suspended’, 不会播放声音；必须通过用户交互的回调中ctx.resume()来解锁ctx">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-27T06:12:15.000Z">
+<meta property="article:modified_time" content="2023-10-27T06:12:45.845Z">
+<meta property="article:author" content="Topppy">
+<meta property="article:tag" content="frontend">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://topppy.github.io/2023/10/27/IOS-webview-audiocontext-%E6%92%AD%E6%94%BE%E6%97%A0%E5%A3%B0%E9%9F%B3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://topppy.github.io/2023/10/27/IOS-webview-audiocontext-%E6%92%AD%E6%94%BE%E6%97%A0%E5%A3%B0%E9%9F%B3/","path":"2023/10/27/IOS-webview-audiocontext-播放无声音/","title":"IOS webview audiocontext 播放无声音"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>IOS webview audiocontext 播放无声音 | Topppy's Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/hexo-blog/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/hexo-blog/atom.xml" title="Topppy's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/hexo-blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Topppy's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">FE developer</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Topppy</p>
+  <div class="site-description" itemprop="description">Can you hear me?</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/hexo-blog/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/hexo-blog/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://topppy.github.io/2023/10/27/IOS-webview-audiocontext-%E6%92%AD%E6%94%BE%E6%97%A0%E5%A3%B0%E9%9F%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/hexo-blog/images/avatar.gif">
+      <meta itemprop="name" content="Topppy">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Topppy's Blog">
+      <meta itemprop="description" content="Can you hear me?">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="IOS webview audiocontext 播放无声音 | Topppy's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          IOS webview audiocontext 播放无声音
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-10-27 06:12:15 / Modified: 06:12:45" itemprop="dateCreated datePublished" datetime="2023-10-27T06:12:15+00:00">2023-10-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>背景：</p>
+<ol>
+<li>The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page, 由于IOS的特殊性，audioContext的初始state&#x3D;’suspended’, 不会播放声音；必须通过用户交互的回调中ctx.resume()来解锁ctx才能播放。</li>
+<li>某iphone11+IOS14.7.1手机，在客户端播放声音的同时打开webview自动播放audioContext会没有声音，检测ctx.state &#x3D; ‘interrupted’，同时客户端的声音也没有正常播放。</li>
+</ol>
+<p>debug：</p>
+<ol>
+<li>取消客户端声音播放调用，webview正常播放</li>
+<li>修改客户端策略  独占 &#x3D;&gt; 混合, 客户端和webview都正常播放</li>
+</ol>
+<p>一些AI答疑：<br>在iOS 11及以上版本的Webview中，AudioContext的创建和启动必须在用户手势的上下文中进行。这是因为iOS 11引入了一种安全机制，以防止Web应用程序在没有用户交互的情况下自动播放音频。如果你尝试在没有用户交互的情况下创建或启动AudioContext，则会出现The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page.错误。</p>
+<p>需要注意的是，iOS 11及以上版本的Webview中，AudioContext的限制不仅限于decodeAudioData方法，而是适用于所有涉及音频播放的API，包括HTMLMediaElement和Web Audio API等。因此，如果你的Web应用程序需要在iOS 11及以上版本的Webview中播放音频，你需要在用户手势的上下文中创建和启动AudioContext。</p>
+<p>在iOS的Webview中，如果音频上下文（AudioContext）被中断，它的state属性会返回interrupted。音频上下文可能会被中断，例如当用户接收电话或者切换到其他应用程序时。在这种情况下，音频上下文会暂停，直到用户返回到Web应用程序并重新激活音频上下文。</p>
+<p>在iOS的Webview中，如果使用solo策略播放音频，可能会导致AudioContext被中断，从而导致AudioContext.state返回interrupted。solo策略是指在播放音频时，将其他正在播放的音频暂停，以确保当前音频的播放效果最佳。在iOS的Webview中，如果使用solo策略播放音频，可能会导致其他正在播放的音频被暂停，从而导致音频硬件资源被占用，进而导致AudioContext无法正常工作，进而导致AudioContext.state返回interrupted。</p>
+<p>在iOS中，音频播放有两种策略：独占策略和混合策略。</p>
+<p>独占策略是指在播放音频时，将其他正在播放的音频暂停，以确保当前音频的播放效果最佳。这种策略适用于需要保证音频播放效果的场景，例如游戏、音乐播放器等。在iOS中，如果使用独占策略播放音频，可能会导致其他正在播放的音频被暂停，从而影响用户体验。</p>
+<p>混合策略是指在播放音频时，将当前音频与其他正在播放的音频混合在一起播放。这种策略适用于需要同时播放多个音频的场景，例如语音聊天、多人游戏等。在iOS中，如果使用混合策略播放音频，可以同时播放多个音频，从而提高用户体验。</p>
+<p>在iOS中，如果想要使用独占策略播放音频，你可以使用AVAudioSession类来设置音频会话的模式为AVAudioSessionCategoryPlayback，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let session = AVAudioSession.sharedInstance()</span><br><span class="line">try session.setCategory(.playback, mode: .default, options: [])</span><br><span class="line">try session.setActive(true)</span><br></pre></td></tr></table></figure>
+<p>)<br>这个代码会将音频会话的模式设置为AVAudioSessionCategoryPlayback，从而使用独占策略播放音频。注意，这个代码只是示例，你需要根据你的具体情况进行修改。</p>
+<p>如果想要使用混合策略播放音频，你可以使用AVAudioSession类来设置音频会话的模式为AVAudioSessionCategoryAmbient，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let session = AVAudioSession.sharedInstance()</span><br><span class="line">try session.setCategory(.ambient, mode: .default, options: [])</span><br><span class="line">try session.setActive(true)</span><br></pre></td></tr></table></figure>
+<p>)<br>这个代码会将音频会话的模式设置为AVAudioSessionCategoryAmbient，从而使用混合策略播放音频。注意，这个代码只是示例，你需要根据你的具体情况进行修改。</p>
+<p>一些相关参考：<br><a target="_blank" rel="noopener" href="https://forum.gamemaker.io/index.php?threads/html5-web-audio-context-issues-on-ios.86787/">https://forum.gamemaker.io/index.php?threads/html5-web-audio-context-issues-on-ios.86787/</a><br><a target="_blank" rel="noopener" href="https://github.com/WebAudio/web-audio-api/issues/2392">https://github.com/WebAudio/web-audio-api/issues/2392</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2023/10/25/moov%E5%89%8D%E7%BD%AE%E5%8A%A0%E9%80%9F%E8%A7%86%E9%A2%91%E9%A6%96%E6%AC%A1%E5%8F%AF%E8%A7%81/" rel="prev" title="moov前置加速视频首次可见">
+                  <i class="fa fa-chevron-left"></i> moov前置加速视频首次可见
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Topppy</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/hexo-blog/js/comments.js"></script><script src="/hexo-blog/js/utils.js"></script><script src="/hexo-blog/js/motion.js"></script><script src="/hexo-blog/js/schemes/muse.js"></script><script src="/hexo-blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

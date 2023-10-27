@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/hexo-blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/hexo-blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"topppy.github.io","root":"/hexo-blog/","images":"/hexo-blog/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/hexo-blog/js/config.js"></script>
+
+    <meta name="description" content="需求邮箱账号输入下拉建议列表的item上有click事件，我们期望是邮箱账号input在blur的时候隐藏下拉。点击下拉的item，输入框内的值变为item的值。 问题 1，如果直接隐藏，就无法点击下拉元素。因此网上一个常见的解决方案是在blur的回调中延时隐藏下拉。(侧面证明blur事件是先于click事件触发的) 问题2， 在延迟隐藏下拉的条件下，部分浏览器依旧不触发item的click事件浏">
+<meta property="og:type" content="article">
+<meta property="og:title" content="邮箱账号输入下拉建议点击无效bug">
+<meta property="og:url" content="https://topppy.github.io/2023/10/08/%E9%82%AE%E7%AE%B1%E8%B4%A6%E5%8F%B7%E8%BE%93%E5%85%A5%E4%B8%8B%E6%8B%89%E5%BB%BA%E8%AE%AE%E7%82%B9%E5%87%BB%E6%97%A0%E6%95%88bug/index.html">
+<meta property="og:site_name" content="Topppy&#39;s Blog">
+<meta property="og:description" content="需求邮箱账号输入下拉建议列表的item上有click事件，我们期望是邮箱账号input在blur的时候隐藏下拉。点击下拉的item，输入框内的值变为item的值。 问题 1，如果直接隐藏，就无法点击下拉元素。因此网上一个常见的解决方案是在blur的回调中延时隐藏下拉。(侧面证明blur事件是先于click事件触发的) 问题2， 在延迟隐藏下拉的条件下，部分浏览器依旧不触发item的click事件浏">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-08T09:40:17.000Z">
+<meta property="article:modified_time" content="2023-10-27T06:12:31.456Z">
+<meta property="article:author" content="Topppy">
+<meta property="article:tag" content="frontend">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://topppy.github.io/2023/10/08/%E9%82%AE%E7%AE%B1%E8%B4%A6%E5%8F%B7%E8%BE%93%E5%85%A5%E4%B8%8B%E6%8B%89%E5%BB%BA%E8%AE%AE%E7%82%B9%E5%87%BB%E6%97%A0%E6%95%88bug/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://topppy.github.io/2023/10/08/%E9%82%AE%E7%AE%B1%E8%B4%A6%E5%8F%B7%E8%BE%93%E5%85%A5%E4%B8%8B%E6%8B%89%E5%BB%BA%E8%AE%AE%E7%82%B9%E5%87%BB%E6%97%A0%E6%95%88bug/","path":"2023/10/08/邮箱账号输入下拉建议点击无效bug/","title":"邮箱账号输入下拉建议点击无效bug"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>邮箱账号输入下拉建议点击无效bug | Topppy's Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/hexo-blog/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/hexo-blog/atom.xml" title="Topppy's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/hexo-blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Topppy's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">FE developer</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9C%80%E6%B1%82"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-1%EF%BC%8C%E5%A6%82%E6%9E%9C%E7%9B%B4%E6%8E%A5%E9%9A%90%E8%97%8F%EF%BC%8C%E5%B0%B1%E6%97%A0%E6%B3%95%E7%82%B9%E5%87%BB%E4%B8%8B%E6%8B%89%E5%85%83%E7%B4%A0%E3%80%82"><span class="nav-number">1.1.</span> <span class="nav-text">问题 1，如果直接隐藏，就无法点击下拉元素。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%982%EF%BC%8C-%E5%9C%A8%E5%BB%B6%E8%BF%9F%E9%9A%90%E8%97%8F%E4%B8%8B%E6%8B%89%E7%9A%84%E6%9D%A1%E4%BB%B6%E4%B8%8B%EF%BC%8C%E9%83%A8%E5%88%86%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BE%9D%E6%97%A7%E4%B8%8D%E8%A7%A6%E5%8F%91item%E7%9A%84click%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">问题2， 在延迟隐藏下拉的条件下，部分浏览器依旧不触发item的click事件</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Topppy</p>
+  <div class="site-description" itemprop="description">Can you hear me?</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/hexo-blog/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/hexo-blog/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://topppy.github.io/2023/10/08/%E9%82%AE%E7%AE%B1%E8%B4%A6%E5%8F%B7%E8%BE%93%E5%85%A5%E4%B8%8B%E6%8B%89%E5%BB%BA%E8%AE%AE%E7%82%B9%E5%87%BB%E6%97%A0%E6%95%88bug/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/hexo-blog/images/avatar.gif">
+      <meta itemprop="name" content="Topppy">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Topppy's Blog">
+      <meta itemprop="description" content="Can you hear me?">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="邮箱账号输入下拉建议点击无效bug | Topppy's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          邮箱账号输入下拉建议点击无效bug
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-10-08 09:40:17" itemprop="dateCreated datePublished" datetime="2023-10-08T09:40:17+00:00">2023-10-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-10-27 06:12:31" itemprop="dateModified" datetime="2023-10-27T06:12:31+00:00">2023-10-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>邮箱账号输入下拉建议列表的item上有click事件，我们期望是邮箱账号input在blur的时候隐藏下拉。点击下拉的item，输入框内的值变为item的值。</p>
+<h2 id="问题-1，如果直接隐藏，就无法点击下拉元素。"><a href="#问题-1，如果直接隐藏，就无法点击下拉元素。" class="headerlink" title="问题 1，如果直接隐藏，就无法点击下拉元素。"></a>问题 1，如果直接隐藏，就无法点击下拉元素。</h2><p>因此网上一个常见的解决方案是在blur的回调中延时隐藏下拉。(侧面证明blur事件是先于click事件触发的)</p>
+<h2 id="问题2，-在延迟隐藏下拉的条件下，部分浏览器依旧不触发item的click事件"><a href="#问题2，-在延迟隐藏下拉的条件下，部分浏览器依旧不触发item的click事件" class="headerlink" title="问题2， 在延迟隐藏下拉的条件下，部分浏览器依旧不触发item的click事件"></a>问题2， 在延迟隐藏下拉的条件下，部分浏览器依旧不触发item的click事件</h2><p>浏览器触发blur事件和click事件的顺序是，先blur，后click。可能某些浏览器不再触发blur之后的事件。</p>
+<p>我们需要在触发blur前知道item被点击了。mousedown事件可以办到，为什么呢？</p>
+<p>去这个<a target="_blank" rel="noopener" href="https://codepen.io/mudassir0909/pen/eIHqB">codepen</a>体验一下点击事件和blur事件的触发顺序；</p>
+<ul>
+<li>button mousedown is fired. </li>
+<li>input blur is fired. </li>
+<li>button mouseup is fired. </li>
+<li>button click is fired.</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ligang2585116/article/details/51764828">参考</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2023/10/08/%E8%BE%93%E5%85%A5%E6%A1%86%E9%99%90%E5%88%B6%E5%AD%97%E7%AC%A6%E9%95%BF%E5%BA%A6%E5%AF%BC%E8%87%B4%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95bug/" rel="prev" title="输入框限制字符长度导致中文输入法bug">
+                  <i class="fa fa-chevron-left"></i> 输入框限制字符长度导致中文输入法bug
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2023/10/08/react-%E7%BB%84%E4%BB%B6%E8%84%9A%E6%89%8B%E6%9E%B6%EF%BC%9Anwb-vs-Neutrino/" rel="next" title="react 组件脚手架：nwb vs Neutrino">
+                  react 组件脚手架：nwb vs Neutrino <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Topppy</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/hexo-blog/js/comments.js"></script><script src="/hexo-blog/js/utils.js"></script><script src="/hexo-blog/js/motion.js"></script><script src="/hexo-blog/js/schemes/muse.js"></script><script src="/hexo-blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/hexo-blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/hexo-blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"topppy.github.io","root":"/hexo-blog/","images":"/hexo-blog/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/hexo-blog/js/config.js"></script>
+
+    <meta name="description" content="typescript 学习笔记二： 接口接口用来定义复杂的类型（比如对象，函数），描述复杂类型应该是一个什么样子的“鸭子”。可以简单理解为期望获得一个具有什么样类型的对象（当然不止对象类型）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="learn-typescript-2">
+<meta property="og:url" content="https://topppy.github.io/2019/05/06/learn-typescript-2/index.html">
+<meta property="og:site_name" content="Topppy&#39;s Blog">
+<meta property="og:description" content="typescript 学习笔记二： 接口接口用来定义复杂的类型（比如对象，函数），描述复杂类型应该是一个什么样子的“鸭子”。可以简单理解为期望获得一个具有什么样类型的对象（当然不止对象类型）。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-05-06T15:12:31.000Z">
+<meta property="article:modified_time" content="2023-10-27T06:12:31.452Z">
+<meta property="article:author" content="Topppy">
+<meta property="article:tag" content="typescript">
+<meta property="article:tag" content="接口">
+<meta property="article:tag" content="interfaces">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://topppy.github.io/2019/05/06/learn-typescript-2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://topppy.github.io/2019/05/06/learn-typescript-2/","path":"2019/05/06/learn-typescript-2/","title":"learn-typescript-2"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>learn-typescript-2 | Topppy's Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/hexo-blog/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/hexo-blog/atom.xml" title="Topppy's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/hexo-blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Topppy's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">FE developer</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#typescript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%9A-%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.</span> <span class="nav-text">typescript 学习笔记二： 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.1.</span> <span class="nav-text">对象类型接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E7%B1%BB%E5%9E%8B%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.2.</span> <span class="nav-text">函数类型接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E7%B4%A2%E5%BC%95%E7%B1%BB%E5%9E%8B%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.3.</span> <span class="nav-text">可索引类型接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.4.</span> <span class="nav-text">类类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.5.</span> <span class="nav-text">继承接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.6.</span> <span class="nav-text">混合类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E7%BB%A7%E6%89%BF%E7%B1%BB"><span class="nav-number">1.7.</span> <span class="nav-text">接口继承类</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Topppy</p>
+  <div class="site-description" itemprop="description">Can you hear me?</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/hexo-blog/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/hexo-blog/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://topppy.github.io/2019/05/06/learn-typescript-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/hexo-blog/images/avatar.gif">
+      <meta itemprop="name" content="Topppy">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Topppy's Blog">
+      <meta itemprop="description" content="Can you hear me?">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="learn-typescript-2 | Topppy's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          learn-typescript-2
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-05-06 15:12:31" itemprop="dateCreated datePublished" datetime="2019-05-06T15:12:31+00:00">2019-05-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-10-27 06:12:31" itemprop="dateModified" datetime="2023-10-27T06:12:31+00:00">2023-10-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="typescript-学习笔记二：-接口"><a href="#typescript-学习笔记二：-接口" class="headerlink" title="typescript 学习笔记二： 接口"></a>typescript 学习笔记二： 接口</h1><p>接口用来定义复杂的类型（比如对象，函数），描述复杂类型应该是一个什么样子的“鸭子”。可以简单理解为期望获得一个具有什么样类型的对象（当然不止对象类型）。</p>
+<span id="more"></span>
+
+<h2 id="对象类型接口"><a href="#对象类型接口" class="headerlink" title="对象类型接口"></a>对象类型接口</h2><p>有一个对象可能长这样,统计了一个学生的信息，其中名字和年龄是一定会有的，身高可能没有数据，并且姓名数据不可以修改，是只读的。可能还有其他未知的数据。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Bob&#x27;</span></span><br><span class="line">  <span class="attr">age</span>: <span class="number">12</span>,</span><br><span class="line">  <span class="attr">height</span>: <span class="number">150</span>,</span><br><span class="line">  <span class="attr">ffja8efhwfbfkwnsalkdfjpiw</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么我如何来描述这样的要求呢？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">interface <span class="title class_">StudentInfo</span> &#123;</span><br><span class="line">  readonly <span class="attr">name</span>: string;</span><br><span class="line">  <span class="attr">age</span>: number;</span><br><span class="line">  height?: number;</span><br><span class="line">  [<span class="attr">propName</span>: string]: any;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>readonly</code>表示<strong>只读</strong>，<code>?</code>表示<strong>可选属性</strong>, 其他未知的属性，使用<strong>索引签名</strong>来约束，<code>[propName: string]: any;</code> 值不确定就写成any，确定就写成某一基础类型比如 <code>boolean</code>.</p>
+<h2 id="函数类型接口"><a href="#函数类型接口" class="headerlink" title="函数类型接口"></a>函数类型接口</h2><p>用<strong>调用签名</strong>来描述，描述函数的<strong>参数列表</strong>和<strong>返回值类型</strong>, 是的不需要关注函数名字。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface <span class="title class_">SearchFunc</span> &#123;</span><br><span class="line">  (<span class="attr">source</span>: string, <span class="attr">subString</span>: string): boolean;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="可索引类型接口"><a href="#可索引类型接口" class="headerlink" title="可索引类型接口"></a>可索引类型接口</h2><p>索引签名： 描述对象索引（属性名）的类型，和相应索引返回值（属性值）的类型。<br>什么意思呢，我们一般给对象定义类型接口的时候，是指定了索引具体是’name’还是’age’。如果我们不确定索引可能是什么的时候，有需要这样去描述一个对象&#x2F;数组，它是可以索引的，所以可以是string或者number。</p>
+<p>比如在没有枚举的情况下，通常会使用对象来实现一个key是字符，值为数字的字典。我们可以这样描述：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface <span class="title class_">NumberDictionary</span> &#123;</span><br><span class="line">  [<span class="attr">index</span>: string]: number</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也可以描述数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface <span class="title class_">NumberArray</span> &#123;</span><br><span class="line">  [<span class="attr">index</span>: number]: number</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>TypeScript支持两种索引签名：字符串和数字.<br>需要注意的是，当使用 number来索引时，JavaScript会将它转换成string然后再去索引对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">a[<span class="number">0</span>] === a[<span class="string">&#x27;0&#x27;</span>] <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>因此,在ts中，需要保证使用数字索引的返回值必须是字符串索引返回值类型的子类型。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父类型</span></span><br><span class="line">interface <span class="title class_">Dog</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子类型</span></span><br><span class="line">interface <span class="title class_">Puppy</span> <span class="keyword">extends</span> <span class="title class_">Dog</span> &#123;</span><br><span class="line">  <span class="attr">sound</span>: string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确</span></span><br><span class="line">interface <span class="title class_">Animals</span> &#123;</span><br><span class="line">  [<span class="attr">index</span>: number]: <span class="title class_">Puppy</span>;</span><br><span class="line">  [<span class="attr">index</span>: string]: <span class="title class_">Dog</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 错误，数字索引类型Dog不能赋值给字符串索引类型Puppy</span></span><br><span class="line">interface <span class="title class_">ErrorAnimals</span> &#123;</span><br><span class="line">  [<span class="attr">index</span>: number]: <span class="title class_">Dog</span>;</span><br><span class="line">  [<span class="attr">index</span>: string]: <span class="title class_">Puppy</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="类类型"><a href="#类类型" class="headerlink" title="类类型"></a>类类型</h2><p>类似于面向对象语言的接口的作用，描述一个类公共的部分应该符合什么结构。比如你可以描述类拥有什么属性，需要实现什么样的方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">interface <span class="title class_">Dog</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: string;</span><br><span class="line">  <span class="comment">// 描述bark方法</span></span><br><span class="line">  <span class="title function_">bark</span>(<span class="attr">sound</span>: string);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Puppy</span> implements <span class="title class_">Dog</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Puppy&#x27;</span></span><br><span class="line">  <span class="comment">// 实现bark方法</span></span><br><span class="line">  <span class="title function_">bark</span>(<span class="params">sound</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(sound)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="继承接口"><a href="#继承接口" class="headerlink" title="继承接口"></a>继承接口</h2><p>从一个接口复制成员到另一个接口。可以继承多个接口。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父类型</span></span><br><span class="line">interface <span class="title class_">Dog</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子类型</span></span><br><span class="line">interface <span class="title class_">Puppy</span> <span class="keyword">extends</span> <span class="title class_">Dog</span> &#123;</span><br><span class="line">  <span class="attr">sound</span>: string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="混合类型"><a href="#混合类型" class="headerlink" title="混合类型"></a>混合类型</h2><p>函数也是对象，那接口可以同时作为对象和函数使用。</p>
+<h2 id="接口继承类"><a href="#接口继承类" class="headerlink" title="接口继承类"></a>接口继承类</h2><p>todo</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/hexo-blog/tags/typescript/" rel="tag"># typescript</a>
+              <a href="/hexo-blog/tags/%E6%8E%A5%E5%8F%A3/" rel="tag"># 接口</a>
+              <a href="/hexo-blog/tags/interfaces/" rel="tag"># interfaces</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2019/04/30/learn-typescript-1/" rel="prev" title="learn-typescript-1">
+                  <i class="fa fa-chevron-left"></i> learn-typescript-1
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/hexo-blog/2019/06/06/electron-starter-guide/" rel="next" title="electron-starter-guide">
+                  electron-starter-guide <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Topppy</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/hexo-blog/js/comments.js"></script><script src="/hexo-blog/js/utils.js"></script><script src="/hexo-blog/js/motion.js"></script><script src="/hexo-blog/js/schemes/muse.js"></script><script src="/hexo-blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
